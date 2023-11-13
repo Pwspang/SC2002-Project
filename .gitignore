@@ -26,3 +26,4 @@ replay_pid*
 # intellij and mac files
 .DS_Store
 .idea
+/out/
