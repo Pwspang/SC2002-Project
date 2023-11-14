@@ -14,6 +14,4 @@ public class staffUI implements iView{
         //blocking input
         textIO.newStringInputReader().read("Blocking");
     };
-
-    private void
 }
