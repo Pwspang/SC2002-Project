@@ -51,6 +51,6 @@ public class AuthStudent extends AuthUser{
         iCampStudent campManager = campManager.getInstance();
         campManager.getRegisteredCampList(userID, roleID);
     }
-
+    
 
 }

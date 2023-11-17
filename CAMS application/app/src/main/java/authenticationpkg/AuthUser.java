@@ -49,6 +49,7 @@ public abstract class AuthUser implements Serializable{
         this.faculty = faculty;
     }
 
+
     /**
      * Gets the full name of this user.
      * @return this AuthUser's name
@@ -104,7 +105,7 @@ public abstract class AuthUser implements Serializable{
     public void setFaculty(Faculty newFaculty){
         this.faculty = newFaculty;
     }
-
+    /* 
     public Camp getCamp(String campID){
         iCampStaff campManager = campManager.getInstance();
         return campManager.getCamp(campID);
@@ -113,5 +114,6 @@ public abstract class AuthUser implements Serializable{
         iCampCCMember campManager = campManager.getInstance();
         return campManager.getCampInfo;
     }
+    */
     
 }

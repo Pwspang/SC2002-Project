@@ -9,7 +9,7 @@ public class AuthStaff extends AuthUser{
     public AuthStaff(String name, String userID, String password, Faculty faculty){
         super(name,userID,password,faculty);
     }
-
+    
     public void createCamp(String campName, String startDate, String endDate, String registratonClosingDate, boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots, String description){
         iCampStaff campManager = campManager.getInstance();
         campManager.createCamp(String userID, String campName, String startDate, String endDate, String registratonClosingDate, boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots, String description);
