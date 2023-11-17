@@ -13,7 +13,7 @@ public class AccountManager implements Serializable {
 
 	}
 
-	public static void writeSerializedObject() {
+	public void writeSerializedObject() {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try {
@@ -27,7 +27,7 @@ public class AccountManager implements Serializable {
 		}
 	}
 
-	public static HashMap<String, AuthUser> readSerializedObject() {
+	public HashMap<String, AuthUser> readSerializedObject() {
 		Map<String, AuthUser> pDetails = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
@@ -71,7 +71,7 @@ public class AccountManager implements Serializable {
 		accountDict.put(user.getUserID(), newUser);
 	}
 
-	public void toString(AuthUser user){
+	public void toString(AuthUser user) {
 		System.out.println("Name: " + user.getName());
 		System.out.println("AccountType: " + user.getAccountType());
 		System.out.println("userID: " + user.getUserID());
