@@ -14,7 +14,7 @@ public class AuthStudent extends AuthUser {
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
         iCampManager campManager = CampManager.getInstance();
-        return campManager.getVisibleCampList(userID);
+        return campManager.getVisibleCampList(getUserID());
     }
 
     public Camp getCamp(String campID) {
@@ -24,46 +24,46 @@ public class AuthStudent extends AuthUser {
 
     public void register(String campID, String roleID) {
         iCampStudent campManager = campManager.getInstance();
-        campManager.register(campID, userID, roleID);
+        campManager.register(campID, getUserID(), roleID);
 
     }
 
     public void withdraw(String campID) {
         iCampStudent campManager = campManager.getInstance();
-        campManager.withdraw(campID, userID);
+        campManager.withdraw(campID, getUserID());
     }
 
     public ArrayList<String> getRegisteredCampList(String roleID) {
         iCampStudent campManager = campManager.getInstance();
-        campManager.getRegisteredCampList(userID, roleID);
+        campManager.getRegisteredCampList(getUserID(), roleID);
     }
 
     // Enquiry Methods
     public ArrayList<String> getEnquiries() {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getEnquiries(userID);
+        return feedbackManager.getEnquiries(getUserID());
 
     }
 
     public void submitEnquiry(String campID, String content) {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.submitEnquiry(userID, campID, content);
+        feedbackManager.submitEnquiry(getUserID(), campID, content);
     }
 
     public void editEnquiry(int feedbackID, String newContent) {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.editEnquiry(feedbackID, userID, newContent);
+        feedbackManager.editEnquiry(feedbackID, getUserID(), newContent);
     }
 
     public void deleteEnquiry(int feedbackID) {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.deleteEnquiry(feedbackID, userID);
+        feedbackManager.deleteEnquiry(feedbackID, getUserID());
     }
 
     // Points Methods
     public int getPoints(){
         PointsManager pointsManager = PointsManager.getInstance()
-        return pointsManager.getPoints(userID);
+        return pointsManager.getPoints(getUserID());
     }
 
 }

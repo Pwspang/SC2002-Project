@@ -12,9 +12,12 @@ public class AuthStaff extends AuthUser {
     }
 
     // Camp Functions
-    public void createCamp(String campName, String startDate, String endDate, String registratonClosingDate, boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots, String description){
+    public void createCamp(String campName, String startDate, String endDate, String registratonClosingDate,
+            boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
+            String description) {
         iCampStaff campManager = campManager.getInstance();
-        campManager.createCamp(String userID, String campName, String startDate, String endDate, String registratonClosingDate, boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots, String description);
+        campManager.createCamp(getUserID(), campName, startDate, endDate, registratonClosingDate, openToNTU, userGroup,
+                location, totalSlots, campCommitteeSlots, description);
     }
 
     public void deleteCamp(String campID) {
@@ -30,7 +33,7 @@ public class AuthStaff extends AuthUser {
 
     public ArrayList<String> getCreatedCamps() {
         iCampStaff campManager = campManager.getInstance();
-        return campManager.getCreatedCamps(userID);
+        return campManager.getCreatedCamps(getUserID());
     }
 
     public void editDate(String campID, String startDate, String endDate) {

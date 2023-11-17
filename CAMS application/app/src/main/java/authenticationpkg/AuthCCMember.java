@@ -12,42 +12,42 @@ public class AuthCCMember extends AuthStudent {
 
     public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquries(userID, regCampList);
+        return feedbackManager.getCampEnquries(getUserID(), regCampList);
     }
 
     public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
         PointsManager pointManager = PointsManager.getInstance();
         feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
-        pointManager.addOnePoint(userID);
+        pointManager.addOnePoint(getUserID());
     }
 
     public ArrayList<String> getSuggestions() {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.getSuggestions(userID);
+        feedbackManager.getSuggestions(getUserID());
     }
 
     public void editSuggestion(int feedbackID, String newContent) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.editSuggestion(feedbackID, userID, newContent);
+        feedbackManager.editSuggestion(feedbackID, getUserID(), newContent);
 
     }
 
     public void deleteSuggestion(int feedbackID) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.deleteSuggestion(feedbackID, userID);
+        feedbackManager.deleteSuggestion(feedbackID, getUserID());
     }
 
     public submitSuggestion(String campID, String content){
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.submitSuggestion(userID, campID, content);
+        feedbackManager.submitSuggestion(getUserID(), campID, content);
     }
 
     // Points function
     public void addOnePoint() {
 
         PointsManager pointsManager = PointsManager.getInstance();
-        pointsManager.addOnePoint(userID);
+        pointsManager.addOnePoint(getUserID());
     }
 
 }
