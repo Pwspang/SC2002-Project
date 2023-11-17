@@ -1,4 +1,5 @@
 package authenticationpkg;
+
 import java.io.Serializable;
 
 //import feedbackpkg.*;
@@ -6,12 +7,13 @@ import camppkg.*;
 //import pointspkg.*;
 
 /**
- * AuthUser is an abstract class that represents the base class of all types of user accounts.
+ * AuthUser is an abstract class that represents the base class of all types of
+ * user accounts.
  * It includes attributes: name, userID, password, faculty.
  * 
  */
 
-public abstract class AuthUser implements Serializable{
+public abstract class AuthUser implements Serializable {
     /**
      * The full name of the user that this user account belongs to.
      */
@@ -36,84 +38,101 @@ public abstract class AuthUser implements Serializable{
     /**
      * Creates a new AuthUser with the given parameters.
      * This is an abstract class that cannot be instantiated.
-     * @param name This AuthUser's name.
-     * @param userID This AuthUser's userID.
+     * 
+     * @param name     This AuthUser's name.
+     * @param userID   This AuthUser's userID.
      * @param password This AuthUser's password.
-     * @param faculty This faculty that this AuthUser belongs to.
+     * @param faculty  This faculty that this AuthUser belongs to.
      */
 
-    public AuthUser(String name, String userID, String password, Faculty faculty){
+    public AuthUser(String name, String userID, String password, Faculty faculty) {
         this.name = name;
         this.userID = userID;
         this.password = password;
         this.faculty = faculty;
     }
 
+    /**
+     * Gets the account type of this user account.
+     * 
+     * @return this AuthUser's account type.
+     */
+    public String getAccountType() {
+        return this.getClass().getName();
+
+    }
 
     /**
-     * Gets the full name of this user.
+     * Gets the full name of this user account.
+     * 
      * @return this AuthUser's name
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     /**
      * Gets the unique userID of this user account.
+     * 
      * @return this AuthUser's userID.
      */
-    public String getUserID(){
+    public String getUserID() {
         return userID;
     }
 
     /**
      * Gets the password of this user account.
+     * 
      * @return this AuthUser's password.
      */
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
     /**
      * Changes the password of this user account.
+     * 
      * @param newPassword This AuthUser's new password.
      */
-    public void setPassword(String newPassword){
+    public void setPassword(String newPassword) {
         this.password = newPassword;
     }
 
     /**
      * Changes the name that this user account belongs to.
+     * 
      * @param newName This AuthUser's new name.
      */
-    public void setName(String newName){
+    public void setName(String newName) {
         this.name = newName;
     }
 
     /**
      * Gets the faculty of this user account.
+     * 
      * @return This AuthUser's faculty.
      */
-    public Faculty getFaculty(){
+    public Faculty getFaculty() {
         return faculty;
     }
 
     /**
      * Changes the faculty of this user account.
+     * 
      * @param newFaculty This AuthUser's new faculty.
      */
-    public void setFaculty(Faculty newFaculty){
+    public void setFaculty(Faculty newFaculty) {
         this.faculty = newFaculty;
     }
-    /* 
-    public Camp getCamp(String campID){
+
+    public Camp getCamp(String campID) {
         iCampStaff campManager = campManager.getInstance();
         return campManager.getCamp(campID);
     }
+
     public CampInfo getCampInfo(String campID){
         iCampCCMember campManager = campManager.getInstance();
-        return campManager.getCampInfo;
+        return campManager.getCampInfo(String campID);
     }
-    */
-    
+
 }

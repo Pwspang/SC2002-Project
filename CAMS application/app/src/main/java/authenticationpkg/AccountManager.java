@@ -9,7 +9,7 @@ public class AccountManager implements Serializable {
 	private static final String filename = "AccountManager.dat";
 
 	private AccountManager() {
-		accountDict = readSerializedObject(filename);
+		accountDict = readSerializedObject();
 
 	}
 
@@ -49,6 +49,43 @@ public class AccountManager implements Serializable {
 
 	public static AccountManager getInstance() {
 		return accountManager;
+	}
+
+	public HashMap<String, AuthUser> getAccountDict() {
+		return accountDict;
+	}
+
+	public AuthUser getAccount(String userID) {
+		return accountDict.get(userID);
+	}
+
+	public void changePassword(AuthUser user, String newPassword) {
+		user.setPassword(newPassword);
+	}
+
+	public void changeName(AuthUser user, String newName) {
+		user.setName(newName);
+	}
+
+	public void changeAccountType(AuthUser user, AuthUser newUser) {
+		accountDict.put(user.getUserID(), newUser);
+	}
+
+	public void toString(AuthUser user){
+		System.out.println("Name: " + user.getName());
+		System.out.println("AccountType: " + user.getAccountType());
+		System.out.println("userID: " + user.getUserID());
+		System.out.println("Password: " + user.getPassword());
+		System.out.println("Faculty: " + user.getFaculty());
+
+	}
+
+	public AuthUser login(String userID, String password) {
+		if (password != accountDict.getAccount(userID).getPassword()) {
+			throw new IllegalArgumentException("Incorrect Password");
+		}
+
+		return accountDict.getAccount(userID);
 	}
 
 }
