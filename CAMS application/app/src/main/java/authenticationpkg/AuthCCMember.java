@@ -15,15 +15,11 @@ public class AuthCCMember extends AuthStudent {
         return feedbackManager.getCampEnquries(userID, regCampList);
     }
 
-    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) { // need
-                                                                                                                  // to
-                                                                                                                  // pointpkg
-                                                                                                                  // to
-                                                                                                                  // add
-                                                                                                                  // one
-                                                                                                                  // point
+    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
+        PointsManager pointManager = PointsManager.getInstance();
         feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
+        pointManager.addOnePoint(userID);
     }
 
     public ArrayList<String> getSuggestions() {
