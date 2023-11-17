@@ -28,7 +28,7 @@ public class AccountManager implements Serializable {
 	}
 
 	public HashMap<String, AuthUser> readSerializedObject() {
-		Map<String, AuthUser> pDetails = null;
+		HashMap<String, AuthUser> pDetails = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		try {
