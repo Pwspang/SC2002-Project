@@ -32,7 +32,7 @@ public abstract class Slots {
     }
 
     public String getRoleID() {
-        return roleid;
+        return "";
     }
 
     public int getTotalSlots() {

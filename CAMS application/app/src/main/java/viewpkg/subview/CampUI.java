@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import authenticationpkg.*;
 
 public class CampUI {
-    /**
+        /**
      * Get user input to create a camp object
      * @param user
      */
