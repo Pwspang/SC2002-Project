@@ -25,6 +25,9 @@ dependencies {
     // For text input 
     implementation("org.beryx:text-io:3.4.1")
 
+    // For ascii table 
+    implementation("de.vandermeer:asciitable:0.3.2")
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

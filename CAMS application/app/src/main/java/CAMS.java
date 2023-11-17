@@ -1,4 +1,5 @@
 // To import all the required packages
+import viewPackage.subview.loginUI;
 import viewPackage.*;
 
 
@@ -16,13 +17,24 @@ public class CAMS {
     }
 
     private static void start(){
+        int choice;
         startAllManager();
         // Current state to call currView.displayOptions() on loop
         while (true){
             if (user == 0){
                 login();
             } else {
-                currView.displayOptions();
+                choice = currView.displayOptions();
+                switch(choice){
+                    case 1:
+                        logout();
+                        break;
+                    case 2:
+                        loginUI.resetPassword();
+                        break;
+                    default:
+                        currView.handleOption(choice);
+                }
             }
         }
     }
@@ -30,8 +42,12 @@ public class CAMS {
     private static void login(){
         user=loginUI.handleLogin();
 
-        //To Do set view based on user permission
-        currView = new staffUI();
+        //Use switch case to set user UI
+        currView = staffUI.getInstance();   
+    }
+
+    public static void logout(){
+        user = 0;
     }
 
     private static void startAllManager(){
