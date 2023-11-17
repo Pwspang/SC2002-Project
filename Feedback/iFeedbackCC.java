@@ -1,4 +1,5 @@
 package Feedback;
+import java.util.ArrayList;
 
 public interface iFeedbackCC {
     public ArrayList<String> getCampEnquiries(String campID);
