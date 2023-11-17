@@ -1,4 +1,4 @@
-package camppackage;
+package camppkg;
 import java.util.*;
 
 public class AttendeeSlots extends Slots {

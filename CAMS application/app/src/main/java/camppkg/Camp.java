@@ -1,5 +1,5 @@
 
-package camppackage;
+package camppkg;
 import java.util.*;
 
 public class Camp {
