@@ -1,5 +1,4 @@
 package Feedback;
-import java.util.Objects;
 
 public class Suggestion extends Feedback {
     private boolean isApproved;
