@@ -2,8 +2,9 @@ package Feedback;
 import java.util.ArrayList;
 
 public interface iFeedbackStaff {
-    public ArrayList<String> getCampEnquiries(String campID);
-    public void replyEnquiry(int feedbackID, String campID, String studentID, String replyContent);
+    public ArrayList<String> getCampEnquiries(String userID, ArrayList<String> regCampList);
+    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent);
+    
     public ArrayList<String> getCampSuggestions(String campID);
-    public void approveSuggestions(int feedbackID, String campID);
+    public void approveSuggestion(int feedbackID);
 }

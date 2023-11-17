@@ -1,8 +1,10 @@
 package Feedback;
 
+import java.util.ArrayList;
+
 public interface iFeedbackStudent {
-    public void getEnquiries(String userID); 
-    public void submitEnquiry(String campID, String userID, String content);
-    public void editEnquiry(int feedbackID, String userID, String newContent);
-    public void deleteEnquiry(int feedbackID, String userID);
+    public ArrayList<String> getEnquiries(String studentID); 
+    public void submitEnquiry(String studentID,String campID, String content);
+    public void editEnquiry(int feedbackID, String studentID, String newContent);
+    public void deleteEnquiry(int feedbackID, String studentID);
 }
