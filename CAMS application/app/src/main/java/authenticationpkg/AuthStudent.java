@@ -3,7 +3,7 @@ package authenticationpkg;
 import java.util.ArrayList;
 import feedbackpkg.*;
 import camppkg.*;
-//import pointspkg.*;
+import pointspkg.*;
 
 public class AuthStudent extends AuthUser {
 
