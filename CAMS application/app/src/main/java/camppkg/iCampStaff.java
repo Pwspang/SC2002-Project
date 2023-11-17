@@ -13,9 +13,7 @@ interface iCampStaff {
 
     HashMap<String, Camp> getAllCamps();
 
-    ArrayList<String> getCreatedCamps(staffID: String);
-
-    Camp getCamp(String campID);
+    ArrayList<String> getCreatedCamps(String staffID);
 
     void editDate(String campID, String startDate, String endDate);
 

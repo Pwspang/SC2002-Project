@@ -1,15 +1,17 @@
 package authenticationpkg;
 
 import java.util.ArrayList;
-//import feedbackpkg.*;
+import feedbackpkg.*;
 import camppkg.*;
 //import pointspkg.*;
+//import feedbackpkg.iFeedbackStaff;
 
 public class AuthStaff extends AuthUser {
     public AuthStaff(String name, String userID, String password, Faculty faculty) {
         super(name, userID, password, faculty);
     }
 
+    // Camp Functions
     public void createCamp(String campName, String startDate, String endDate, String registratonClosingDate, boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots, String description){
         iCampStaff campManager = campManager.getInstance();
         campManager.createCamp(String userID, String campName, String startDate, String endDate, String registratonClosingDate, boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots, String description);
@@ -69,6 +71,28 @@ public class AuthStaff extends AuthUser {
     public void editDescription(String campID, String description) {
         iCampStaff campManager = campManager.getInstance();
         campManager.editDescription(campID, description);
+    }
+
+    // Enquiry Methods
+    public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
+        iFeedbackStaff feedbackManager = feedbackManager.getInstance();
+        return feedbackManager.getCampEnquiries(regCampList);
+    }
+
+    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
+        iFeedbackStaff feedbackManager = feedbackManager.getInstance();
+        return feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
+    }
+
+    public ArrayList<String> getCampSuggestions(String campID) {
+        iFeedbackStaff feedbackManager = feedbackManager.getInstance();
+        return feedbackManager.getCampSuggestions(campID);
+
+    }
+
+    public void approveSuggestion(int feedbackID) {
+        iFeedbackStaff feedbackManager = feedbackManager.getInstance();
+        feedbackManager.approveSuggestion(feedbackID);
     }
 
 }
