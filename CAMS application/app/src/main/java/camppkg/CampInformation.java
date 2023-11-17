@@ -1,7 +1,7 @@
 
 package camppkg;
 import java.util.*;
-//import authenticationpkg.*;
+//import authenticationpkg.Faculty;
 
 public class CampInformation {
     private String campName;
@@ -90,7 +90,7 @@ public class CampInformation {
         return this.description;
     }
 
-    public String getStaffInCharge(String staffInCharge) {
+    public String getStaffInCharge() {
         return staffInCharge;
     }
 
