@@ -70,10 +70,13 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
     @Override
     public ArrayList<String> getEnquiries(String studentID) {
         ArrayList<String> EnquiryList = new ArrayList<>();
-
         for (Feedback f : feedbackList) {
             if (f.getUserID().equals(studentID) && f instanceof Enquiry) {
-                EnquiryList.add(f.toString());
+                Enquiry e = (Enquiry) f;
+                //check if enquiry is not replied
+                if(!e.isReplied()){
+                    EnquiryList.add(f.toString());
+                }
             }
         }
 
@@ -92,11 +95,15 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
         for (Feedback f : feedbackList) {
             // check if feedback belongs to student and is an enquiry before editing
             if (f.getFeedbackID() == feedbackID && f.getUserID().equals(studentID) && f instanceof Enquiry) {
-                f.setContent(newContent);
+                Enquiry e = (Enquiry) f;
+                //check if enquiry is not replied
+                if(!e.isReplied()){
+                    f.setContent(newContent);
 
-                // update file
-                writeFeedbackToFile();
-                break;
+                    // update file
+                    writeFeedbackToFile();
+                    break;
+                }        
             }
         }
     }
@@ -106,11 +113,15 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
         for (Feedback f : feedbackList) {
             // check if feedback belongs to student and is an enquiry before deleting
             if (f.getFeedbackID() == feedbackID && f.getUserID().equals(studentID) && f instanceof Enquiry) {
-                feedbackList.remove(f);
+                Enquiry e = (Enquiry) f;
+                //check if enquiry is not replied
+                if(!e.isReplied()){
+                    feedbackList.remove(f);
 
-                // update file
-                writeFeedbackToFile();
-                break;
+                    // update file
+                    writeFeedbackToFile();
+                    break;
+                }
             }
         }
     }
@@ -145,6 +156,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                     if (f.getFeedbackID() == feedbackID && f instanceof Enquiry) {
                         Enquiry e = (Enquiry) f;
                         e.setContent(replyContent);
+                        e.setIsReplied(true);
 
                         // update file
                         writeFeedbackToFile();
@@ -161,7 +173,11 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
 
         for (Feedback f : feedbackList) {
             if (f.getUserID().equals(CampCommID) && f instanceof Suggestion) {
-                SuggestionList.add(f.toString());
+                Suggestion s = (Suggestion) f;
+                //check if suggestion is not approved
+                if(!s.isApproved()){
+                    SuggestionList.add(f.toString());
+                }
             }
         }
 
@@ -173,11 +189,15 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
         for (Feedback f : feedbackList) {
             // check if feedback belongs to CC and is a suggestion before editing
             if (f.getFeedbackID() == feedbackID && f.getUserID().equals(CampCommID) && f instanceof Suggestion) {
-                f.setContent(newContent);
+                Suggestion s = (Suggestion) f;
+                //check if suggestion is not approved
+                if(!s.isApproved()){
+                    f.setContent(newContent);
 
-                // update file
-                writeFeedbackToFile();
-                break;
+                    // update file
+                    writeFeedbackToFile();
+                    break;
+                }
             }
         }
     }
@@ -187,11 +207,15 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
         for (Feedback f : feedbackList) {
             // check if feedback belongs to CC and is a suggestion before deleting
             if (f.getFeedbackID() == feedbackID && f.getUserID().equals(CampCommID) && f instanceof Suggestion) {
-                feedbackList.remove(f);
+                Suggestion s = (Suggestion) f;
+                //check if suggestion is not approved
+                if(!s.isApproved()){
+                    feedbackList.remove(f);
 
-                // update file
-                writeFeedbackToFile();
-                break;
+                    // update file
+                    writeFeedbackToFile();
+                    break;
+                }
             }
         }
     }
@@ -219,14 +243,16 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
     @Override
     public void approveSuggestion(int feedbackID) {
         for (Feedback f : feedbackList) {
-            if (f.getFeedbackID() == feedbackID && f instanceof Suggestion) {
+            if (f.getFeedbackID() == feedbackID && f instanceof Suggestion &&) {
                 Suggestion s = (Suggestion) f;
+                
+                if(!s.isApproved()){    
+                    s.setIsApproved(true);
 
-                s.setIsApproved(true);
-
-                // update file
-                writeFeedbackToFile();
-                break;
+                    // update file
+                    writeFeedbackToFile();
+                    break;
+                }
             }
         }
     }
