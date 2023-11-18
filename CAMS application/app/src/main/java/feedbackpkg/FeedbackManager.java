@@ -4,16 +4,36 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class FeedbackManager implements iFeedbackStudent, iFeedbackCC, iFeedbackStaff {
+public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
 
     private ArrayList<Feedback> feedbackList;
+    // instance of FeedbackManager
+    private static FeedbackManager feedbackManager;
 
-    public FeedbackManager() {
-        feedbackList = new ArrayList<>();
+    // singleton constructor
+    private FeedbackManager() {}; 
+
+    // get instance of FeedbackManager
+    public static FeedbackManager getInstance() {
+        if (feedbackManager == null) {
+            feedbackManager = new FeedbackManager();
+        }
+        return feedbackManager;
     }
 
+    // get feedbackList
     public ArrayList<Feedback> getFeedbackList() {
         return feedbackList;
+    }
+
+    // get feedback by ID
+    public Feedback getFeedback(int feedbackID){
+        for (Feedback f : feedbackList) {
+            if (f.getFeedbackID() == feedbackID) {
+                return f;
+            }
+        }
+        return null;
     }
 
     // Add Feedback to file
