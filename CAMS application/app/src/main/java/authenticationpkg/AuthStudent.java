@@ -61,8 +61,8 @@ public class AuthStudent extends AuthUser {
     }
 
     // Points Methods
-    public int getPoints(){
-        PointsManager pointsManager = PointsManager.getInstance()
+    public int getPoints() {
+        PointsManager pointsManager = PointsManager.getInstance();
         return pointsManager.getPoints(getUserID());
     }
 
