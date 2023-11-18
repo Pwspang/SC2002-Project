@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import feedbackpkg.*;
 import camppkg.*;
 import pointspkg.*;
-//import feedbackpkg.iFeedbackStaff;
+import reportpkg.*;
 
 public class AuthStaff extends AuthUser {
     public AuthStaff(String name, String userID, String password, Faculty faculty) {
@@ -46,14 +46,19 @@ public class AuthStaff extends AuthUser {
         campManager.editRegistrationClosingDate(campID, registrationClosingDate);
     }
 
-    public void editVisibility(String campID, boolean openToNTU) {
+    public void editOpenTo(String campID, boolean openToNTU) {
         iCampStaff campManager = campManager.getInstance();
-        campManager.editVisibility(campID, openToNTU);
+        campManager.editOpenTo(campID, openToNTU);
     }
 
-    public void editVisibility(String campID, Faculty faculty) {
+    public void editOpenTo(String campID, Faculty faculty) {
         iCampStaff campManager = campManager.getInstance();
-        campManager.editVisibility(campID, faculty);
+        campManager.editOpenTo(campID, faculty);
+    }
+
+    public void toggleVisibility(String campID, boolean visiblity) {
+        iCampStaff campManager = campManager.getInstance();
+        campManager.toggleVisibility(campID, visiblity);
     }
 
     public void editLocation(String campID, String location) {
@@ -61,9 +66,9 @@ public class AuthStaff extends AuthUser {
         campManager.editLocation(campID, location);
     }
 
-    public void editTotalSlots(String campID, int totalSlots) {
+    public void editSlots(String campID, String roleID, int totalSlots) {
         iCampStaff campManager = campManager.getInstance();
-        campManager.editTotalSlots(campID, totalSlots);
+        campManager.editTotalSlots(campID, roleID, totalSlots);
     }
 
     public void editCampCommitteeSlots(String campID, int campCommitteeSlots) {
@@ -95,7 +100,11 @@ public class AuthStaff extends AuthUser {
 
     public void approveSuggestion(int feedbackID) {
         iFeedbackStaff feedbackManager = feedbackManager.getInstance();
+        Feedback f = this.getFeedback(feedbackID);
+        PointsManager pointsManager = PointsManager.getInstance();
+        pointsManager.addOnePoint(f.getUserID());
         feedbackManager.approveSuggestion(feedbackID);
     }
 
+    // Report function
 }
