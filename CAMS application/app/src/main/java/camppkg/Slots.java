@@ -64,4 +64,8 @@ public abstract class Slots {
         this.addCount(1);
     }
 
+    public void withdraw(String studentID) {
+        throw new RuntimeException("Cannot withdraw from this role");
+    }
+
 }
