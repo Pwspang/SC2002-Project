@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import feedbackpkg.*;
 import camppkg.*;
 import pointspkg.*;
+import viewpkg.*;
+
 
 public class AuthStudent extends AuthUser {
-
     AuthStudent(String name, String userID, String password, Faculty faculty) {
         super(name, userID, password, faculty);
     }
+    /* 
 
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
@@ -65,5 +67,10 @@ public class AuthStudent extends AuthUser {
         PointsManager pointsManager = PointsManager.getInstance()
         return pointsManager.getPoints(getUserID());
     }
+*/
+
+    public iView getUI(){
+        return StudentUI.getInstance();
+    };
 
 }

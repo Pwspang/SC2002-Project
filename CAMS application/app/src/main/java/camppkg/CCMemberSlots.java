@@ -1,5 +1,4 @@
 package camppkg;
-import java.util.*;
 
 public class CCMemberSlots extends Slots {
     private static final int maxTotalSlots = 10;

@@ -1,6 +1,5 @@
 
 package camppkg;
-import java.util.*;
 
 public class Camp {
     private String id;
@@ -27,6 +26,11 @@ public class Camp {
 
     public void toggleVisibility() {
         visibility = !visibility;
+    }
+
+    @Override
+    public String toString(){
+        return "TEST";
     }
 
 }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import feedbackpkg.*;
 import camppkg.*;
 import pointspkg.*;
+import viewpkg.iView;
 
 /**
  * AuthUser is an abstract class that represents the base class of all types of
@@ -126,18 +127,22 @@ public abstract class AuthUser implements Serializable {
     }
 
     public Camp getCamp(String campID) {
-        CampManager campManager = campManager.getInstance();
+        CampManager campManager = CampManager.getInstance();
         return campManager.getCamp(campID);
     }
 
-    public CampInfo getCampInfo(String campID) {
-        CampManager campManager = campManager.getInstance();
-        return campManager.getCampInfo(ampID);
+    /* 
+    public CampInformation getCampInfo(String campID) {
+        CampManager campManager = CampManager.getInstance();
+        return campManager.getCampInfo(campID);
     }
 
     public Feedback getFeedback(int feedbackID) {
         FeedbackManager feedbackManager = feedbackManager.getInstance();
         return feedbackManager.getFeedback(feedbackID);
     }
+    */
+
+    public abstract iView getUI();
 
 }

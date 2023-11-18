@@ -71,26 +71,9 @@ public class CAMS {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal();   
 
-        
-        //To replace with user.getUI() 
-        int choice = textIO.newIntInputReader()
-        .withMinVal(1)
-        .withMaxVal(3)
-        .read("Option: ");
-
-        switch (choice){
-            case 1: 
-            currView = StaffUI.getInstance();       
-            break;
-            case 2:
-            currView = StudentUI.getInstance();       
-            break;
-            case 3:
-            currView = CampComitteeUI.getInstance();       
-            break;
+        if (user != null){
+            currView = user.getUI();
         }
-
-        
     }
 
     public static void logout(){
@@ -101,6 +84,8 @@ public class CAMS {
      */
     private static void startAllManager(){
         //something.getInstance()
+        // Added for testing 
+        
     }
     /*
      * Stops all manager object, deserializing the objects to dat file

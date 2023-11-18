@@ -21,9 +21,9 @@ public class FeedbackUI {
         TextTerminal terminal = textIO.getTextTerminal(); 
 
         // ArrayList<Integer> feedbackIDList = user.getEnquiry();
-        ArrayList<Integer> feedbackIDList = user.getFeedback();
+        // ArrayList<Integer> feedbackIDList = user.getFeedback();
 
-        displayEnquiry(feedbackIDList);
+        //displayEnquiry(feedbackIDList);
 
         textIO.newBooleanInputReader()
             .withDefaultValue(true)

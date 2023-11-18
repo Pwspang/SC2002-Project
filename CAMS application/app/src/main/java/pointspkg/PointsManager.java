@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class PointsManager implements Serializable {
-    private HashMap<String,int>pointsDict;
+    private HashMap<String,Integer> pointsDict;
     private static final PointsManager pointsManager = new PointsManager();
     private static final String filename = "PointsManager.dat";
 
@@ -32,14 +32,14 @@ public class PointsManager implements Serializable {
         }
     }
 
-    public HashMap<String, int> readSerializedObject() {
-		HashMap<String, int> pDetails = null;
+    public HashMap<String, Integer> readSerializedObject() {
+		HashMap<String, Integer> pDetails = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		try {
 			fis = new FileInputStream(filename);
 			in = new ObjectInputStream(fis);
-			pDetails = (HashMap<String, int>) in.readObject();
+			pDetails = (HashMap<String, Integer>) in.readObject();
 			in.close();
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -56,7 +56,7 @@ public class PointsManager implements Serializable {
         return pointsManager;
     }
 
-    public HashMap<String, int> getPointsDict() {
+    public HashMap<String, Integer> getPointsDict() {
         return pointsDict;
     }
 

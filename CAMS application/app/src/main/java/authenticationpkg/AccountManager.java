@@ -86,11 +86,11 @@ public class AccountManager implements Serializable {
 	}
 
 	public AuthUser login(String userID, String password) {
-		if (password != accountDict.getAccount(userID).getPassword()) {
+		if (password != getAccount(userID).getPassword()) {
 			throw new IllegalArgumentException("Incorrect Password");
 		}
 
-		return accountDict.getAccount(userID);
+		return getAccount(userID);
 	}
 
 }
