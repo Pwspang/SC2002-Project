@@ -1,7 +1,7 @@
 
 package camppkg;
 import java.util.*;
-//import authenticationpkg.Faculty;
+import authenticationpkg.Faculty;
 
 public class CampInformation {
     private String campName;
@@ -94,9 +94,12 @@ public class CampInformation {
         return staffInCharge;
     }
 
-
-    public HashMap<String, Slots> getSlots() {
+    public HashMap<String, Slots> getAllSlots() {
         return slots;
+    }
+
+    public Slots getSlotsFor(String roleID) {
+        return slots.get(roleID);
     }
 
     public int getTotalSlots() {
@@ -141,6 +144,10 @@ public class CampInformation {
 
     public void setUserGroup(Faculty userGroup) {
         this.userGroup = userGroup;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setDescription(String description) {
