@@ -13,7 +13,7 @@ public class AuthStudent extends AuthUser {
 
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
-        iCampManager campManager = CampManager.getInstance();
+        iCampStudent campManager = CampManager.getInstance();
         return campManager.getVisibleCampList(getUserID());
     }
 
@@ -23,18 +23,18 @@ public class AuthStudent extends AuthUser {
     }
 
     public void register(String campID, String roleID) {
-        iCampStudent campManager = campManager.getInstance();
+        iCampStudent campManager = CampManager.getInstance();
         campManager.register(campID, getUserID(), roleID);
 
     }
 
     public void withdraw(String campID) {
-        iCampStudent campManager = campManager.getInstance();
+        iCampStudent campManager = CampManager.getInstance();
         campManager.withdraw(campID, getUserID());
     }
 
     public ArrayList<String> getRegisteredCampList(String roleID) {
-        iCampStudent campManager = campManager.getInstance();
+        iCampStudent campManager = CampManager.getInstance();
         campManager.getRegisteredCampList(getUserID(), roleID);
     }
 
@@ -61,8 +61,8 @@ public class AuthStudent extends AuthUser {
     }
 
     // Points Methods
-    public int getPoints(){
-        PointsManager pointsManager = PointsManager.getInstance()
+    public int getPoints() {
+        PointsManager pointsManager = PointsManager.getInstance();
         return pointsManager.getPoints(getUserID());
     }
 

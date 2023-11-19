@@ -10,7 +10,7 @@ public abstract class Slots {
     private int totalSlots;
     private int occupiedSlots;
     private int remainingSlots;
-    protected ArrayList<String> stuRegistered;
+    protected ArrayList<String> stuRegistered = new ArrayList<>();
 
     /**
 	 * Constructs a Camp object based on CampInformation.
@@ -47,6 +47,10 @@ public abstract class Slots {
         return remainingSlots;
     }
 
+    public ArrayList<String> getStuRegistered() {
+        return stuRegistered;
+    }
+
     public void setTotalSlots(int totalSlots) {
         if (this.occupiedSlots > totalSlots) throw new IllegalArgumentException(
             String.format("There are already %d occupied.", this.occupiedSlots));
@@ -62,6 +66,14 @@ public abstract class Slots {
         if (this.remainingSlots <= 0) throw new RuntimeException("No vacancy.");
         this.stuRegistered.add(studentID);
         this.addCount(1);
+    }
+
+    public void withdraw(String studentID) {
+        throw new RuntimeException("Cannot withdraw from this role");
+    }
+
+    public boolean hasStudent(String studentID) {
+        return stuRegistered.contains(studentID);
     }
 
 }

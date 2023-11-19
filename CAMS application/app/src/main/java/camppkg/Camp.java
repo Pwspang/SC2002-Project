@@ -6,6 +6,7 @@ public class Camp {
     private String id;
     private boolean visibility;
     private CampInformation campinfo;
+    private ArrayList<String> stuWithdrawn = new ArrayList<>();
 
     public Camp(String campID, CampInformation campinfo) {
         this.id = campID;
@@ -25,8 +26,25 @@ public class Camp {
         return this.visibility;
     }
 
-    public void toggleVisibility() {
-        visibility = !visibility;
+    public void toggleVisibility(boolean visibility) {
+        this.visibility = visibility;
+    }
+
+    public void register(String studentID, String roleID) {
+        if (stuWithdrawn.contains(studentID)) throw new RuntimeException("Cannot rejoin after withdrawal.");
+        Slots mySlots = (Slots) campinfo.getSlotsFor(roleID);
+        mySlots.register(studentID);
+    }
+
+    public void withdraw(String studentID) {
+        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
+        for (Slots mySlots : allSlots.values()) {
+            if (mySlots.stuRegistered.contains(studentID)) {
+                mySlots.withdraw(studentID);
+                stuWithdrawn.add(studentID);
+                return;
+            }
+        }
     }
 
 }
