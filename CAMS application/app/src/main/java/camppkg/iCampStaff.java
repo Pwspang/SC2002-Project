@@ -18,16 +18,20 @@ interface iCampStaff {
 
     void editRegistrationClosingDate(String campID, String registrationClosingDate);
 
-    void editVisibility(String campID, boolean openToWholeNTU);
+    void editOpenTo(String campID, boolean openToWholeNTU);
 
-    void editVisibility(String campID, Faculty faculty);
+    void editOpenTo(String campID, Faculty faculty);
 
     void editLocation(String campID, String location);
 
-    void editTotalSlots(String campID, int totalSlots);
+    void editSlots(String campID, String roleID, int totalSlots);
 
     void editCampCommitteeSlots(String campID, int campCommitteeSlots);
 
     void editDescription(String campID, String description);
+
+    ArrayList<String> getRegisteredStudents(String campID);
+
+    HashMap<String, String> getRegisteredStudentRoles(String campID);
 
 }
