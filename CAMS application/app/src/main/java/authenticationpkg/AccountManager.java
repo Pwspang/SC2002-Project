@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class AccountManager implements Serializable {
-	private HashMap<String, AuthUser> accountDict;
+	private transient HashMap<String, AuthUser> accountDict;
 	private static final AccountManager accountManager = new AccountManager();
 	private static final String filename = "AccountManager.dat";
 
