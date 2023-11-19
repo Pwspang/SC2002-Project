@@ -26,8 +26,8 @@ public class Camp {
         return this.visibility;
     }
 
-    public void toggleVisibility() {
-        visibility = !visibility;
+    public void toggleVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 
     public void register(String studentID, String roleID) {
