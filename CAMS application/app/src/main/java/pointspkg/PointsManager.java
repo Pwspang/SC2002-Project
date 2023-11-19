@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class PointsManager implements Serializable {
-    private HashMap<String,int>pointsDict;
+    private HashMap<String, Integer> pointsDict;
     private static final PointsManager pointsManager = new PointsManager();
     private static final String filename = "PointsManager.dat";
 
