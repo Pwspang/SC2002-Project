@@ -1,7 +1,8 @@
 package feedbackpkg;
+import java.io.Serializable;
 
-public abstract class Feedback {
-    private int feedbackID;
+public abstract class Feedback implements Serializable{
+    private transient int feedbackID;
     private String userID;
     private String campID;
     private String content;
