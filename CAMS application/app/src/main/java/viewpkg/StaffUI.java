@@ -46,7 +46,7 @@ public class StaffUI implements iView{
 
         terminal.setBookmark("staffUI");
 
-        terminal.println(iView.displayHeader("Staff: " + options[option]));
+        terminal.println(iView.displayHeader("Staff: " + options[option-1]));
 
         switch(option){
             case 4:

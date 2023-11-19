@@ -7,8 +7,7 @@ import de.vandermeer.asciitable.*;
 
 import java.util.ArrayList;
 
-import authenticationpkg.*;
-import authenticationpkg.Faculty;;
+import authenticationpkg.*;;
 
 
 public class CampUI {
@@ -51,11 +50,15 @@ public class CampUI {
         
         description = textIO.newStringInputReader()
             .read("Description");
-        
-        user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, Faculty.NBS, location, totalSlots, campComitteeSlots, description);
+        try{
+            user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, Faculty.NBS, location, totalSlots, campComitteeSlots, description);
+        } catch (Exception e){
+            terminal.println(e.getMessage());
+            return;
+        }
         
         // To edit
-        terminal.print("Camp created");
+        terminal.println("Camp created.");
         
     }
     /**
@@ -63,7 +66,7 @@ public class CampUI {
      * @param user
      */
     public static void editCamp(AuthStaff user){
-        
+
     }
 
     /**
@@ -74,9 +77,37 @@ public class CampUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
-        ArrayList<String> campList = user.getAllCamps();
+        ArrayList<String> campIDList = user.getAllCamps();
 
         terminal.setBookmark("viewAllCamps");
+
+        displayCamps(campIDList);
+
+        if (campIDList.size() == 0){
+            return;
+        }
+
+        int campChoice = textIO.newIntInputReader()
+            .withMinVal(1)
+            .withMaxVal(campIDList.size())
+            .read("View details of Camp");
+
+        terminal.resetToBookmark("viewAllCamps");
+
+        displayCampDetails(campIDList.get(campChoice-1), user);
+    }
+
+    /**
+     * Display camps that staff created -> Select from list -> Set visibility y/n
+     * @param user
+     */
+    public static void toggleVisibilityCamp(AuthStaff user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+
+        ArrayList<String> campList = user.getCreatedCamps();
+
+        terminal.setBookmark("toggleVisibilityCamps");
 
         displayCamps(campList);
 
@@ -87,23 +118,86 @@ public class CampUI {
         int campChoice = textIO.newIntInputReader()
             .withMinVal(1)
             .withMaxVal(campList.size())
-            .read("View details of Camp: ");
+            .read("View details of Camp");
 
-        terminal.resetToBookmark("viewAllCamps");
+        terminal.resetToBookmark("toggleVisibilityCamps");
 
-        displayCampDetails(campList.get(campChoice-1), user);
+
     }
 
-    /**
-     * Display camps that staff created -> Select from list -> Set visibility y/n
-     * @param user
-     */
-    public static void toggleVisibilityCamp(AuthStaff user){}
+    public static void viewAvailableCamp(AuthStudent user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+        // Should get the camp from user
+        ArrayList<String> campIDList = user.getVisibleCampList();
 
-    public static void viewAvailableCamp(AuthStudent user){}
-    public static void viewRegisteredCamp(AuthStudent user){}
-    public static void registerForCamp(AuthStudent user){}
-    public static void withdrawFromCamp(AuthStudent user){}
+        terminal.setBookmark("viewAvailableCamp");
+
+        displayCamps(campIDList);
+
+        if (campIDList.size() == 0){
+            return;
+        }
+
+        int campChoice = textIO.newIntInputReader()
+            .withMinVal(1)
+            .withMaxVal(campIDList.size())
+            .read("View details of Camp");        
+
+        terminal.resetToBookmark("viewAvailableCamp");
+
+        displayCampDetails(campIDList.get(campChoice-1), user);
+
+    }
+    public static void viewRegisteredCamp(AuthStudent user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+        // Should get the camp from user
+        ArrayList<String> campIDList = user.getRegisteredCampList("CCMember");
+
+        terminal.setBookmark("viewRegisteredCamp");
+
+        displayCamps(campIDList);
+
+        if (campIDList.size() == 0){
+            return;
+        }
+
+        int campChoice = textIO.newIntInputReader()
+            .withMinVal(1)
+            .withMaxVal(campIDList.size())
+            .read("View details of Camp");        
+
+        terminal.resetToBookmark("viewRegisteredCamp");
+
+        displayCampDetails(campIDList.get(campChoice-1), user); 
+    }
+    public static void registerForCamp(AuthStudent user){
+
+    }
+    public static void withdrawFromCamp(AuthStudent user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+        // Should get the camp from user
+        ArrayList<String> campIDList = user.getRegisteredCampList("CCMember");
+
+        terminal.setBookmark("viewRegisteredCamp");
+
+        displayCamps(campIDList);
+
+        if (campIDList.size() == 0){
+            return;
+        }
+
+        int campChoice = textIO.newIntInputReader()
+            .withMinVal(1)
+            .withMaxVal(campIDList.size())
+            .read("View details of Camp");        
+
+        terminal.resetToBookmark("viewRegisteredCamp");
+
+        displayCampDetails(campIDList.get(campChoice-1), user); 
+    }
 
     public static void displayCamps(ArrayList<String> campIDList){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -123,7 +217,7 @@ public class CampUI {
             at.addRule();
         }
 
-        terminal.print(at.render());
+        terminal.println(at.render());
 
     }
       

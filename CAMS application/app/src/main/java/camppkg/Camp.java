@@ -64,10 +64,10 @@ public class Camp {
         campinfo.getStartDate(), 
         campinfo.getEndDate(),
         campinfo.getRegisterationClosingDate(),
-        campinfo.getUserGroup(),
+        "User Group",
         campinfo.getLocation(),
         campinfo.getTotalSlots(),
-        "To do",
+        "Camp comitte Slots",
         campinfo.getDescription()
         );
     }

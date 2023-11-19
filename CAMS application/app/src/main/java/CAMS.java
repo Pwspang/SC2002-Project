@@ -6,6 +6,7 @@ import org.beryx.textio.TextTerminal;
 import viewpkg.*;
 import viewpkg.subview.LoginUI;
 import authenticationpkg.*;
+import camppkg.CampManager;
 
 
 /**
@@ -94,7 +95,6 @@ public class CAMS {
         //something.getInstance()
         // Added for testing
         AccountManager accountManager = AccountManager.getInstance();
-        accountManager.readSerializedObject();
         
     }
     /*
@@ -104,6 +104,7 @@ public class CAMS {
         //something.close() -> to serialize all the objects
         AccountManager accountManager = AccountManager.getInstance();
         accountManager.writeSerializedObject();
+
         TextIO textIO = TextIoFactory.getTextIO();
         textIO.dispose();
     }

@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import java.io.*;
+
 public class AccountManager implements Serializable {
 	private HashMap<String, AuthUser> accountDict;
 	private static final AccountManager accountManager = new AccountManager();
@@ -22,6 +24,7 @@ public class AccountManager implements Serializable {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try {
+			
 			fos = new FileOutputStream(filename);
 			out = new ObjectOutputStream(fos);
 			out.writeObject(accountDict);

@@ -33,9 +33,11 @@ public class LoginUI{
                         """);
 
         String username = textIO.newStringInputReader()
+                .withDefaultValue("HUKUMAR@ntu.edu.sg")
                 .read("Username");
 
         String password = textIO.newStringInputReader()
+                .withDefaultValue("password")
                 .read("Password");
 
         AuthUser user=null;

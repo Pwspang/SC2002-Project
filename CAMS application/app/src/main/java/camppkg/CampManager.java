@@ -1,7 +1,16 @@
 
 package camppkg;
 import java.util.*;
+
+import authenticationpkg.AuthUser;
 import authenticationpkg.Faculty;
+
+import java.io.Serializable;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class CampManager implements iCampStaff, iCampCommMember{
@@ -9,11 +18,11 @@ public class CampManager implements iCampStaff, iCampCommMember{
     // singleton constructor
     private static final CampManager campManager = new CampManager();
     private HashMap<String, Camp> campList = new HashMap<String, Camp>();
+    private static final String filename = "CampManager.dat";
 
     public static CampManager getInstance() {
         return campManager;
     }
-
     
     public HashMap<String, Camp> getCampList() {
         return campList;
@@ -40,7 +49,7 @@ public class CampManager implements iCampStaff, iCampCommMember{
 
     public void createCamp(CampInformation campInfo) {
         String campID = campInfo.getCampName();
-        if (campList.get(campID) == null) throw new RuntimeException("Non-unique CampID");
+        if (campList.get(campID) != null) throw new RuntimeException("Camp not created due to invalid Camp ID");
         Camp camp = new Camp(campID, campInfo);
         campList.put(campID, camp);
     }
@@ -184,6 +193,9 @@ public class CampManager implements iCampStaff, iCampCommMember{
     
     public ArrayList<String> getAllCamps(){
         ArrayList<String> s = new ArrayList<String>();
+        for (String key : campList.keySet()){
+            s.add(key);
+        }
         return s;
     };
 
