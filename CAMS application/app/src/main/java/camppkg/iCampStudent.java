@@ -10,6 +10,8 @@ public interface iCampStudent {
 
     CampInformation getCampInfo(String campID);
 
+    Camp getCamp(String campID);
+
     void register(String campID, String studentID, String roleID);
 
     void withdraw(String campID, String studentID);

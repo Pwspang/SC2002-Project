@@ -13,12 +13,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-public class CampManager implements iCampStaff, iCampCommMember{
+public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
 
     // singleton constructor
     private static final CampManager campManager = new CampManager();
     private HashMap<String, Camp> campList = new HashMap<String, Camp>();
-    private static final String filename = "CampManager.dat";
 
     public static CampManager getInstance() {
         return campManager;
@@ -56,6 +55,10 @@ public class CampManager implements iCampStaff, iCampCommMember{
 
     public void deleteCamp(String campID) {
         campList.remove(campID);
+    }
+
+    public HashMap<String, Camp> getAllCamps() {
+        return campList;
     }
 
     public ArrayList<String> getCreatedCamps(String staffID) {
@@ -119,16 +122,8 @@ public class CampManager implements iCampStaff, iCampCommMember{
         CampInformation campinfo = c.getCampInfo();
         campinfo.setDescription(description);
     }
-    
-    public void register(String campID, String studentID, String roleID) {
-        Camp myCamp = campList.get(campID);
-        myCamp.register(studentID, roleID);
-    }
 
-    public void withdraw(String campID, String studentID) {
-        Camp myCamp = campList.get(campID);
-        myCamp.withdraw(studentID);
-    }
+    // iCampStudent
 
     public ArrayList<String> getVisibleCampList(Faculty faculty) {
         ArrayList<String> result = new ArrayList<>();
@@ -162,6 +157,18 @@ public class CampManager implements iCampStaff, iCampCommMember{
     public Camp getCamp(String campID) {
         return campList.get(campID);
     }
+        
+    public void register(String campID, String studentID, String roleID) {
+        Camp myCamp = campList.get(campID);
+        myCamp.register(studentID, roleID);
+    }
+
+    public void withdraw(String campID, String studentID) {
+        Camp myCamp = campList.get(campID);
+        myCamp.withdraw(studentID);
+    }
+
+    // iCampCommMember and iStaff
 
     public ArrayList<String> getRegisteredStudents(String campID) {
         ArrayList<String> result = new ArrayList<>();
