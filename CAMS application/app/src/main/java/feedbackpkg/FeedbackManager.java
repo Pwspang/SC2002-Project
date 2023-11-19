@@ -43,6 +43,14 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         return null;
     }
 
+    // add feedback to feedbackList
+    public void addFeedback(Feedback feedback) {
+        feedbackList.add(feedback);
+
+        // update file
+        writeSerialisedObj();
+    }
+
     public void writeSerialisedObj() {
         try {
             FileOutputStream fos = new FileOutputStream(filename);
@@ -250,7 +258,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     @Override
     public void approveSuggestion(int feedbackID) {
         for (Feedback f : feedbackList) {
-            if (f.getFeedbackID() == feedbackID && f instanceof Suggestion &&) {
+            if (f.getFeedbackID() == feedbackID && f instanceof Suggestion) {
                 Suggestion s = (Suggestion) f;
                 
                 if(!s.isApproved()){    
