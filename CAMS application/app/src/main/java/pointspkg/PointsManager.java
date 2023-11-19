@@ -32,8 +32,8 @@ public class PointsManager implements Serializable {
         }
     }
 
-    public HashMap<String, int> readSerializedObject() {
-		HashMap<String, int> pDetails = null;
+    public HashMap<String, Integer> readSerializedObject() {
+		HashMap<String, Integer> pDetails = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		try {
@@ -60,7 +60,7 @@ public class PointsManager implements Serializable {
         return pointsDict;
     }
 
-    public int getPoints(String userID) {
+    public Integer getPoints(String userID) {
         return pointsDict.get(userID);
     }
 
