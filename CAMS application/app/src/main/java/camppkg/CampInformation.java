@@ -2,11 +2,12 @@
 package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
+import java.time.LocalDate;
 
 public class CampInformation {
     private String campName;
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String registrationClosingDate;
     private boolean openToWholeNTU;
     private Faculty userGroup;
@@ -18,8 +19,8 @@ public class CampInformation {
     public CampInformation() {
         this(
         "generic campName", 
-        "generic startDate",
-        "generic endDate", 
+        "01-01-2000",
+        "01-01-2000", 
         "generic registrationClosingDate", 
         true,
         Faculty.SCSE,
@@ -44,8 +45,8 @@ public class CampInformation {
         String staffInCharge) {
 
         this.campName = campName;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
         this.registrationClosingDate = registrationClosingDate;
         this.openToWholeNTU = openToWholeNTU;
         this.userGroup = userGroup;
@@ -62,11 +63,11 @@ public class CampInformation {
         return campName;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -127,11 +128,11 @@ public class CampInformation {
     }
 
     public void setStartDate(String startDate) {
-        this.startDate = startDate;
+        this.startDate = LocalDate.parse(startDate);
     }
 
     public void setEndDate(String endDate) {
-        this.endDate = endDate;
+        this.endDate = LocalDate.parse(endDate);;
     }
 
     public void setRegisterationClosingDate(String registrationClosingDate) {

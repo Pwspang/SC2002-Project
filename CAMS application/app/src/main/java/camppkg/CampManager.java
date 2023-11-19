@@ -2,7 +2,7 @@
 package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
-
+import java.time.LocalDate;
 
 public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
 
@@ -125,6 +125,23 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
         return result;
     }
 
+    public ArrayList<String> getRegisteredCampList(String studentID) {
+        ArrayList<String> result = new ArrayList<>();
+        for (String campID : campList.keySet()) {
+            Camp c = campList.get(campID);
+            CampInformation campinfo = c.getCampInfo();
+            HashMap<String, Slots> allSlots = campinfo.getAllSlots();
+            for (String roleID : allSlots.keySet()) {
+                Slots s = allSlots.get(roleID);
+                if (s.stuRegistered.contains(studentID)) {
+                    result.add(campID);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
     public ArrayList<String> getRegisteredCampList(String studentID, String roleID) {
         ArrayList<String> result = new ArrayList<>();
         for (String campID : campList.keySet()) {
@@ -145,10 +162,26 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
     public Camp getCamp(String campID) {
         return campList.get(campID);
     }
+
+    public boolean isClashing(String AcampID, String BcampID) {
+        Camp campA = campList.get(AcampID);
+        Camp campB = campList.get(BcampID);
+        LocalDate startA = campA.getCampInfo().getStartDate();
+        LocalDate endA = campA.getCampInfo().getEndDate();
+        LocalDate startB = campB.getCampInfo().getStartDate();
+        LocalDate endB = campB.getCampInfo().getEndDate();
+
+        return !startA.isAfter(endB) && !endA.isBefore(startB);
+    }
         
     public void register(String campID, String studentID, String roleID) {
-        Camp myCamp = campList.get(campID);
-        myCamp.register(studentID, roleID);
+        ArrayList<String> registeredCampList = getRegisteredCampList(studentID);
+        for (String icampID : registeredCampList) {
+            if (isClashing(campID, icampID)) {
+                throw new RuntimeException(campID + " clashes with " + icampID);
+            }
+        }
+        campList.get(campID).register(studentID, roleID);
     }
 
     public void withdraw(String campID, String studentID) {
