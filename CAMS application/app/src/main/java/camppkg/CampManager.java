@@ -15,7 +15,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         return campManager;
     }
 
-    private HashMap<String, Camp> campList;
+    private HashMap<String, Camp> campList = new HashMap<>();
 
     public void createCamp(String staffID, String campName, String startDate, String endDate, String registrationClosingDate,
             boolean openToWholeNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
@@ -38,7 +38,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 
     public void createCamp(CampInformation campInfo) {
         String campID = campInfo.getCampName();
-        if (campList.get(campID) == null) throw new RuntimeException("Non-unique CampID");
+        if (campList.containsKey(campID)) throw new RuntimeException("Non-unique CampID");
         Camp camp = new Camp(campID, campInfo);
         campList.put(campID, camp);
     }
@@ -150,7 +150,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
             Camp c = campList.get(campID);
             CampInformation campinfo = c.getCampInfo();
             Slots s = campinfo.getSlotsFor(roleID);
-            if (s.hasStudent(studentID)) result.add(studentID);
+            if (s.hasStudent(studentID)) result.add(campID);
             continue;
         }
         return result;
