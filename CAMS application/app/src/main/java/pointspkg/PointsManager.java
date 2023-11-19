@@ -39,7 +39,7 @@ public class PointsManager implements Serializable {
 		try {
 			fis = new FileInputStream(filename);
 			in = new ObjectInputStream(fis);
-			pDetails = (HashMap<String, int>) in.readObject();
+			pDetails = (HashMap<String, Integer>) in.readObject();
 			in.close();
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -65,7 +65,7 @@ public class PointsManager implements Serializable {
     }
 
     public void addOnePoint(String userID) {
-        int current = pointsDict.get(userID);
+        Integer current = pointsDict.get(userID);
         pointsDict.put(userID, current + 1);
     }
 
