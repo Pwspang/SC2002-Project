@@ -1,17 +1,24 @@
 package feedbackpkg;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.io.Serializable;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
+
+public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaff {
 
     private ArrayList<Feedback> feedbackList;
     // instance of FeedbackManager
     private static FeedbackManager feedbackManager;
+    private static final String filename = "feedbacks.dat";
 
-    // singleton constructor
-    private FeedbackManager() {}; 
+    private FeedbackManager() {
+        feedbackList = readSerializedObject();
+    }; 
 
     // get instance of FeedbackManager
     public static FeedbackManager getInstance() {
@@ -36,35 +43,33 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
         return null;
     }
 
-    // Add Feedback to file
-    private void addFeedback(Feedback feedback) {
-        // Add the feedback to the list
-        feedbackList.add(feedback);
-
-        // Write the feedback list to the file
+    public void writeSerialisedObj() {
         try {
-            PrintWriter writer = new PrintWriter("feedbacks.txt");
-            for (Feedback f : feedbackList) {
-                writer.println(f.toString());
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            FileOutputStream fos = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(fos);
+            out.writeObject(feedbackList);
+            out.close();
+            System.out.println("Object Persisted");
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
-    // Edit & Delete Feedback to file
-    private void writeFeedbackToFile() {
+    public ArrayList<Feedback> readSerializedObject() {
+        ArrayList<Feedback> list = null;
         try {
-            PrintWriter writer = new PrintWriter("feedbacks.txt");
-            for (Feedback f : feedbackList) {
-                writer.println(f.toString());
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            list = (ArrayList<Feedback>) in.readObject();
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
         }
+        return list;
     }
+
 
     // iFeedbackStudent
     @Override
@@ -100,8 +105,10 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                 if(!e.isReplied()){
                     f.setContent(newContent);
 
-                    // update file
-                    writeFeedbackToFile();
+                    //update file
+                    writeSerialisedObj();
+
+                    
                     break;
                 }        
             }
@@ -119,7 +126,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                     feedbackList.remove(f);
 
                     // update file
-                    writeFeedbackToFile();
+                    writeSerialisedObj();
                     break;
                 }
             }
@@ -159,7 +166,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                         e.setIsReplied(true);
 
                         // update file
-                        writeFeedbackToFile();
+                        writeSerialisedObj();
                         break;
                     }
                 }
@@ -195,7 +202,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                     f.setContent(newContent);
 
                     // update file
-                    writeFeedbackToFile();
+                    writeSerialisedObj();
                     break;
                 }
             }
@@ -213,7 +220,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                     feedbackList.remove(f);
 
                     // update file
-                    writeFeedbackToFile();
+                    writeSerialisedObj();
                     break;
                 }
             }
@@ -250,7 +257,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
                     s.setIsApproved(true);
 
                     // update file
-                    writeFeedbackToFile();
+                    writeSerialisedObj();
                     break;
                 }
             }
