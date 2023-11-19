@@ -15,8 +15,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
 
     public void write() {
         CampManager campManager = CampManager.getInstance();
-        AccountManager accountManager = AccountManager.getInstance();
-        CampInformation campInfo = CampManager.getCampInfo();
+        CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
         String startDate = campInfo.getStartDate();
         String endDate = campInfo.getEndDate();
@@ -29,7 +28,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents();
-        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getCampID());
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
 
         Collections.sort(studentNameList);
 

@@ -52,4 +52,8 @@ public class AuthCCMember extends AuthStudent {
     }
 
     // Report function
+    public void writeCampReport(ReportFilterCamp filter) {
+        ReportWriterCamp rwc = ReportWriterCamp.getInstance();
+        rwc.writeCampReport(filter);
+    }
 }
