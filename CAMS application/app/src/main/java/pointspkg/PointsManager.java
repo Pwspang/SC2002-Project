@@ -56,7 +56,7 @@ public class PointsManager implements Serializable {
         return pointsManager;
     }
 
-    public HashMap<String, int> getPointsDict() {
+    public HashMap<String, Integer> getPointsDict() {
         return pointsDict;
     }
 
