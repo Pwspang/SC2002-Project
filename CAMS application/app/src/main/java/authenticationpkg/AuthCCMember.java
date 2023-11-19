@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import camppkg.*;
 import feedbackpkg.*;
 import pointspkg.*;
+import reportpkg.*;
 
 public class AuthCCMember extends AuthStudent {
     public AuthCCMember(String name, String userID, String password, Faculty faculty) {
         super(name, userID, password, faculty);
     }
-    /* 
 
     public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
@@ -50,5 +50,4 @@ public class AuthCCMember extends AuthStudent {
         PointsManager pointsManager = PointsManager.getInstance();
         pointsManager.addOnePoint(getUserID());
     }
-    */
 }

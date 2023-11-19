@@ -1,12 +1,11 @@
 package camppkg;
-
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
+import authenticationpkg.Faculty;
 
 public interface iCampStaff {
 
     void createCamp(String staffID, String campName, String startDate, String endDate, String registrationClosingDate,
-            boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
+            boolean openToWholeNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
             String description);
 
     void deleteCamp(String campID);
@@ -19,7 +18,7 @@ public interface iCampStaff {
 
     void editRegistrationClosingDate(String campID, String registrationClosingDate);
 
-    void editVisibility(String campID, boolean openToNTU);
+    void editVisibility(String campID, boolean openToWholeNTU);
 
     //void editVisibility(String campID, Faculty faculty);
 

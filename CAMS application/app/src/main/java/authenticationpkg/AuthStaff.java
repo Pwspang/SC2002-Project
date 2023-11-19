@@ -52,12 +52,21 @@ public class AuthStaff extends AuthUser {
         campManager.editVisibility(campID, openToNTU);
     }
 
-    /* 
-    public void editVisibility(String campID, Faculty faculty) {
-        iCampStaff campManager = CampManager.getInstance();
-        campManager.editVisibility(campID, faculty);
+    public void editOpenTo(String campID, boolean openToNTU) {
+        iCampStaff campManager = campManager.getInstance();
+        campManager.editOpenTo(campID, openToNTU);
     }
-    */
+
+    public void editOpenTo(String campID, Faculty faculty) {
+        iCampStaff campManager = campManager.getInstance();
+        campManager.editOpenTo(campID, faculty);
+    }
+
+    public void toggleVisibility(String campID, boolean visiblity) {
+        iCampStaff campManager = campManager.getInstance();
+        campManager.toggleVisibility(campID, visiblity);
+    }
+ 
 
     public void editLocation(String campID, String location) {
         iCampStaff campManager = CampManager.getInstance();
@@ -97,6 +106,14 @@ public class AuthStaff extends AuthUser {
     }
 
     public void approveSuggestion(int feedbackID) {
+        iFeedbackStaff feedbackManager = feedbackManager.getInstance();
+        Feedback f = this.getFeedback(feedbackID);
+        PointsManager pointsManager = PointsManager.getInstance();
+        pointsManager.addOnePoint(f.getUserID());
+        feedbackManager.approveSuggestion(feedbackID);
+    }
+
+    // Report function
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
         feedbackManager.approveSuggestion(feedbackID);
     }
@@ -104,6 +121,6 @@ public class AuthStaff extends AuthUser {
 
     public iView getUI(){
         return StaffUI.getInstance();
-    };
+    }
 
 }

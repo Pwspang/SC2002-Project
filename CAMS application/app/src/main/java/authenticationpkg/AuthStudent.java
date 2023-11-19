@@ -10,8 +10,7 @@ import viewpkg.*;
 public class AuthStudent extends AuthUser {
     AuthStudent(String name, String userID, String password, Faculty faculty) {
         super(name, userID, password, faculty);
-    }
-    /* 
+    } 
 
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
@@ -39,7 +38,7 @@ public class AuthStudent extends AuthUser {
         iCampStudent campManager = CampManager.getInstance();
         campManager.getRegisteredCampList(getUserID(), roleID);
     }
-*/
+
     // Enquiry Methods
     public ArrayList<String> getEnquiries() {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();
@@ -63,7 +62,7 @@ public class AuthStudent extends AuthUser {
     }
 
     // Points Methods
-    public int getPoints(){
+    public int getPoints() {
         PointsManager pointsManager = PointsManager.getInstance();
         return pointsManager.getPoints(getUserID());
     }

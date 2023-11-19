@@ -126,17 +126,35 @@ public abstract class AuthUser implements Serializable {
         this.faculty = newFaculty;
     }
 
+    /**
+     * Gets the Camp object associated with campID
+     * 
+     * @param campID Camp object's campID
+     * @return Camp object associated with the corresponding campID
+     */
     public Camp getCamp(String campID) {
         CampManager campManager = CampManager.getInstance();
         return campManager.getCamp(campID);
     }
-    /* 
+
+    /**
+     * Gets the CampInfo object associated with campID
+     * 
+     * @param campID Camp object's campID
+     * @return CampInfo object associated with the corresponding campID
+     */
     public CampInformation getCampInfo(String campID) {
-        CampManager campManager = CampManager.getInstance();
+        CampManager campManager = campManager.getInstance();
         return campManager.getCampInfo(campID);
     }
     */
 
+    /**
+     * Gets the Feedback object associated with the corresponding feedbackID
+     * 
+     * @param feedbackID Feedback object's feedbackID
+     * @return Feedback object associated with the corresponding feedbackID
+     */
     public Feedback getFeedback(int feedbackID) {
         FeedbackManager feedbackManager = FeedbackManager.getInstance();
         return feedbackManager.getFeedback(feedbackID);

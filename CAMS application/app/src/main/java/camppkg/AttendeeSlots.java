@@ -13,15 +13,9 @@ public class AttendeeSlots extends Slots {
         super(totalSlots);
     }
 
-    public void register(String studentID) {
-        if (!stuWithdrawn.contains(studentID)) throw new RuntimeException("Cannot rejoin after withdrawal.");
-        super.register(studentID);
-    }
-
     public void withdraw(String studentID) {
         if (!stuRegistered.contains(studentID)) throw new RuntimeException("Not registered.");
         stuRegistered.remove(studentID);
-        stuWithdrawn.add(studentID);
         this.addCount(-1);
     }
 
