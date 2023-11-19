@@ -3,8 +3,10 @@ package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
+public class CampManager implements Serializable, iCampStaff, iCampStudent, iCampCommMember {
 
     // singleton constructor
     private static final CampManager campManager = new CampManager();
@@ -13,7 +15,7 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
         return campManager;
     }
 
-    private HashMap<String, Camp> campList;
+    private HashMap<String, Camp> campList = new HashMap<>();
 
     public void createCamp(String staffID, String campName, String startDate, String endDate, String registrationClosingDate,
             boolean openToWholeNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
@@ -36,7 +38,7 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
 
     public void createCamp(CampInformation campInfo) {
         String campID = campInfo.getCampName();
-        if (campList.get(campID) == null) throw new RuntimeException("Non-unique CampID");
+        if (campList.containsKey(campID)) throw new RuntimeException("Non-unique CampID");
         Camp camp = new Camp(campID, campInfo);
         campList.put(campID, camp);
     }
@@ -125,13 +127,30 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
         return result;
     }
 
+    public ArrayList<String> getRegisteredCampList(String studentID) {
+        ArrayList<String> result = new ArrayList<>();
+        for (String campID : campList.keySet()) {
+            Camp c = campList.get(campID);
+            CampInformation campinfo = c.getCampInfo();
+            HashMap<String, Slots> allSlots = campinfo.getAllSlots();
+            for (String roleID : allSlots.keySet()) {
+                Slots s = allSlots.get(roleID);
+                if (s.stuRegistered.contains(studentID)) {
+                    result.add(campID);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
     public ArrayList<String> getRegisteredCampList(String studentID, String roleID) {
         ArrayList<String> result = new ArrayList<>();
         for (String campID : campList.keySet()) {
             Camp c = campList.get(campID);
             CampInformation campinfo = c.getCampInfo();
             Slots s = campinfo.getSlotsFor(roleID);
-            if (s.hasStudent(studentID)) result.add(studentID);
+            if (s.hasStudent(studentID)) result.add(campID);
             continue;
         }
         return result;
@@ -145,10 +164,26 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
     public Camp getCamp(String campID) {
         return campList.get(campID);
     }
+
+    public boolean isClashing(String AcampID, String BcampID) {
+        Camp campA = campList.get(AcampID);
+        Camp campB = campList.get(BcampID);
+        LocalDate startA = campA.getCampInfo().getStartDate();
+        LocalDate endA = campA.getCampInfo().getEndDate();
+        LocalDate startB = campB.getCampInfo().getStartDate();
+        LocalDate endB = campB.getCampInfo().getEndDate();
+
+        return !startA.isAfter(endB) && !endA.isBefore(startB);
+    }
         
     public void register(String campID, String studentID, String roleID) {
-        Camp myCamp = campList.get(campID);
-        myCamp.register(studentID, roleID);
+        ArrayList<String> registeredCampList = getRegisteredCampList(studentID);
+        for (String icampID : registeredCampList) {
+            if (isClashing(campID, icampID)) {
+                throw new RuntimeException(campID + " clashes with " + icampID);
+            }
+        }
+        campList.get(campID).register(studentID, roleID);
     }
 
     public void withdraw(String campID, String studentID) {
