@@ -90,7 +90,7 @@ public class AccountManager implements Serializable {
 			throw new IllegalArgumentException("Incorrect Password");
 		}
 
-		return accountDict.getAccount(userID);
+		return getAccount(userID);
 	}
 
 }
