@@ -2,7 +2,7 @@ package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
 
-interface iCampStaff {
+public interface iCampStaff {
 
     void createCamp(String staffID, String campName, String startDate, String endDate, String registrationClosingDate,
             boolean openToWholeNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
