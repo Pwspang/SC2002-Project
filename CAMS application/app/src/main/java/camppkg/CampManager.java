@@ -73,9 +73,9 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         campinfo.setRegisterationClosingDate(registrationClosingDate);
     }
     
-    public void toggleVisibility(String campID, boolean openToWholeNTU) {
+    public void toggleVisibility(String campID, boolean visibility) {
         Camp c = campList.get(campID);
-        c.toggleVisibility();
+        c.toggleVisibility(visibility);
     }
 
     public void editOpenTo(String campID, boolean openToWholeNTU) {
