@@ -37,4 +37,7 @@ public abstract class Feedback {
         this.content = content;
     }
 
+
+    public abstract String toString();
+
 }

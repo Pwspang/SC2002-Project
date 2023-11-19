@@ -243,7 +243,7 @@ public class FeedbackManager implements iFeedbackCC, iFeedbackStaff {
     @Override
     public void approveSuggestion(int feedbackID) {
         for (Feedback f : feedbackList) {
-            if (f.getFeedbackID() == feedbackID && f instanceof Suggestion &&) {
+            if (f.getFeedbackID() == feedbackID && f instanceof Suggestion) {
                 Suggestion s = (Suggestion) f;
                 
                 if(!s.isApproved()){    

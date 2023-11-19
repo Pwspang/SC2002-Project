@@ -16,4 +16,8 @@ public class Suggestion extends Feedback {
         this.isApproved = isApproved;
     }
 
+    @Override
+    public String toString(){
+        return "Suggestion";
+    }
 }

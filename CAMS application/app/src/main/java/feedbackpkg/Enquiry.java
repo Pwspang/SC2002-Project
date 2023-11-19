@@ -16,4 +16,9 @@ public class Enquiry extends Feedback {
         this.isReplied = isReplied;
     }
 
+    @Override
+    public String toString(){
+        return "Enquiry";
+    }
+
 }

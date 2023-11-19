@@ -130,18 +130,17 @@ public abstract class AuthUser implements Serializable {
         CampManager campManager = CampManager.getInstance();
         return campManager.getCamp(campID);
     }
-
     /* 
     public CampInformation getCampInfo(String campID) {
         CampManager campManager = CampManager.getInstance();
         return campManager.getCampInfo(campID);
     }
+    */
 
     public Feedback getFeedback(int feedbackID) {
-        FeedbackManager feedbackManager = feedbackManager.getInstance();
+        FeedbackManager feedbackManager = FeedbackManager.getInstance();
         return feedbackManager.getFeedback(feedbackID);
     }
-    */
 
     public abstract iView getUI();
 

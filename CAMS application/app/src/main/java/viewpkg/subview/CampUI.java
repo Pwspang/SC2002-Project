@@ -4,10 +4,13 @@ import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 import de.vandermeer.asciitable.*;
+import viewpkg.iView;
 
 import java.util.ArrayList;
 
 import authenticationpkg.*;
+import camppkg.Faculty;
+
 
 public class CampUI {
         /**
@@ -24,9 +27,36 @@ public class CampUI {
 
         campName = textIO.newStringInputReader()
             .read("Camp Name");
-        
 
-        //To Call user.createCamp() here
+        startDate = textIO.newStringInputReader()
+            .read("Start Date");
+
+        endDate = textIO.newStringInputReader()
+            .read("End Date");
+        
+        registrationClosingDate = textIO.newStringInputReader()
+            .read("Registration Closing Date");
+        
+        openToWholeNTU = textIO.newBooleanInputReader()
+            .withDefaultValue(true)
+            .read("Open to Whole NTU");
+        
+        location = textIO.newStringInputReader()
+            .read("Location");
+        
+        totalSlots = textIO.newIntInputReader()
+            .read("Total Slots");
+        
+        campComitteeSlots = textIO.newIntInputReader()
+            .read("Camp Comittee Slots");
+        
+        description = textIO.newStringInputReader()
+            .read("Description");
+        
+        user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, Faculty.NBS, location, totalSlots, campComitteeSlots, description);
+        
+        // To edit
+        terminal.print("Camp created");
         
     }
     /**
@@ -52,7 +82,6 @@ public class CampUI {
         displayCamps(campList);
 
         if (campList.size() == 0){
-            textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
             return;
         }
 
@@ -64,7 +93,6 @@ public class CampUI {
         terminal.resetToBookmark("viewAllCamps");
 
         displayCampDetails(campList.get(campChoice-1), user);
-        textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
     }
 
     /**
