@@ -132,7 +132,7 @@ public abstract class AuthUser implements Serializable {
      * @return Camp object associated with the corresponding campID
      */
     public Camp getCamp(String campID) {
-        CampManager campManager = campManager.getInstance();
+        CampManager campManager = CampManager.getInstance();
         return campManager.getCamp(campID);
     }
 
@@ -143,7 +143,7 @@ public abstract class AuthUser implements Serializable {
      * @return CampInfo object associated with the corresponding campID
      */
     public CampInformation getCampInfo(String campID) {
-        CampManager campManager = campManager.getInstance();
+        CampManager campManager = CampManager.getInstance();
         return campManager.getCampInfo(campID);
     }
 
@@ -154,7 +154,7 @@ public abstract class AuthUser implements Serializable {
      * @return Feedback object associated with the corresponding feedbackID
      */
     public Feedback getFeedback(int feedbackID) {
-        FeedbackManager feedbackManager = feedbackManager.getInstance();
+        FeedbackManager feedbackManager = DeedbackManager.getInstance();
         return feedbackManager.getFeedback(feedbackID);
     }
 
