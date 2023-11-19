@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 
 public class generatePointsDict {
     public static void main(String args[]) {
-        HashMap<String, int> myHashMap = new HashMap<>();
+        HashMap<String, Integer> myHashMap = new HashMap<>();
         myHashMap.put("YCHERN@e.ntu.edu.sg", 0);
         myHashMap.put("KOH1@e.ntu.edu.sg", 0);
         myHashMap.put("BR015@e.ntu.edu.sg", 0);
