@@ -2,7 +2,7 @@ package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
 
-interface iCampStudent {
+public interface iCampStudent {
     
     ArrayList<String> getVisibleCampList(Faculty faculty);
     
@@ -13,5 +13,7 @@ interface iCampStudent {
     void register(String campID, String studentID, String roleID);
 
     void withdraw(String campID, String studentID);
+
+    Camp getCamp(String campID);
 
 }

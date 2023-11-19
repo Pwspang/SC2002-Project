@@ -86,7 +86,9 @@ public class AccountManager implements Serializable {
 	}
 
 	public AuthUser login(String userID, String password) {
-		if (password != getAccount(userID).getPassword()) {
+		if (!accountDict.containsKey(userID)) throw new IllegalArgumentException("User does not exist");
+		System.out.println(getAccount(userID).getPassword());
+		if (!password.equals(getAccount(userID).getPassword())) {
 			throw new IllegalArgumentException("Incorrect Password");
 		}
 

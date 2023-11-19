@@ -1,6 +1,8 @@
 
 package camppkg;
 
+import java.util.*;
+
 public class Camp {
     private String id;
     private boolean visibility;
@@ -30,11 +32,6 @@ public class Camp {
         visibility = !visibility;
     }
 
-    @Override
-    public String toString(){
-        return "TEST";
-    }
-    
     public void register(String studentID, String roleID) {
         if (!stuWithdrawn.contains(studentID)) throw new RuntimeException("Cannot rejoin after withdrawal.");
         Slots mySlots = (Slots) campinfo.getSlotsFor(roleID);
@@ -50,5 +47,30 @@ public class Camp {
             }
         }
     }
+
+    @Override
+    public String toString(){
+        return """
+            Camp Name                   : %s
+            Start Date                  : %s
+            End Date                    : %s
+            Registration Closing Date   : %s
+            Faculty                     : %s
+            Location                    : %s
+            Total Slots                 : %d
+            Camp Comittee Slots         : %d
+            Description                 : %s
+        """.formatted(campinfo.getCampName(), 
+        campinfo.getStartDate(), 
+        campinfo.getEndDate(),
+        campinfo.getRegisterationClosingDate(),
+        campinfo.getUserGroup(),
+        campinfo.getLocation(),
+        campinfo.getTotalSlots(),
+        "To do",
+        campinfo.getDescription()
+        );
+    }
+    
 
 }

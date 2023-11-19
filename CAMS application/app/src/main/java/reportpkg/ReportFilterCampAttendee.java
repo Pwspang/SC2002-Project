@@ -5,10 +5,11 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
+import authenticationpkg.Faculty;
 import camppkg.*;
 
 public class ReportFilterCampAttendee extends ReportFilterCamp {
-
+    /*
     public ReportFilterCampAttendee(String campID, String filename) {
         super(campID, filename);
     }
@@ -16,7 +17,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
     public void write() {
         CampManager campManager = CampManager.getInstance();
         AccountManager accountManager = AccountManager.getInstance();
-        CampInformation campInfo = CampManager.getCampInfo();
+        CampInformation campInfo = CampManager.getCampInfo("test");
         String campName = campInfo.getCampName();
         String startDate = campInfo.getStartDate();
         String endDate = campInfo.getEndDate();
@@ -25,10 +26,10 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        int ccSlots = campInfo.getCampCommitteeSlots();
+        //int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents();
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campName);
         HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getCampID());
 
         Collections.sort(studentNameList);
@@ -42,7 +43,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         content += "\nFaculty: " + userGroup;
         content += "\nLocation: " + location;
         content += "\nTotal Slots: " + totalSlots;
-        content += "\nCamp Committee Slots: " + ccSlots;
+        content += "\nCamp Committee Slots: " +  10; //ccSlots;
         content += "\nDescription: " + description;
         content += "\n\nStudent Details:";
 
@@ -71,5 +72,5 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         }
 
     }
-
+    */
 }

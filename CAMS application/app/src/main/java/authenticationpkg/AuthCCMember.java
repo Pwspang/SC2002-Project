@@ -13,7 +13,7 @@ public class AuthCCMember extends AuthStudent {
 
     public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquries(getUserID(), regCampList);
+        return feedbackManager.getCampEnquiries(getUserID(), regCampList);
     }
 
     public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
@@ -25,7 +25,7 @@ public class AuthCCMember extends AuthStudent {
 
     public ArrayList<String> getSuggestions() {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.getSuggestions(getUserID());
+        return feedbackManager.getSuggestions(getUserID());
     }
 
     public void editSuggestion(int feedbackID, String newContent) {
@@ -39,7 +39,7 @@ public class AuthCCMember extends AuthStudent {
         feedbackManager.deleteSuggestion(feedbackID, getUserID());
     }
 
-    public submitSuggestion(String campID, String content){
+    public void submitSuggestion(String campID, String content){
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
         feedbackManager.submitSuggestion(getUserID(), campID, content);
     }

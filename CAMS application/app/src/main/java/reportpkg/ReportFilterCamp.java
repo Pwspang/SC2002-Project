@@ -3,6 +3,7 @@ package reportpkg;
 import camppkg.*;
 
 public abstract class ReportFilterCamp {
+    /* 
     private String filename;
     private String campID;
 
@@ -21,5 +22,5 @@ public abstract class ReportFilterCamp {
     }
 
     public abstract void write();
-
+    */
 }

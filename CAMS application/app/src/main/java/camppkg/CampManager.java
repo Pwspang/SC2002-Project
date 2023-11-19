@@ -4,7 +4,7 @@ import java.util.*;
 import authenticationpkg.Faculty;
 
 
-public class CampManager implements iCampStaff{
+public class CampManager implements iCampStaff, iCampCommMember{
 
     // singleton constructor
     private static final CampManager campManager = new CampManager();
@@ -179,5 +179,13 @@ public class CampManager implements iCampStaff{
         }
         return result;
     }
+
+    public void editTotalSlots(String campID, int totalSlots){};
     
+    public ArrayList<String> getAllCamps(){
+        ArrayList<String> s = new ArrayList<String>();
+        return s;
+    };
+
+    public void editVisibility(String campID, boolean openToWholeNTU){};
 }

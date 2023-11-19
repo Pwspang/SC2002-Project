@@ -38,8 +38,7 @@ public class LoginUI{
         String password = textIO.newStringInputReader()
                 .read("Password");
 
-        // To call account manager.login() method;
-        AuthUser user = new AuthStaff("Staff Test", "staff", "staff", Faculty.EEE);
+        AuthUser user=null;
 
         try {
                 AccountManager accountManager = AccountManager.getInstance();
@@ -47,7 +46,7 @@ public class LoginUI{
                 user = accountManager.login(username, password);
 
         } catch (Exception e) {
-                terminal.println(e.toString()); 
+                terminal.println(e.getMessage()); 
                 
                 //blocking input here
                 textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");

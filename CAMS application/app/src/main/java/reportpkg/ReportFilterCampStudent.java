@@ -8,7 +8,7 @@ import authenticationpkg.AccountManager;
 import camppkg.*;
 
 public class ReportFilterCampStudent extends ReportFilterCamp {
-
+    /* 
     public ReportFilterCampStudent(String campID, String filename) {
         super(campID, filename);
     }
@@ -70,5 +70,5 @@ public class ReportFilterCampStudent extends ReportFilterCamp {
         }
 
     }
-
+    */
 }

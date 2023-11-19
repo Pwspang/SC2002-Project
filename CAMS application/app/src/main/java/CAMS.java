@@ -92,7 +92,9 @@ public class CAMS {
      */
     private static void startAllManager(){
         //something.getInstance()
-        // Added for testing 
+        // Added for testing
+        AccountManager accountManager = AccountManager.getInstance();
+        accountManager.readSerializedObject();
         
     }
     /*
@@ -100,6 +102,8 @@ public class CAMS {
      */
     private static void closeAllManager(){
         //something.close() -> to serialize all the objects
+        AccountManager accountManager = AccountManager.getInstance();
+        accountManager.writeSerializedObject();
         TextIO textIO = TextIoFactory.getTextIO();
         textIO.dispose();
     }

@@ -4,12 +4,11 @@ import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 import de.vandermeer.asciitable.*;
-import viewpkg.iView;
 
 import java.util.ArrayList;
 
 import authenticationpkg.*;
-import camppkg.Faculty;
+import authenticationpkg.Faculty;;
 
 
 public class CampUI {
