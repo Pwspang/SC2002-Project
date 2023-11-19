@@ -2,9 +2,11 @@
 package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
+public class CampManager implements Serializable, iCampStaff, iCampStudent, iCampCommMember {
 
     // singleton constructor
     private static final CampManager campManager = new CampManager();
