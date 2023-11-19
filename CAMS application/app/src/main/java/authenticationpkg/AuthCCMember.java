@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import camppkg.*;
 import feedbackpkg.*;
 import pointspkg.*;
+import reportpkg.*;
 
 public class AuthCCMember extends AuthStudent {
     public AuthCCMember(String name, String userID, String password, Faculty faculty) {
@@ -50,4 +51,5 @@ public class AuthCCMember extends AuthStudent {
         pointsManager.addOnePoint(getUserID());
     }
 
+    // Report function
 }
