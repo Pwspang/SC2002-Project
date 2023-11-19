@@ -8,7 +8,7 @@ public class CampInformation {
     private String campName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String registrationClosingDate;
+    private LocalDate registrationClosingDate;
     private boolean openToWholeNTU;
     private Faculty userGroup;
     private String location;
@@ -19,8 +19,8 @@ public class CampInformation {
     public CampInformation() {
         this(
         "generic campName", 
-        "01-01-2000",
-        "01-01-2000", 
+        "2000-01-01",
+        "2000-01-01", 
         "generic registrationClosingDate", 
         true,
         Faculty.SCSE,
@@ -47,7 +47,7 @@ public class CampInformation {
         this.campName = campName;
         this.startDate = LocalDate.parse(startDate);
         this.endDate = LocalDate.parse(endDate);
-        this.registrationClosingDate = registrationClosingDate;
+        this.registrationClosingDate = LocalDate.parse(registrationClosingDate);
         this.openToWholeNTU = openToWholeNTU;
         this.userGroup = userGroup;
         this.location = location;
@@ -71,7 +71,7 @@ public class CampInformation {
         return endDate;
     }
 
-    public String getRegisterationClosingDate() {
+    public LocalDate getRegisterationClosingDate() {
         return registrationClosingDate;
     }
 
@@ -136,7 +136,7 @@ public class CampInformation {
     }
 
     public void setRegisterationClosingDate(String registrationClosingDate) {
-        this.registrationClosingDate = registrationClosingDate;
+        this.registrationClosingDate = LocalDate.parse(registrationClosingDate);;
     }
 
     public void setOpenToWholeNTU(boolean openToWholeNTU) {
