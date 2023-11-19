@@ -46,12 +46,13 @@ public class AuthStaff extends AuthUser {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editRegistrationClosingDate(campID, registrationClosingDate);
     }
-
+    
+    /*
     public void editVisibility(String campID, boolean openToNTU) {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editVisibility(campID, openToNTU);
     }
-    /* Not working 
+     Not working 
     public void editOpenTo(String campID, boolean openToNTU) {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editOpenTo(campID, openToNTU);
@@ -66,7 +67,7 @@ public class AuthStaff extends AuthUser {
         iCampStaff campManager = CampManager.getInstance();
         campManager.toggleVisibility(campID, visiblity);
     }
-    */
+    
 
     public void editLocation(String campID, String location) {
         iCampStaff campManager = CampManager.getInstance();
@@ -77,6 +78,7 @@ public class AuthStaff extends AuthUser {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editTotalSlots(campID, totalSlots);
     }
+    */
 
     public void editCampCommitteeSlots(String campID, int campCommitteeSlots) {
         iCampStaff campManager = CampManager.getInstance();

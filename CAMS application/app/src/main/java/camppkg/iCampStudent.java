@@ -16,6 +16,4 @@ public interface iCampStudent {
 
     void withdraw(String campID, String studentID);
 
-    Camp getCamp(String campID);
-
 }

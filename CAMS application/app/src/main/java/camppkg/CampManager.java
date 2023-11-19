@@ -57,10 +57,6 @@ public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
         campList.remove(campID);
     }
 
-    public HashMap<String, Camp> getAllCamps() {
-        return campList;
-    }
-
     public ArrayList<String> getCreatedCamps(String staffID) {
         ArrayList<String> result = new ArrayList<>();
         for (String campID : campList.keySet()) {

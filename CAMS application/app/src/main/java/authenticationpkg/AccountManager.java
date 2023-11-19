@@ -17,7 +17,6 @@ public class AccountManager implements Serializable {
 
 	private AccountManager() {
 		accountDict = readSerializedObject();
-
 	}
 
 	public void writeSerializedObject() {
