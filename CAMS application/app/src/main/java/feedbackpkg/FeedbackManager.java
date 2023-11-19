@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
 public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaff {
 
     private transient ArrayList<Feedback> feedbackList = new ArrayList<>();
