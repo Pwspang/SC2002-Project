@@ -2,7 +2,7 @@ package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
 
-interface iCampStudent {
+public interface iCampStudent {
     
     ArrayList<String> getVisibleCampList(Faculty faculty);
     
