@@ -4,7 +4,7 @@ import java.util.*;
 import authenticationpkg.Faculty;
 
 
-public class CampManager {
+public class CampManager implements iCampStaff, iCampStudent, iCampCommMember {
 
     // singleton constructor
     private static final CampManager campManager = new CampManager();
@@ -14,9 +14,6 @@ public class CampManager {
     }
 
     private HashMap<String, Camp> campList;
-    public HashMap<String, Camp> getCampList() {
-        return campList;
-    }
 
     public void createCamp(String staffID, String campName, String startDate, String endDate, String registrationClosingDate,
             boolean openToWholeNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
@@ -46,6 +43,10 @@ public class CampManager {
 
     public void deleteCamp(String campID) {
         campList.remove(campID);
+    }
+
+    public HashMap<String, Camp> getAllCamps() {
+        return campList;
     }
 
     public ArrayList<String> getCreatedCamps(String staffID) {
@@ -109,16 +110,8 @@ public class CampManager {
         CampInformation campinfo = c.getCampInfo();
         campinfo.setDescription(description);
     }
-    
-    public void register(String campID, String studentID, String roleID) {
-        Camp myCamp = campList.get(campID);
-        myCamp.register(studentID, roleID);
-    }
 
-    public void withdraw(String campID, String studentID) {
-        Camp myCamp = campList.get(campID);
-        myCamp.withdraw(studentID);
-    }
+    // iCampStudent
 
     public ArrayList<String> getVisibleCampList(Faculty faculty) {
         ArrayList<String> result = new ArrayList<>();
@@ -152,6 +145,18 @@ public class CampManager {
     public Camp getCamp(String campID) {
         return campList.get(campID);
     }
+        
+    public void register(String campID, String studentID, String roleID) {
+        Camp myCamp = campList.get(campID);
+        myCamp.register(studentID, roleID);
+    }
+
+    public void withdraw(String campID, String studentID) {
+        Camp myCamp = campList.get(campID);
+        myCamp.withdraw(studentID);
+    }
+
+    // iCampCommMember and iStaff
 
     public ArrayList<String> getRegisteredStudents(String campID) {
         ArrayList<String> result = new ArrayList<>();
