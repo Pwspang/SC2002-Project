@@ -175,11 +175,11 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     }
 
     @Override
-    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
+    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String replyContent) {
         // loop to check if campID is in regCampList - CC can only reply if they oversee the camp
         boolean isFound = false;
         for (String c : regCampList) {
-            if (c.equals(campID)) {
+            if (true) {
                 // loop to check if feedbackID is in feedbackList
                 for (Feedback f : feedbackList) {
                     if (f.getFeedbackID() == feedbackID && f instanceof Enquiry) {

@@ -77,17 +77,17 @@ public class AuthStaff extends AuthUser {
         campManager.editDescription(campID, description);
     }
 
-    /* 
-    public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
+
+    public ArrayList<String> getCampEnquiries() {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquiries(regCampList);
+        return feedbackManager.getCampEnquiries(getUserID(), getCreatedCamps());
     }
 
-    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
+    public void replyEnquiry(int feedbackID, String replyContent) {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
+        feedbackManager.replyEnquiry(feedbackID, getCreatedCamps(), replyContent);
     }
-    */
+
 
     public ArrayList<String> getCampSuggestions(String campID) {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
