@@ -46,6 +46,10 @@ public class CampComitteeUI extends StudentUI{
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
+        terminal.setBookmark("campcomitteeUI");
+
+        terminal.println(iView.displayHeader("Camp Comittee: " + options[option-1]));
+
         switch(option){
             case 4:
                 //view available camp
@@ -83,6 +87,11 @@ public class CampComitteeUI extends StudentUI{
                 break;
 
         }
+
+        textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
+
+        terminal.resetToBookmark("campcomitteeUI");
+
     };
 
 

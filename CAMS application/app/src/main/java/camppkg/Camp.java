@@ -80,4 +80,10 @@ public class Camp implements Serializable {
         }
     }
 
+    @Override
+    public String toString(){
+        return campinfo.toString();
+    }
+    
+
 }

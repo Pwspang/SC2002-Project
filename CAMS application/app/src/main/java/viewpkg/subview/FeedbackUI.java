@@ -21,9 +21,9 @@ public class FeedbackUI {
         TextTerminal terminal = textIO.getTextTerminal(); 
 
         // ArrayList<Integer> feedbackIDList = user.getEnquiry();
-        ArrayList<Integer> feedbackIDList = user.getFeedback();
+        // ArrayList<Integer> feedbackIDList = user.getFeedback();
 
-        displayEnquiry(feedbackIDList);
+        //displayEnquiry(feedbackIDList);
 
         textIO.newBooleanInputReader()
             .withDefaultValue(true)
@@ -49,7 +49,14 @@ public class FeedbackUI {
      * Display a list of camps that the user is registered in but not part of camp comittee, user can choose from the camp to submit enquiry
      * @param user
      */
-    public static void submitEnquiry(AuthStudent user){}
+    public static void submitEnquiry(AuthStudent user){
+        //User to select camp first 
+        ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
+        
+        int option = CampUI.displayCamps(campIDList);
+
+        
+    }
 
     /**
      * Display a list of enquiry that the user previously submitted
@@ -85,13 +92,17 @@ public class FeedbackUI {
      * Submit Suggestion to camp that CC is part of
      * @param user
      */
-    public static void submitSuggestion(AuthCCMember user){}
+    public static void submitSuggestion(AuthCCMember user){
+
+    }
 
     /**
      * Display List of suggestions that CC submited
      * @param user
      */
-    public static void viewSuggestion(AuthCCMember user){}
+    public static void viewSuggestion(AuthCCMember user){
+
+    }
 
     /**
      * Display list of suggestions that CC submited, let user select and editSuggestion
@@ -103,7 +114,9 @@ public class FeedbackUI {
      * Display list of suggestions that CC submited, let user select and deleteSuggestion
      * @param user
      */
-    public static void deleteSuggestion(AuthCCMember user){}
+    public static void deleteSuggestion(AuthCCMember user){
+        String campID = user.getRegisteredCampList("CCMember").get(0);
+    }
 
     /**
      * Print that feedbackIDList in asciitable format

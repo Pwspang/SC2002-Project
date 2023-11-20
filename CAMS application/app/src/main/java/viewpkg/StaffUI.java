@@ -5,13 +5,15 @@ import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 
 import authenticationpkg.*;
+import feedbackpkg.Feedback;
 import viewpkg.subview.CampUI;
+import viewpkg.subview.FeedbackUI;
 
 
 
 public class StaffUI implements iView{
     private static StaffUI ui=null;
-    private static String[] options = {"Exit Program", "Logout", "Change password", "Create Camp", "Edit Camp", "View All Camps", "Toggle Visibility of Camp", "View Suggestions","Accept/Reject Suggestion", "Generate Report"};
+    private static String[] options = {"Exit Program", "Logout", "Change password", "Create Camp", "Edit Camp", "View All Camps", "Toggle Visibility of Camp", "View Enquiry", "Reply Enquriy", "View Suggestions","Accept/Reject Suggestion", "Generate Report"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -44,6 +46,8 @@ public class StaffUI implements iView{
 
         terminal.setBookmark("staffUI");
 
+        terminal.println(iView.displayHeader("Staff: " + options[option-1]));
+
         switch(option){
             case 4:
                 CampUI.createCamp((AuthStaff)user);
@@ -58,15 +62,20 @@ public class StaffUI implements iView{
                 CampUI.toggleVisibilityCamp((AuthStaff)user);
                 break;
             case 8:
-                terminal.println("View Suggestion");
                 break;
-            case 9: 
-                terminal.println("Accept/Reject Suggestion");
+            case 9:
                 break;
             case 10:
-                terminal.println("Generate Report");
+                FeedbackUI.viewSuggestion((AuthStaff) user);
+                break;
+            case 11: 
+                FeedbackUI.replySuggestion((AuthStaff) user);
+                break;
+            case 12:
                 break;
         }
+
+        textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
 
         terminal.resetToBookmark("staffUI");
     }

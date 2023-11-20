@@ -32,17 +32,31 @@ public class LoginUI{
                 +=================================================+                                                                                                                   
                         """);
 
-        String user = textIO.newStringInputReader()
+        String username = textIO.newStringInputReader()
+                .withDefaultValue("YCHERN@e.ntu.edu.sg")
                 .read("Username");
 
         String password = textIO.newStringInputReader()
+                .withDefaultValue("password")
                 .read("Password");
 
-        // To call account manager.login() method;
+        AuthUser user=null;
+
+        try {
+                AccountManager accountManager = AccountManager.getInstance();
+
+                user = accountManager.login(username, password);
+
+        } catch (Exception e) {
+                terminal.println(e.getMessage()); 
+                
+                //blocking input here
+                textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
+        }
 
         terminal.resetToBookmark("login");
         
-        return new AuthStaff();
+        return user;
     }
     /**
      * @return AuthUser object
@@ -59,13 +73,16 @@ public class LoginUI{
         terminal.setBookmark("resetPassword");
 
         //call reset password
-        terminal.println(iView.displayHeader("Reset Password"));
-        terminal.println("Reset password screen.");
+        terminal.println(iView.displayHeader("Reset Password")); 
 
         String password = textIO.newStringInputReader()
                 .read("New Password");
         
         //Call account manager here
+        AccountManager accountManager = AccountManager.getInstance();
+        accountManager.changePassword(user, password);
+
+        terminal.println("Password sucessfully changed.");
 
         // Blocking function 
         textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");

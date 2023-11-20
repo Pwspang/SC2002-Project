@@ -9,9 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class PointsManager implements Serializable {
-    private HashMap<String,int>pointsDict;
+    private HashMap<String, Integer> pointsDict;
     private static final PointsManager pointsManager = new PointsManager();
-    private static final String filename = "PointsManager.dat";
+    private static final String filename = "CAMS Application/src/main/resources/PointsManager.dat";
 
     private PointsManager() {
         pointsDict = readSerializedObject();
@@ -32,31 +32,31 @@ public class PointsManager implements Serializable {
         }
     }
 
-    public HashMap<String, int> readSerializedObject() {
-		HashMap<String, int> pDetails = null;
-		FileInputStream fis = null;
-		ObjectInputStream in = null;
-		try {
-			fis = new FileInputStream(filename);
-			in = new ObjectInputStream(fis);
-			pDetails = (HashMap<String, int>) in.readObject();
-			in.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		// print out the size
-		// System.out.println(" Details Size: " + pDetails.size());
-		// System.out.println();
-		return pDetails;
-	}
+    public HashMap<String, Integer> readSerializedObject() {
+        HashMap<String, Integer> pDetails = null;
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+            fis = new FileInputStream(filename);
+            in = new ObjectInputStream(fis);
+            pDetails = (HashMap<String, Integer>) in.readObject();
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        // print out the size
+        // System.out.println(" Details Size: " + pDetails.size());
+        // System.out.println();
+        return pDetails;
+    }
 
     public static PointsManager getInstance() {
         return pointsManager;
     }
 
-    public HashMap<String, int> getPointsDict() {
+    public HashMap<String, Integer> getPointsDict() {
         return pointsDict;
     }
 
@@ -65,7 +65,7 @@ public class PointsManager implements Serializable {
     }
 
     public void addOnePoint(String userID) {
-        int current = pointsDict.get(userID);
+        Integer current = pointsDict.get(userID);
         pointsDict.put(userID, current + 1);
     }
 

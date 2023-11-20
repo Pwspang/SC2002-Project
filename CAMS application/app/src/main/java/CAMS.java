@@ -6,6 +6,7 @@ import org.beryx.textio.TextTerminal;
 import viewpkg.*;
 import viewpkg.subview.LoginUI;
 import authenticationpkg.*;
+import camppkg.App;
 
 
 /**
@@ -35,29 +36,37 @@ public class CAMS {
      * Main loop of the application, handles view states and choices
      */
     private static void start(){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal();   
+
         int choice;
         boolean done = true;
         startAllManager();
         // Current state to call currView.displayOptions() on loop
         while (done){
-            if (user == null){
-                login();
-            } else {
-                choice = currView.displayOptions();
-                switch(choice){
-                    case 1:
-                        closeAllManager();
-                        done = false;
-                        break;
-                    case 2:
-                        logout();
-                        break;
-                    case 3:
-                        LoginUI.resetPassword(user);
-                        break;
-                    default: 
-                        currView.handleOption(choice, user);
+            // debugging block
+            try {
+                if (user == null){
+                    login();
+                } else {
+                    choice = currView.displayOptions();
+                    switch(choice){
+                        case 1:
+                            closeAllManager();
+                            done = false;
+                            break;
+                        case 2:
+                            logout();
+                            break;
+                        case 3:
+                            LoginUI.resetPassword(user);
+                            break;
+                        default: 
+                            currView.handleOption(choice, user);
+                    }
                 }
+            } catch (Exception e){
+                terminal.print(e.getMessage());
             }
         }
     }
@@ -71,26 +80,9 @@ public class CAMS {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal();   
 
-        
-        //To replace with user.getUI() 
-        int choice = textIO.newIntInputReader()
-        .withMinVal(1)
-        .withMaxVal(3)
-        .read("Option: ");
-
-        switch (choice){
-            case 1: 
-            currView = StaffUI.getInstance();       
-            break;
-            case 2:
-            currView = StudentUI.getInstance();       
-            break;
-            case 3:
-            currView = CampComitteeUI.getInstance();       
-            break;
+        if (user != null){
+            currView = user.getUI();
         }
-
-        
     }
 
     public static void logout(){
@@ -101,12 +93,21 @@ public class CAMS {
      */
     private static void startAllManager(){
         //something.getInstance()
+        // Added for testing
+        AccountManager accountManager = AccountManager.getInstance();
+
+        // Using testfrom camppkg 
+        App.main();
+        
     }
     /*
      * Stops all manager object, deserializing the objects to dat file
      */
     private static void closeAllManager(){
         //something.close() -> to serialize all the objects
+        AccountManager accountManager = AccountManager.getInstance();
+        accountManager.writeSerializedObject();
+
         TextIO textIO = TextIoFactory.getTextIO();
         textIO.dispose();
     }
