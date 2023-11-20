@@ -58,7 +58,7 @@ public class CampUI {
         }
         
         // To edit
-        terminal.println("Camp created.");
+        terminal.printf("%s created.\n");
         
     }
     /**
@@ -81,16 +81,11 @@ public class CampUI {
 
         terminal.setBookmark("viewAllCamps");
 
-        displayCamps(campIDList);
+        int campChoice = displayCamps(campIDList);
 
-        if (campIDList.size() == 0){
+        if (campChoice == 0){
             return;
         }
-
-        int campChoice = textIO.newIntInputReader()
-            .withMinVal(1)
-            .withMaxVal(campIDList.size())
-            .read("View details of Camp");
 
         terminal.resetToBookmark("viewAllCamps");
 
@@ -105,23 +100,19 @@ public class CampUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
-        ArrayList<String> campList = user.getCreatedCamps();
+        ArrayList<String> campIDList = user.getCreatedCamps();
+
+        campIDList.add("Back to main menu");
 
         terminal.setBookmark("toggleVisibilityCamps");
 
-        displayCamps(campList);
+        int campChoice = displayCamps(campIDList);
 
-        if (campList.size() == 0){
+        if (campChoice == campIDList.size()){
             return;
         }
 
-        int campChoice = textIO.newIntInputReader()
-            .withMinVal(1)
-            .withMaxVal(campList.size())
-            .read("View details of Camp");
-
         terminal.resetToBookmark("toggleVisibilityCamps");
-
 
     }
 
@@ -133,92 +124,121 @@ public class CampUI {
 
         terminal.setBookmark("viewAvailableCamp");
 
-        displayCamps(campIDList);
+        int campChoice = displayCamps(campIDList);
 
-        if (campIDList.size() == 0){
+        if (campChoice == 0){
             return;
-        }
-
-        int campChoice = textIO.newIntInputReader()
-            .withMinVal(1)
-            .withMaxVal(campIDList.size())
-            .read("View details of Camp");        
+        }   
 
         terminal.resetToBookmark("viewAvailableCamp");
 
         displayCampDetails(campIDList.get(campChoice-1), user);
 
     }
+    // TO DO indicate if the camp is Attendee or CCMember
     public static void viewRegisteredCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
-        ArrayList<String> campIDList = user.getRegisteredCampList("Student");
+        ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
+        campIDList.addAll(user.getRegisteredCampList("CCMember"));
 
         terminal.setBookmark("viewRegisteredCamp");
 
-        displayCamps(campIDList);
+        int campChoice = displayCamps(campIDList);
 
-        if (campIDList.size() == 0){
+        if (campChoice == 0){
             return;
-        }
-
-        int campChoice = textIO.newIntInputReader()
-            .withMinVal(1)
-            .withMaxVal(campIDList.size())
-            .read("View details of Camp");        
+        }  
 
         terminal.resetToBookmark("viewRegisteredCamp");
 
         displayCampDetails(campIDList.get(campChoice-1), user); 
     }
+
     public static void registerForCamp(AuthStudent user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+        // Should get the camp from user
+        ArrayList<String> campIDList = user.getVisibleCampList();
+
+        terminal.setBookmark("registerForCamp");
+
+        campIDList.add("Back to Main Menu");
+
+        int campChoice = displayCamps(campIDList);
+
+        if (campChoice == campIDList.size()){
+            return;
+        }
+            
+        String roleID = textIO.newStringInputReader()
+            .withInlinePossibleValues("Attendee","CCMember")
+            .read("Role");
+
+        terminal.resetToBookmark("registerForCamp");
+
+        try {
+            user.register(campIDList.get(campChoice-1), roleID);
+            terminal.printf("Successfully registered for %s as %s.\n", campIDList.get(campChoice-1), roleID);
+        } catch(Exception e){
+            terminal.println(e.getMessage());
+        }
 
     }
     public static void withdrawFromCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
-        ArrayList<String> campIDList = user.getRegisteredCampList("CCMember");
+        ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
 
-        terminal.setBookmark("viewRegisteredCamp");
+        campIDList.add("Back to main menu");
 
-        displayCamps(campIDList);
+        terminal.setBookmark("withdrawFromCamp");
 
-        if (campIDList.size() == 0){
+        int campChoice = displayCamps(campIDList);
+
+        if (campChoice == campIDList.size()){
             return;
+        }       
+
+        terminal.resetToBookmark("withdrawFromCamp");
+
+        try {
+            user.withdraw(campIDList.get(campChoice-1));
+            terminal.println("Succesfully withdraw from " + campIDList.get(campChoice-1));
+        } catch (Exception e){
+            terminal.println(e.getMessage());
         }
-
-        int campChoice = textIO.newIntInputReader()
-            .withMinVal(1)
-            .withMaxVal(campIDList.size())
-            .read("View details of Camp");        
-
-        terminal.resetToBookmark("viewRegisteredCamp");
-
-        displayCampDetails(campIDList.get(campChoice-1), user); 
     }
 
-    public static void displayCamps(ArrayList<String> campIDList){
+    public static int displayCamps(ArrayList<String> campIDList){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
         //CampList is empty 
         if (campIDList.size() == 0){
             terminal.println("No available camps");
-            return;
+            return 0;
         }
 
         AsciiTable at = new AsciiTable();
 
         at.addRule();
         for (int i=0; i < campIDList.size(); i++){
-            at.addRow(i+1, campIDList);
+            at.addRow(i+1, campIDList.get(i));
             at.addRule();
         }
-
+        at.getRenderer().setCWC(new CWC_LongestLine());
+        at.setPaddingLeftRight(1);
         terminal.println(at.render());
 
+        int campChoice = textIO.newIntInputReader()
+            .withMinVal(1)
+            .withMaxVal(campIDList.size())
+            .read("Select Camp");
+
+        return campChoice;
     }
       
     public static void displayCampDetails(String campID, AuthUser user){

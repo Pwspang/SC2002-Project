@@ -73,7 +73,7 @@ public class StudentUI implements iView{
 
         textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
 
-        terminal.setBookmark("studentUI");
+        terminal.resetToBookmark("studentUI");
     }
 }
 
