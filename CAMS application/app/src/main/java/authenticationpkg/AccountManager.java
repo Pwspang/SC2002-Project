@@ -8,8 +8,21 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/***
+ * Used to store all AuthUser objects.
+ * Contains functions related to AuthUsers.
+ */
 public class AccountManager implements Serializable {
+
+	/**
+	 * A HashMap with userID as key and AuthUser for value.
+	 * This Hashmap will contain all accounts in the CAMS system.
+	 */
 	private HashMap<String, AuthUser> accountDict;
+
+	/**
+	 *  
+	 */
 	private static final AccountManager accountManager = new AccountManager();
 	private static final String filename = "src/main/resources/AccountManager.dat";
 
