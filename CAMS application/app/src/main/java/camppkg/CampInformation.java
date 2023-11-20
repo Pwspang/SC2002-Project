@@ -1,20 +1,21 @@
 
 package camppkg;
+import java.io.Serializable;
 import java.util.*;
 import authenticationpkg.Faculty;
 import java.time.LocalDate;
 
-public class CampInformation {
+public class CampInformation implements Serializable {
     private String campName;
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate registrationClosingDate;
-    private boolean openToWholeNTU;
+    private Boolean openToWholeNTU;
     private Faculty userGroup;
     private String location;
     private String description;
     private String staffInCharge;
-    private HashMap<String, Slots> slots  = new HashMap<>();
+    private HashMap<String, Slots> slots = new HashMap<>();
 
     public CampInformation() {
         this(
