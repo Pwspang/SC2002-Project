@@ -10,14 +10,13 @@ import authenticationpkg.AccountManager;
 import authenticationpkg.Faculty;
 import camppkg.*;
 
-
 public class ReportFilterCampCCMember extends ReportFilterCamp {
-     
+
     public ReportFilterCampCCMember(String campID, String filename) {
-        super(campID, filename);
+        super(campID);
     }
-     
-    public void write() {
+
+    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
@@ -28,7 +27,7 @@ public class ReportFilterCampCCMember extends ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        //int ccSlots = campInfo.getCampCommitteeSlots();
+        // int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
@@ -45,7 +44,7 @@ public class ReportFilterCampCCMember extends ReportFilterCamp {
         content += "\nFaculty: " + userGroup;
         content += "\nLocation: " + location;
         content += "\nTotal Slots: " + totalSlots;
-        content += "\nCamp Committee Slots: " + 1;//ccSlots;
+        content += "\nCamp Committee Slots: " + 1;// ccSlots;
         content += "\nDescription: " + description;
         content += "\n\nStudent Details:";
 
@@ -58,7 +57,7 @@ public class ReportFilterCampCCMember extends ReportFilterCamp {
         }
 
         try {
-            FileWriter fileWriter = new FileWriter(getFileName());
+            FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Write content to the file

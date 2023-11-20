@@ -10,12 +10,12 @@ import authenticationpkg.Faculty;
 import java.time.LocalDate;
 
 public class ReportFilterCampStudent extends ReportFilterCamp {
-    
-    public ReportFilterCampStudent(String campID, String filename) {
-        super(campID, filename);
+
+    public ReportFilterCampStudent(String campID) {
+        super(campID);
     }
 
-    public void write() {
+    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
@@ -26,7 +26,7 @@ public class ReportFilterCampStudent extends ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        int ccSlots = 1;//campInfo.getCampCommitteeSlots();
+        int ccSlots = 1;// campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
@@ -55,7 +55,7 @@ public class ReportFilterCampStudent extends ReportFilterCamp {
         }
 
         try {
-            FileWriter fileWriter = new FileWriter(getFileName());
+            FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Write content to the file
@@ -71,5 +71,5 @@ public class ReportFilterCampStudent extends ReportFilterCamp {
         }
 
     }
-    
+
 }
