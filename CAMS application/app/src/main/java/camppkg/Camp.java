@@ -27,6 +27,32 @@ public class Camp implements Serializable {
         return this.visibility;
     }
 
+    public ArrayList<String> getStuWithdrawn() {
+        return stuWithdrawn;
+    }
+
+    public ArrayList<String> getRegisteredStudents() {
+        ArrayList<String> result = new ArrayList<>();
+        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
+        for (String roleID : allSlots.keySet()) {
+            Slots s = allSlots.get(roleID);
+            result.addAll(s.getStuRegistered());
+        }
+        return result;
+    }
+
+    public HashMap<String, String> getRegisteredStudentRoles() {
+        HashMap<String, String> result = new HashMap<>();
+        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
+        for (String roleID : allSlots.keySet()) {
+            Slots s = allSlots.get(roleID);
+            for (String student : s.getStuRegistered()) {
+                result.put(student, roleID);
+            }
+        }
+        return result;
+    }
+
     public void toggleVisibility(Boolean visibility) {
         this.visibility = visibility;
     }

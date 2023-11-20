@@ -194,29 +194,13 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
     // iCampCommMember and iStaff
 
     public ArrayList<String> getRegisteredStudents(String campID) {
-        ArrayList<String> result = new ArrayList<>();
         Camp c = campList.get(campID);
-        CampInformation campinfo = c.getCampInfo();
-        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
-        for (String roleID : allSlots.keySet()) {
-            Slots s = allSlots.get(roleID);
-            result.addAll(s.getStuRegistered());
-        }
-        return result;
+        return c.getRegisteredStudents();
     }
 
     public HashMap<String, String> getRegisteredStudentRoles(String campID) {
-        HashMap<String, String> result = new HashMap<>();
         Camp c = campList.get(campID);
-        CampInformation campinfo = c.getCampInfo();
-        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
-        for (String roleID : allSlots.keySet()) {
-            Slots s = allSlots.get(roleID);
-            for (String student : s.getStuRegistered()) {
-                result.put(student, roleID);
-            }
-        }
-        return result;
+        return c.getRegisteredStudentRoles();
     }
     
 }
