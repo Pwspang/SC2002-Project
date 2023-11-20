@@ -46,7 +46,7 @@ public class AuthStaff extends AuthUser {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editRegistrationClosingDate(campID, registrationClosingDate);
     }
-    
+
     public void editOpenTo(String campID, boolean openToNTU) {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editOpenTo(campID, openToNTU);
@@ -57,7 +57,7 @@ public class AuthStaff extends AuthUser {
         campManager.editOpenTo(campID, faculty);
     }
 
-    public void toggleVisibility(String campID, boolean visiblity) {
+    public void setVisibility(String campID, boolean visiblity) {
         iCampStaff campManager = CampManager.getInstance();
         campManager.toggleVisibility(campID, visiblity);
     }
@@ -77,17 +77,19 @@ public class AuthStaff extends AuthUser {
         campManager.editDescription(campID, description);
     }
 
-    /* 
-    public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
-        iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquiries(regCampList);
-    }
-
-    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
-        iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
-    }
-    */
+    /*
+     * public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
+     * iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
+     * return feedbackManager.getCampEnquiries(regCampList);
+     * }
+     * 
+     * public void replyEnquiry(int feedbackID, ArrayList<String> regCampList,
+     * String campID, String replyContent) {
+     * iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
+     * return feedbackManager.replyEnquiry(feedbackID, regCampList, campID,
+     * replyContent);
+     * }
+     */
 
     public ArrayList<String> getCampSuggestions(String campID) {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
@@ -110,7 +112,7 @@ public class AuthStaff extends AuthUser {
         rwc.writeCampReport(filter);
     }
 
-    public iView getUI(){
+    public iView getUI() {
         return StaffUI.getInstance();
     }
 
