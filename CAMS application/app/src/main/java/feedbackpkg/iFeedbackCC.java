@@ -1,5 +1,4 @@
 package feedbackpkg;
-
 import java.util.ArrayList;
 
 public interface iFeedbackCC extends iFeedbackStudent {

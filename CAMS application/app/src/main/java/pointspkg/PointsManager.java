@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class PointsManager implements Serializable {
-    private HashMap<String,Integer> pointsDict;
+    private HashMap<String, Integer> pointsDict;
     private static final PointsManager pointsManager = new PointsManager();
     private static final String filename = "PointsManager.dat";
 
@@ -61,11 +61,12 @@ public class PointsManager implements Serializable {
     }
 
     public int getPoints(String userID) {
+    public int getPoints(String userID) {
         return pointsDict.get(userID);
     }
 
     public void addOnePoint(String userID) {
-        int current = pointsDict.get(userID);
+        Integer current = pointsDict.get(userID);
         pointsDict.put(userID, current + 1);
     }
 

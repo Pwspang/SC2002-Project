@@ -10,7 +10,7 @@ public abstract class Slots {
     private int totalSlots;
     private int occupiedSlots;
     private int remainingSlots;
-    protected ArrayList<String> stuRegistered;
+    protected ArrayList<String> stuRegistered = new ArrayList<>();
 
     /**
 	 * Constructs a Camp object based on CampInformation.

@@ -4,7 +4,6 @@ import java.util.*;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import authenticationpkg.AccountManager;
 import camppkg.*;
 
 public class ReportFilterCampStudent extends ReportFilterCamp {
@@ -15,8 +14,7 @@ public class ReportFilterCampStudent extends ReportFilterCamp {
 
     public void write() {
         CampManager campManager = CampManager.getInstance();
-        AccountManager accountManager = AccountManager.getInstance();
-        CampInformation campInfo = CampManager.getCampInfo();
+        CampInformation campInfo = campManager.getCampInfo();
         String campName = campInfo.getCampName();
         String startDate = campInfo.getStartDate();
         String endDate = campInfo.getEndDate();

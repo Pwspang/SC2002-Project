@@ -15,7 +15,7 @@ public class AuthStudent extends AuthUser {
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
         iCampStudent campManager = CampManager.getInstance();
-        return campManager.getVisibleCampList(getFaculty());
+        return campManager.getVisibleCampList(getUserID());
     }
 
     public Camp getCamp(String campID) {
@@ -36,7 +36,7 @@ public class AuthStudent extends AuthUser {
 
     public ArrayList<String> getRegisteredCampList(String roleID) {
         iCampStudent campManager = CampManager.getInstance();
-        return campManager.getRegisteredCampList(getUserID(), roleID);
+        campManager.getRegisteredCampList(getUserID(), roleID);
     }
 
     // Enquiry Methods

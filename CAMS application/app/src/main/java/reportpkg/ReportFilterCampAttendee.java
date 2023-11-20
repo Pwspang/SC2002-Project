@@ -9,15 +9,13 @@ import authenticationpkg.Faculty;
 import camppkg.*;
 
 public class ReportFilterCampAttendee extends ReportFilterCamp {
-    /*
     public ReportFilterCampAttendee(String campID, String filename) {
         super(campID, filename);
     }
 
     public void write() {
         CampManager campManager = CampManager.getInstance();
-        AccountManager accountManager = AccountManager.getInstance();
-        CampInformation campInfo = CampManager.getCampInfo("test");
+        CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
         String startDate = campInfo.getStartDate();
         String endDate = campInfo.getEndDate();
@@ -29,8 +27,8 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         //int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campName);
-        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getCampID());
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents();
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
 
         Collections.sort(studentNameList);
 
@@ -72,5 +70,4 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         }
 
     }
-    */
 }

@@ -2,24 +2,25 @@
 package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
+import java.time.LocalDate;
 
 public class CampInformation {
     private String campName;
-    private String startDate;
-    private String endDate;
-    private String registrationClosingDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalDate registrationClosingDate;
     private boolean openToWholeNTU;
     private Faculty userGroup;
     private String location;
     private String description;
     private String staffInCharge;
-    private HashMap<String, Slots> slots;
+    private HashMap<String, Slots> slots  = new HashMap<>();
 
     public CampInformation() {
         this(
         "generic campName", 
-        "generic startDate",
-        "generic endDate", 
+        "2000-01-01",
+        "2000-01-01", 
         "generic registrationClosingDate", 
         true,
         Faculty.SCSE,
@@ -44,9 +45,9 @@ public class CampInformation {
         String staffInCharge) {
 
         this.campName = campName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.registrationClosingDate = registrationClosingDate;
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
+        this.registrationClosingDate = LocalDate.parse(registrationClosingDate);
         this.openToWholeNTU = openToWholeNTU;
         this.userGroup = userGroup;
         this.location = location;
@@ -58,19 +59,34 @@ public class CampInformation {
         this.slots.put("Attendee", new AttendeeSlots(totalSlots-campCommitteeSlots));
     }
 
+    @Override
+    public String toString() {
+        return "CampInformation{\n" +
+                "campName='" + campName + "',\n" +
+                "startDate='" + startDate + "',\n" +
+                "endDate='" + endDate + "',\n" +
+                "registrationClosingDate='" + registrationClosingDate + "',\n" +
+                "openToWholeNTU='" + openToWholeNTU + "',\n" +
+                "userGroup='" + userGroup + "',\n" +
+                "location='" + location + "',\n" +
+                "description='" + description + "',\n" +
+                "staffInCharge='" + staffInCharge + "',\n" +
+                getSlotsSummary() + "}\n";
+    }
+
     public String getCampName() {
         return campName;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public String getRegisterationClosingDate() {
+    public LocalDate getRegisterationClosingDate() {
         return registrationClosingDate;
     }
 
@@ -127,15 +143,15 @@ public class CampInformation {
     }
 
     public void setStartDate(String startDate) {
-        this.startDate = startDate;
+        this.startDate = LocalDate.parse(startDate);
     }
 
     public void setEndDate(String endDate) {
-        this.endDate = endDate;
+        this.endDate = LocalDate.parse(endDate);;
     }
 
     public void setRegisterationClosingDate(String registrationClosingDate) {
-        this.registrationClosingDate = registrationClosingDate;
+        this.registrationClosingDate = LocalDate.parse(registrationClosingDate);;
     }
 
     public void setOpenToWholeNTU(boolean openToWholeNTU) {

@@ -50,4 +50,10 @@ public class AuthCCMember extends AuthStudent {
         PointsManager pointsManager = PointsManager.getInstance();
         pointsManager.addOnePoint(getUserID());
     }
+
+    // Report function
+    public void writeCampReport(ReportFilterCamp filter) {
+        ReportWriterCamp rwc = ReportWriterCamp.getInstance();
+        rwc.writeCampReport(filter);
+    }
 }

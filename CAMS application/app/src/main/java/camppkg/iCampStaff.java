@@ -18,6 +18,8 @@ public interface iCampStaff {
 
     void editRegistrationClosingDate(String campID, String registrationClosingDate);
 
+    void toggleVisibility(String campID, boolean visiblity);
+
     void editOpenTo(String campID, boolean openToWholeNTU);
 
     void editOpenTo(String campID, Faculty faculty);
