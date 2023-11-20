@@ -53,11 +53,17 @@ public class Camp implements Serializable {
         return result;
     }
 
-    public void toggleVisibility(Boolean visibility) {
+    public void setVisibility(Boolean visibility) {
+        ArrayList<String> stuRegistered = getRegisteredStudents();
+        if (!stuRegistered.isEmpty() && visibility == false) {
+            throw new RuntimeException("Camp with registered students cannot turn visibility off.");
+        }
         this.visibility = visibility;
     }
 
     public void register(String studentID, String roleID) {
+        ArrayList<String> stuRegistered = getRegisteredStudents();
+        if (stuRegistered.contains(studentID)) throw new RuntimeException("Already registered.");
         if (stuWithdrawn.contains(studentID)) throw new RuntimeException("Cannot rejoin after withdrawal.");
         Slots mySlots = (Slots) campinfo.getSlotsFor(roleID);
         mySlots.register(studentID);

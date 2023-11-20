@@ -70,7 +70,7 @@ public abstract class Slots implements Serializable {
     }
 
     public void withdraw(String studentID) {
-        throw new RuntimeException("Cannot withdraw from this role");
+        throw new RuntimeException("Cannot withdraw from this role.");
     }
 
     public boolean hasStudent(String studentID) {
