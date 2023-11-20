@@ -23,7 +23,8 @@ public class generateAccountDict {
         myHashMap.put("SL22@e.ntu.edu.sg", new AuthStudent("LIU", "SL22@e.ntu.edu.sg", "password", Faculty.NBS));
         myHashMap.put("AKY013@e.ntu.edu.sg", new AuthStudent("RAWAL", "AKY013@e.ntu.edu.sg", "password", Faculty.SSS));
 
-        myHashMap.put("HUKUMAR@ntu.edu.sg", new AuthStaff("MADHUKUMAR", "HUKUMAR@ntu.edu.sg", "password", Faculty.SCSE));
+        myHashMap.put("HUKUMAR@ntu.edu.sg",
+                new AuthStaff("MADHUKUMAR", "HUKUMAR@ntu.edu.sg", "password", Faculty.SCSE));
         myHashMap.put("OURIN@ntu.edu.sg", new AuthStaff("ALEXEI", "OURIN@ntu.edu.sg", "password", Faculty.ADM));
         myHashMap.put("UPAM@ntu.edu.sg", new AuthStaff("CHATTOPADHYAY", "UPAM@ntu.edu.sg", "password", Faculty.EEE));
         myHashMap.put("ANWIT@ntu.edu.sg", new AuthStaff("DATTA", "ANWIT@ntu.edu.sg", "password", Faculty.SCSE));
@@ -32,7 +33,7 @@ public class generateAccountDict {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {
-            fos = new FileOutputStream("AccountManager.dat");
+            fos = new FileOutputStream("CAMS Application/src/main/resources/AccountManager.dat");
             out = new ObjectOutputStream(fos);
             out.writeObject(myHashMap);
             out.close();
@@ -40,6 +41,7 @@ public class generateAccountDict {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
     }
 
 }
