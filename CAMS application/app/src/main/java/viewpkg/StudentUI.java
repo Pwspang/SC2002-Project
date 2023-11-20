@@ -6,10 +6,11 @@ import org.beryx.textio.TextTerminal;
 
 import authenticationpkg.*;
 import viewpkg.subview.CampUI;
+import viewpkg.subview.FeedbackUI;
 
 public class StudentUI implements iView{
     private static StudentUI ui=null;
-    private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Reply to Enquiry", "Withdraw from Camp"};
+    private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Reply to Enquiry", "Delete Enquiry", "Withdraw from Camp"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -42,6 +43,10 @@ public class StudentUI implements iView{
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
+        terminal.setBookmark("studentUI");
+
+        terminal.println(iView.displayHeader("Student: " + options[option-1]));
+
         switch(option){
             case 4:
                 //view available camp
@@ -56,16 +61,23 @@ public class StudentUI implements iView{
                 CampUI.viewRegisteredCamp((AuthStudent) user);
                 break;
             case 7: 
-                terminal.println("Submit Enquiry for Camp");
+                FeedbackUI.submitEnquiry((AuthStudent) user);
                 break;
             case 8:
-                terminal.println("View Reply to Enquiry");
+                FeedbackUI.viewEnquiry((AuthStudent) user);
                 break;
-            case 9: 
+            case 9:
+                FeedbackUI.deleteEnquiry((AuthStudent) user);
+                break;
+            case 10: 
                 // Withdraw from camp
                 CampUI.withdrawFromCamp((AuthStudent) user);
                 break;
         };
+
+        textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
+
+        terminal.resetToBookmark("studentUI");
     }
 }
 

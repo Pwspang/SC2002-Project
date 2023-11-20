@@ -1,12 +1,12 @@
 package authenticationpkg;
 
-import java.util.ArrayList;
+import java.util.*;
 import feedbackpkg.*;
 import camppkg.*;
 import pointspkg.*;
+import viewpkg.*;
 
 public class AuthStudent extends AuthUser {
-
     AuthStudent(String name, String userID, String password, Faculty faculty) {
         super(name, userID, password, faculty);
     }
@@ -14,7 +14,7 @@ public class AuthStudent extends AuthUser {
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
         iCampStudent campManager = CampManager.getInstance();
-        return campManager.getVisibleCampList(getUserID());
+        return campManager.getVisibleCampList(getFaculty());
     }
 
     public Camp getCamp(String campID) {
@@ -24,7 +24,16 @@ public class AuthStudent extends AuthUser {
 
     public void register(String campID, String roleID) {
         iCampStudent campManager = CampManager.getInstance();
-        campManager.register(campID, getUserID(), roleID);
+        AccountManager accountManager = AccountManager.getInstance();
+        ArrayList<String> campList = campManager.getRegisteredCampList(getUserID(), roleID);
+        if (campList.isEmpty()) {
+            campManager.register(campID, getUserID(), roleID);
+            accountManager.changeAccountType(this,
+                    new AuthCCMember(this.getName(), this.getUserID(), this.getPassword(), this.getFaculty()));
+
+        } else {
+            throw new RuntimeException("You have already registered as a CCMember for another camp.");
+        }
 
     }
 
@@ -35,7 +44,7 @@ public class AuthStudent extends AuthUser {
 
     public ArrayList<String> getRegisteredCampList(String roleID) {
         iCampStudent campManager = CampManager.getInstance();
-        campManager.getRegisteredCampList(getUserID(), roleID);
+        return campManager.getRegisteredCampList(getUserID(), roleID);
     }
 
     // Enquiry Methods
@@ -65,5 +74,9 @@ public class AuthStudent extends AuthUser {
         PointsManager pointsManager = PointsManager.getInstance();
         return pointsManager.getPoints(getUserID());
     }
+
+    public iView getUI() {
+        return StudentUI.getInstance();
+    };
 
 }

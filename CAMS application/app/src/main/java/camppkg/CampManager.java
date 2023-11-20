@@ -1,6 +1,8 @@
 
 package camppkg;
 import java.util.*;
+
+import authenticationpkg.AuthUser;
 import authenticationpkg.Faculty;
 
 import java.io.Serializable;
@@ -38,17 +40,13 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 
     public void createCamp(CampInformation campInfo) {
         String campID = campInfo.getCampName();
-        if (campList.containsKey(campID)) throw new RuntimeException("Non-unique CampID");
+        if (campList.get(campID) != null) throw new RuntimeException("Camp not created due to invalid Camp ID");
         Camp camp = new Camp(campID, campInfo);
         campList.put(campID, camp);
     }
 
     public void deleteCamp(String campID) {
         campList.remove(campID);
-    }
-
-    public HashMap<String, Camp> getAllCamps() {
-        return campList;
     }
 
     public ArrayList<String> getCreatedCamps(String staffID) {
@@ -73,9 +71,9 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         campinfo.setRegisterationClosingDate(registrationClosingDate);
     }
     
-    public void toggleVisibility(String campID, boolean visibility) {
+    public void setVisibility(String campID, boolean visibility) {
         Camp c = campList.get(campID);
-        c.toggleVisibility(visibility);
+        c.setVisibility(visibility);
     }
 
     public void editOpenTo(String campID, boolean openToWholeNTU) {
@@ -119,6 +117,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         ArrayList<String> result = new ArrayList<>();
         for (String campID : campList.keySet()) {
             Camp c = campList.get(campID);
+            if (c.getVisibility() == false) continue;
             CampInformation campinfo = c.getCampInfo();
             if (campinfo.getOpenToWholeNTU() || campinfo.getUserGroup() == faculty) {
                 result.add(campID);
@@ -177,6 +176,9 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
     }
         
     public void register(String campID, String studentID, String roleID) {
+        if (getRegisteredStudents(campID).contains(studentID)) {
+            throw new RuntimeException(studentID + " is already registered for " + campID);
+        }
         ArrayList<String> registeredCampList = getRegisteredCampList(studentID);
         for (String icampID : registeredCampList) {
             if (isClashing(campID, icampID)) {
@@ -194,29 +196,24 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
     // iCampCommMember and iStaff
 
     public ArrayList<String> getRegisteredStudents(String campID) {
-        ArrayList<String> result = new ArrayList<>();
         Camp c = campList.get(campID);
-        CampInformation campinfo = c.getCampInfo();
-        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
-        for (String roleID : allSlots.keySet()) {
-            Slots s = allSlots.get(roleID);
-            result.addAll(s.getStuRegistered());
-        }
-        return result;
+        return c.getRegisteredStudents();
     }
 
     public HashMap<String, String> getRegisteredStudentRoles(String campID) {
-        HashMap<String, String> result = new HashMap<>();
         Camp c = campList.get(campID);
-        CampInformation campinfo = c.getCampInfo();
-        HashMap<String, Slots> allSlots = campinfo.getAllSlots();
-        for (String roleID : allSlots.keySet()) {
-            Slots s = allSlots.get(roleID);
-            for (String student : s.getStuRegistered()) {
-                result.put(student, roleID);
-            }
-        }
-        return result;
+        return c.getRegisteredStudentRoles();
     }
+
+    public void editTotalSlots(String campID, int totalSlots){};
     
+    public ArrayList<String> getAllCamps(){
+        ArrayList<String> s = new ArrayList<String>();
+        for (String key : campList.keySet()){
+            s.add(key);
+        }
+        return s;
+    };
+
+    public void editVisibility(String campID, boolean openToWholeNTU){};
 }

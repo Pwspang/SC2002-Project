@@ -9,11 +9,11 @@ import camppkg.*;
 
 public class ReportFilterCampPerformance extends ReportFilterCamp {
 
-    public ReportFilterCampPerformance(String campID, String filename) {
-        super(campID, filename);
+    public ReportFilterCampPerformance(String campID) {
+        super(campID);
     }
 
-    public void write() {
+    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
 
@@ -28,12 +28,12 @@ public class ReportFilterCampPerformance extends ReportFilterCamp {
             String k = studentNameList.get(i);
             String v = roles.get(k);
             if (v.equals("CCMember")) {
-                content += "\nName: " + k + " Role: " + v;
+                content += "\nUserID: " + k + " Role: " + v;
             }
         }
 
         try {
-            FileWriter fileWriter = new FileWriter(getFileName());
+            FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Write content to the file

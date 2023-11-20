@@ -52,7 +52,4 @@ public class Suggestion extends Feedback {
     public String toString() {
         return "Suggestion ID: " + getFeedbackID() + ", User ID: " + getUserID() + ", Camp ID: " + getCampID() + ", Content: " + getContent() + ", Approved: " + isApproved;
     }
-
-    
-
 }

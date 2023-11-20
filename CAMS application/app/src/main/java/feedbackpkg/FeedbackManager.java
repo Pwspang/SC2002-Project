@@ -1,4 +1,5 @@
 package feedbackpkg;
+
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.io.IOException;
@@ -9,7 +10,8 @@ import java.io.ObjectOutputStream;
 
 /**
  * The FeedbackManager class manages the list of feedbacks in the system.
- * It implements the Serializable interface for serialization and deserialization of the feedback list,
+ * It implements the Serializable interface for serialization and
+ * deserialization of the feedback list,
  * and the iFeedbackCC and iFeedbackStaff interfaces for feedback operations.
  */
 public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaff {
@@ -18,12 +20,12 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      * The list of feedbacks.
      */
     private ArrayList<Feedback> feedbackList = new ArrayList<>();
-    
+
     /**
      * The singleton instance of FeedbackManager.
      */
     private static FeedbackManager feedbackManager;
-    
+
     /**
      * The filename for serialized feedback data.
      */
@@ -32,7 +34,8 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * Private constructor for the singleton FeedbackManager.
      * It initializes the feedback list by reading from the serialized object file.
-     * If the file does not exist or is empty, it initializes an empty feedback list.
+     * If the file does not exist or is empty, it initializes an empty feedback
+     * list.
      */
     private FeedbackManager() {
         feedbackList = readSerializedObject();
@@ -94,9 +97,11 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
 
     /**
      * Writes the current state of the feedback list to a file.
-     * The feedback list is serialized and written to a file with the name specified by the 'filename' field.
+     * The feedback list is serialized and written to a file with the name specified
+     * by the 'filename' field.
      * If the operation is successful, it prints "Object Persisted" to the console.
-     * If an IOException occurs during the operation, it prints the stack trace to the error output stream.
+     * If an IOException occurs during the operation, it prints the stack trace to
+     * the error output stream.
      */
     public void writeSerialisedObj() {
         try {
@@ -109,13 +114,16 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        return list;
     }
-    
+
     /**
      * Reads the serialized feedback list from a file.
-     * The feedback list is deserialized from a file with the name specified by the 'filename' field.
+     * The feedback list is deserialized from a file with the name specified by the
+     * 'filename' field.
      * If the operation is successful, it returns the deserialized feedback list.
-     * If an IOException or ClassNotFoundException occurs during the operation, it prints the stack trace to the error output stream and returns null.
+     * If an IOException or ClassNotFoundException occurs during the operation, it
+     * prints the stack trace to the error output stream and returns null.
      *
      * @return the deserialized feedback list
      */
@@ -139,14 +147,19 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * Retrieves a list of enquiries made by a specific student.
      * 
-     * This method iterates over the feedback list, and for each feedback that is an instance of Enquiry
-     * that was made by the specified student, it checks if the enquiry has been replied to.
-     * If the enquiry has not been replied to, it is added to the list of enquiries to return.
+     * This method iterates over the feedback list, and for each feedback that is an
+     * instance of Enquiry
+     * that was made by the specified student, it checks if the enquiry has been
+     * replied to.
+     * If the enquiry has not been replied to, it is added to the list of enquiries
+     * to return.
      * 
      * If no enquiries are found for the specified student, an exception is thrown.
      * 
-     * @param studentID the ID(Name) of the student whose enquiries are to be retrieved
-     * @return a list of string representations of the enquiries made by the specified student
+     * @param studentID the ID(Name) of the student whose enquiries are to be
+     *                  retrieved
+     * @return a list of string representations of the enquiries made by the
+     *         specified student
      * @throws Exception if no enquiries are found for the specified student
      */
     @Override
@@ -172,7 +185,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         }
         // // For testing
         // for(String s: EnquiryList){
-        //     System.out.println(s.toString());
+        // System.out.println(s.toString());
         // }
         return EnquiryList;
     }
@@ -180,34 +193,41 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * Submits an enquiry to the system.
      * 
-     * This method creates a new Enquiry object with the specified student ID, camp ID, and content.
+     * This method creates a new Enquiry object with the specified student ID, camp
+     * ID, and content.
      * The new Enquiry object is added to the feedback list.
      * 
      * @param studentID the ID(Name) of the student who made the enquiry
-     * @param campID the ID(Name) of the camp the enquiry is associated with
-     * @param content the content of the enquiry
+     * @param campID    the ID(Name) of the camp the enquiry is associated with
+     * @param content   the content of the enquiry
      */
     @Override
     public void submitEnquiry(String studentID, String campID, String content) {
         int feedbackID = feedbackList.size() + 1;
         Enquiry enquiry = new Enquiry(feedbackID, studentID, campID, content, false);
         addFeedback(enquiry);
+
     }
 
     /**
      * Edits an enquiry made by a specific student.
      * 
-     * This method iterates over the feedback list, and for each feedback that is an instance of Enquiry
-     * that was made by the specified student, it checks if the enquiry has been replied to.
-     * If the enquiry has not been replied to, its content is updated with the specified new content.
+     * This method iterates over the feedback list, and for each feedback that is an
+     * instance of Enquiry
+     * that was made by the specified student, it checks if the enquiry has been
+     * replied to.
+     * If the enquiry has not been replied to, its content is updated with the
+     * specified new content.
      * 
-     * If no enquiries are found for the specified student, or if the specified enquiry has already been replied to,
+     * If no enquiries are found for the specified student, or if the specified
+     * enquiry has already been replied to,
      * an exception is thrown.
      * 
      * @param feedbackID the ID of the enquiry to be edited
-     * @param studentID the ID(Name) of the student who made the enquiry
+     * @param studentID  the ID(Name) of the student who made the enquiry
      * @param newContent the new content of the enquiry
-     * @throws Exception if no enquiries are found for the specified student, or if the specified enquiry has already been replied to
+     * @throws Exception if no enquiries are found for the specified student, or if
+     *                   the specified enquiry has already been replied to
      */
     @Override
     public void editEnquiry(int feedbackID, String studentID, String newContent) throws Exception {
@@ -228,23 +248,27 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
             }
         }
         if (!isEdited) {
-                throw new Exception("Enquiry not found or already replied");
+            throw new Exception("Enquiry not found or already replied");
         }
     }
 
     /**
      * Deletes an enquiry made by a specific student.
      * 
-     * This method iterates over the feedback list, and for each feedback that is an instance of Enquiry
-     * that was made by the specified student, it checks if the enquiry has been replied to.
+     * This method iterates over the feedback list, and for each feedback that is an
+     * instance of Enquiry
+     * that was made by the specified student, it checks if the enquiry has been
+     * replied to.
      * If the enquiry has not been replied to, it is removed from the feedback list.
      * 
-     * If no enquiries are found for the specified student, or if the specified enquiry has already been replied to,
+     * If no enquiries are found for the specified student, or if the specified
+     * enquiry has already been replied to,
      * an exception is thrown.
      * 
      * @param feedbackID the ID of the enquiry to be deleted
-     * @param studentID the ID(Name) of the student who made the enquiry
-     * @throws Exception if no enquiries are found for the specified student, or if the specified enquiry has already been replied to
+     * @param studentID  the ID(Name) of the student who made the enquiry
+     * @throws Exception if no enquiries are found for the specified student, or if
+     *                   the specified enquiry has already been replied to
      */
     @Override
     public void deleteEnquiry(int feedbackID, String studentID) {
@@ -267,7 +291,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         }
 
         if (!isFound) {
-                throw new NullPointerException("Enquiry not found");
+            throw new NullPointerException("Enquiry not found");
         }
     }
 
@@ -276,14 +300,18 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * Retrieves a list of enquiries made to a specific camp.
      * 
-     * This method iterates over the feedback list, and for each feedback that is an instance of Enquiry
-     * that is associated with the specified camp, it checks if the enquiry has been replied to.
-     * If the enquiry has not been replied to, it is added to the list of enquiries to return.
+     * This method iterates over the feedback list, and for each feedback that is an
+     * instance of Enquiry
+     * that is associated with the specified camp, it checks if the enquiry has been
+     * replied to.
+     * If the enquiry has not been replied to, it is added to the list of enquiries
+     * to return.
      * 
      * If no enquiries are found for the specified camp, an exception is thrown.
      * 
      * @param campID the ID(Name) of the camp whose enquiries are to be retrieved
-     * @return a list of string representations of the enquiries made to the specified camp
+     * @return a list of string representations of the enquiries made to the
+     *         specified camp
      * @throws Exception if no enquiries are found for the specified camp
      */
     @Override
@@ -301,13 +329,13 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
             }
         }
 
-        if(CampEnquiriesList.size() == 0){
+        if (CampEnquiriesList.size() == 0) {
             throw new NullPointerException("No enquiries found");
         }
 
-        //For testing
+        // For testing
         // for(String s: CampEnquiriesList){
-        //     System.out.println(s.toString());
+        // System.out.println(s.toString());
         // }
 
         return CampEnquiriesList;
@@ -316,17 +344,22 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * Replies to an enquiry made to a specific camp.
      * 
-     * This method iterates over the feedback list, and for each feedback that is an instance of Enquiry
-     * that is associated with the specified camp, it checks if the enquiry has been replied to.
-     * If the enquiry has not been replied to, it is updated with the specified reply content.
+     * This method iterates over the feedback list, and for each feedback that is an
+     * instance of Enquiry
+     * that is associated with the specified camp, it checks if the enquiry has been
+     * replied to.
+     * If the enquiry has not been replied to, it is updated with the specified
+     * reply content.
      * 
-     * If no enquiries are found for the specified camp, or if the specified enquiry has already been replied to,
+     * If no enquiries are found for the specified camp, or if the specified enquiry
+     * has already been replied to,
      * an exception is thrown.
      * 
-     * @param feedbackID the ID of the enquiry to be replied to
-     * @param campID the ID(Name) of the camp the enquiry is associated with
+     * @param feedbackID   the ID of the enquiry to be replied to
+     * @param campID       the ID(Name) of the camp the enquiry is associated with
      * @param replyContent the reply content
-     * @throws Exception if no enquiries are found for the specified camp, or if the specified enquiry has already been replied to
+     * @throws Exception if no enquiries are found for the specified camp, or if the
+     *                   specified enquiry has already been replied to
      */
     @Override
     public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String replyContent) throws Exception {
@@ -346,24 +379,30 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                     writeSerialisedObj();
                     break;
                 }
+                if (isFound) {
+                    break;
+                }
             }
         }
 
         if (!isFound) {
-           throw new Exception("Enquiry not found or camp not in regCampList");
+            throw new Exception("Enquiry not found or camp not in regCampList");
         }
     }
 
     /**
      * Retrieves a list of unapproved suggestions made by a specific user.
      *
-     * This method iterates over the feedback list and checks if the feedback is a suggestion made by the user specified by CampCommID.
+     * This method iterates over the feedback list and checks if the feedback is a
+     * suggestion made by the user specified by CampCommID.
      * If the suggestion is not approved, it is added to the SuggestionList.
      * If no suggestions are found, a NullPointerException is thrown.
      *
      * @param CampCommID The ID of the user whose suggestions are to be retrieved.
-     * @return An ArrayList of unapproved suggestions from the specified user in String format.
-     * @throws NullPointerException If no suggestions are found for the specified user.
+     * @return An ArrayList of unapproved suggestions from the specified user in
+     *         String format.
+     * @throws NullPointerException If no suggestions are found for the specified
+     *                              user.
      */
     @Override
     public ArrayList<String> getSuggestions(String CampCommID) {
@@ -379,13 +418,13 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
             }
         }
 
-        if(SuggestionList.size() == 0){
+        if (SuggestionList.size() == 0) {
             throw new NullPointerException("No suggestions found");
         }
 
         // // For testing
         // for(String s: SuggestionList){
-        //     System.out.println(s.toString());
+        // System.out.println(s.toString());
         // }
 
         return SuggestionList;
@@ -480,7 +519,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     public void submitSuggestion(String CampCommID, String campID, String content) {
         int newFeedbackID = feedbackList.size() + 1;
         Suggestion suggestion = new Suggestion(newFeedbackID, CampCommID, campID, content, false);
-
         addFeedback(suggestion);
 
     }
@@ -544,9 +582,8 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                     writeSerialisedObj();
                     break;
                 }
-            }      
+            }
         }
-
         if (!isFound) {
                 throw new NullPointerException("Suggestion not found or already approved");
         }

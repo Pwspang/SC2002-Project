@@ -5,29 +5,30 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
+import authenticationpkg.Faculty;
+import java.time.LocalDate;
 import camppkg.*;
 
 public class ReportFilterCampAttendee extends ReportFilterCamp {
-
-    public ReportFilterCampAttendee(String campID, String filename) {
-        super(campID, filename);
+    public ReportFilterCampAttendee(String campID) {
+        super(campID);
     }
 
-    public void write() {
+    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
-        String startDate = campInfo.getStartDate();
-        String endDate = campInfo.getEndDate();
-        String closingDate = campInfo.getRegisterationClosingDate();
+        LocalDate startDate = campInfo.getStartDate();
+        LocalDate endDate = campInfo.getEndDate();
+        LocalDate closingDate = campInfo.getRegisterationClosingDate();
         boolean openToNTU = campInfo.getOpenToWholeNTU();
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        int ccSlots = campInfo.getCampCommitteeSlots();
+        // int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents();
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
         HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
 
         Collections.sort(studentNameList);
@@ -41,7 +42,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         content += "\nFaculty: " + userGroup;
         content += "\nLocation: " + location;
         content += "\nTotal Slots: " + totalSlots;
-        content += "\nCamp Committee Slots: " + ccSlots;
+        content += "\nCamp Committee Slots: " + 10; // ccSlots;
         content += "\nDescription: " + description;
         content += "\n\nStudent Details:";
 
@@ -54,7 +55,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         }
 
         try {
-            FileWriter fileWriter = new FileWriter(getFileName());
+            FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Write content to the file
@@ -70,5 +71,4 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         }
 
     }
-
 }

@@ -11,11 +11,10 @@ import java.io.ObjectOutputStream;
 public class AccountManager implements Serializable {
 	private HashMap<String, AuthUser> accountDict;
 	private static final AccountManager accountManager = new AccountManager();
-	private static final String filename = "AccountManager.dat";
+	private static final String filename = "src/main/resources/AccountManager.dat";
 
 	private AccountManager() {
 		accountDict = readSerializedObject();
-
 	}
 
 	public void writeSerializedObject() {
@@ -86,11 +85,14 @@ public class AccountManager implements Serializable {
 	}
 
 	public AuthUser login(String userID, String password) {
-		if (password != accountDict.getAccount(userID).getPassword()) {
+		if (!accountDict.containsKey(userID))
+			throw new IllegalArgumentException("User does not exist");
+		System.out.println(getAccount(userID).getPassword());
+		if (!password.equals(getAccount(userID).getPassword())) {
 			throw new IllegalArgumentException("Incorrect Password");
 		}
 
-		return accountDict.getAccount(userID);
+		return getAccount(userID);
 	}
 
 }

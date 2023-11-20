@@ -11,21 +11,21 @@ public class AuthCCMember extends AuthStudent {
         super(name, userID, password, faculty);
     }
 
-    public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
+    public ArrayList<String> getCampEnquiries() {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquries(getUserID(), regCampList);
+        return feedbackManager.getCampEnquiries(getUserID(), getRegisteredCampList("CCMember"));
     }
 
-    public void replyEnquiry(int feedbackID, ArrayList<String> regCampList, String campID, String replyContent) {
+    public void replyEnquiry(int feedbackID, String replyContent) {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
         PointsManager pointManager = PointsManager.getInstance();
-        feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
+        feedbackManager.replyEnquiry(feedbackID, getRegisteredCampList("CCMember"), replyContent);
         pointManager.addOnePoint(getUserID());
     }
 
     public ArrayList<String> getSuggestions() {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        feedbackManager.getSuggestions(getUserID());
+        return feedbackManager.getSuggestions(getUserID());
     }
 
     public void editSuggestion(int feedbackID, String newContent) {
@@ -39,7 +39,7 @@ public class AuthCCMember extends AuthStudent {
         feedbackManager.deleteSuggestion(feedbackID, getUserID());
     }
 
-    public submitSuggestion(String campID, String content){
+    public void submitSuggestion(String campID, String content){
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
         feedbackManager.submitSuggestion(getUserID(), campID, content);
     }
