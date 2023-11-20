@@ -42,6 +42,10 @@ public class StudentUI implements iView{
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
+        terminal.setBookmark("studentUI");
+
+        terminal.println(iView.displayHeader("Student: " + options[option-1]));
+
         switch(option){
             case 4:
                 //view available camp
@@ -66,6 +70,10 @@ public class StudentUI implements iView{
                 CampUI.withdrawFromCamp((AuthStudent) user);
                 break;
         };
+
+        textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
+
+        terminal.resetToBookmark("studentUI");
     }
 }
 

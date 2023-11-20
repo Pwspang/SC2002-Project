@@ -10,7 +10,7 @@ public interface iCampStaff {
 
     void deleteCamp(String campID);
 
-    HashMap<String, Camp> getAllCamps();
+    ArrayList<String> getAllCamps();
 
     ArrayList<String> getCreatedCamps(String staffID);
 

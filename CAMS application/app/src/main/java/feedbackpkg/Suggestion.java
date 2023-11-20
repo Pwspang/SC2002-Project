@@ -1,7 +1,7 @@
 package feedbackpkg;
 
 public class Suggestion extends Feedback {
-    private boolean isApproved;
+    private transient boolean isApproved;
 
     public Suggestion(int feedbackID, String userID, String campID, String content, boolean isApproved) {
         super(feedbackID, userID, campID, content);
@@ -16,4 +16,8 @@ public class Suggestion extends Feedback {
         this.isApproved = isApproved;
     }
 
+    @Override
+    public String toString(){
+        return "Suggestion";
+    }
 }

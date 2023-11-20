@@ -4,8 +4,8 @@ import java.util.*;
 import authenticationpkg.Faculty;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("=== Testing Begins Lesgo! Let's create 2 camps. ===");
+    public static void main(){
+        System.out.println("====Testing Begins Lesgo!====");
         CampManager campManager = CampManager.getInstance();
 
         campManager.createCamp(
