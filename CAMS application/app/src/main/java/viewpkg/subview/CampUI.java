@@ -153,7 +153,7 @@ public class CampUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
-        ArrayList<String> campIDList = user.getRegisteredCampList("CCMember");
+        ArrayList<String> campIDList = user.getRegisteredCampList("Student");
 
         terminal.setBookmark("viewRegisteredCamp");
 

@@ -61,7 +61,6 @@ public class PointsManager implements Serializable {
     }
 
     public int getPoints(String userID) {
-    public int getPoints(String userID) {
         return pointsDict.get(userID);
     }
 

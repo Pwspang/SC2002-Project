@@ -49,10 +49,6 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         campList.remove(campID);
     }
 
-    public HashMap<String, Camp> getAllCamps() {
-        return campList;
-    }
-
     public ArrayList<String> getCreatedCamps(String staffID) {
         ArrayList<String> result = new ArrayList<>();
         for (String campID : campList.keySet()) {

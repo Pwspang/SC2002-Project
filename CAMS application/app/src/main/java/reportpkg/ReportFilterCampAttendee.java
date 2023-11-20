@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
 import authenticationpkg.Faculty;
+import java.time.LocalDate;
 import camppkg.*;
 
 public class ReportFilterCampAttendee extends ReportFilterCamp {
@@ -17,9 +18,9 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
-        String startDate = campInfo.getStartDate();
-        String endDate = campInfo.getEndDate();
-        String closingDate = campInfo.getRegisterationClosingDate();
+        LocalDate startDate = campInfo.getStartDate();
+        LocalDate endDate = campInfo.getEndDate();
+        LocalDate closingDate = campInfo.getRegisterationClosingDate();
         boolean openToNTU = campInfo.getOpenToWholeNTU();
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
@@ -27,7 +28,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         //int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents();
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
         HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
 
         Collections.sort(studentNameList);

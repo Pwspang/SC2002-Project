@@ -3,7 +3,7 @@ import java.util.*;
 import authenticationpkg.Faculty;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(){
         System.out.println("====Testing Begins Lesgo!====");
         CampManager campManager = CampManager.getInstance();
 
@@ -66,7 +66,7 @@ public class App {
         // Attendee can withdraw, but cannot register again.
         try { campManager.withdraw("SCSEOCamp", studentB);
         campManager.register("SCSEOCamp", studentB, "CCMember");
-        } catch(Exception e) {System.out.println("Your problem: " + e.getMessage() + "\n");}s
+        } catch(Exception e) {System.out.println("Your problem: " + e.getMessage() + "\n");}
         
         // what the staff sees
         System.out.println(campManager.getRegisteredStudents("HallOCamp").toString());

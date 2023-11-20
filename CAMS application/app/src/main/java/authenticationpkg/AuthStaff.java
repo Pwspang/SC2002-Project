@@ -77,7 +77,7 @@ public class AuthStaff extends AuthUser {
         campManager.editDescription(campID, description);
     }
 
-
+    /* 
     public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
         return feedbackManager.getCampEnquiries(regCampList);
@@ -87,6 +87,7 @@ public class AuthStaff extends AuthUser {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
         return feedbackManager.replyEnquiry(feedbackID, regCampList, campID, replyContent);
     }
+    */
 
     public ArrayList<String> getCampSuggestions(String campID) {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();

@@ -12,11 +12,13 @@ public class AuthStudent extends AuthUser {
         super(name, userID, password, faculty);
     } 
 
+    
     // Camp Methods
     public ArrayList<String> getVisibleCampList() {
         iCampStudent campManager = CampManager.getInstance();
-        return campManager.getVisibleCampList(getUserID());
+        return campManager.getVisibleCampList(getFaculty());
     }
+    
 
     public Camp getCamp(String campID) {
         iCampStudent campManager = CampManager.getInstance();
@@ -34,10 +36,12 @@ public class AuthStudent extends AuthUser {
         campManager.withdraw(campID, getUserID());
     }
 
+    
     public ArrayList<String> getRegisteredCampList(String roleID) {
         iCampStudent campManager = CampManager.getInstance();
-        campManager.getRegisteredCampList(getUserID(), roleID);
+        return campManager.getRegisteredCampList(getUserID(), roleID);
     }
+    
 
     // Enquiry Methods
     public ArrayList<String> getEnquiries() {

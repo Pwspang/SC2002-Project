@@ -155,7 +155,7 @@ public abstract class AuthUser implements Serializable {
      * @return Feedback object associated with the corresponding feedbackID
      */
     public Feedback getFeedback(int feedbackID) {
-        FeedbackManager feedbackManager = DeedbackManager.getInstance();
+        FeedbackManager feedbackManager = FeedbackManager.getInstance();
         return feedbackManager.getFeedback(feedbackID);
     }
 

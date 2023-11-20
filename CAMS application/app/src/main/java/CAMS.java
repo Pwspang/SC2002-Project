@@ -6,7 +6,7 @@ import org.beryx.textio.TextTerminal;
 import viewpkg.*;
 import viewpkg.subview.LoginUI;
 import authenticationpkg.*;
-import camppkg.CampManager;
+import camppkg.App;
 
 
 /**
@@ -95,6 +95,9 @@ public class CAMS {
         //something.getInstance()
         // Added for testing
         AccountManager accountManager = AccountManager.getInstance();
+
+        // Using testfrom camppkg 
+        App.main();
         
     }
     /*

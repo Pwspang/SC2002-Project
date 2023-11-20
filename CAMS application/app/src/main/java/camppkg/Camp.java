@@ -50,26 +50,7 @@ public class Camp {
 
     @Override
     public String toString(){
-        return """
-            Camp Name                   : %s
-            Start Date                  : %s
-            End Date                    : %s
-            Registration Closing Date   : %s
-            Faculty                     : %s
-            Location                    : %s
-            Total Slots                 : %d
-            Camp Comittee Slots         : %d
-            Description                 : %s
-        """.formatted(campinfo.getCampName(), 
-        campinfo.getStartDate(), 
-        campinfo.getEndDate(),
-        campinfo.getRegisterationClosingDate(),
-        "User Group",
-        campinfo.getLocation(),
-        campinfo.getTotalSlots(),
-        "Camp comitte Slots",
-        campinfo.getDescription()
-        );
+        return campinfo.toString();
     }
     
 
