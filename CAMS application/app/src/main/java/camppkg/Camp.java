@@ -1,10 +1,11 @@
 
 package camppkg;
+import java.io.Serializable;
 import java.util.*;
 
-public class Camp {
+public class Camp implements Serializable {
     private String id;
-    private boolean visibility;
+    private Boolean visibility;
     private CampInformation campinfo;
     private ArrayList<String> stuWithdrawn = new ArrayList<>();
 
@@ -22,11 +23,11 @@ public class Camp {
         return this.campinfo;
     }
 
-    public boolean getVisibility() {
+    public Boolean getVisibility() {
         return this.visibility;
     }
 
-    public void toggleVisibility(boolean visibility) {
+    public void toggleVisibility(Boolean visibility) {
         this.visibility = visibility;
     }
 

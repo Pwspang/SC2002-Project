@@ -1,4 +1,5 @@
 package camppkg;
+import java.io.*;
 import java.util.*;
 import authenticationpkg.Faculty;
 
@@ -71,5 +72,23 @@ public class App {
         // what the staff sees
         System.out.println(campManager.getRegisteredStudents("HallOCamp").toString());
         System.out.println(campManager.getRegisteredStudentRoles("HallOCamp").toString());
+
+        // let's try saving 
+        String filename = "myCMfile.ser";
+        FileOutputStream file = new FileOutputStream(filename);
+        ObjectOutputStream out = new ObjectOutputStream(file);
+        out.writeObject(campManager);
+        out.close();
+        file.close();
+        System.out.println("Object has been serialized");
+
+        // let's try reading the file
+        FileInputStream file2 = new FileInputStream(filename);
+        ObjectInputStream in = new ObjectInputStream(file2);
+        CampManager object1 = (CampManager)in.readObject();
+        in.close();
+        file.close();
+        System.out.println("Object has been deserialized");
+        System.out.println(object1.getAllCamps().toString()); // it works!
     }
 }

@@ -1,15 +1,16 @@
 
 package camppkg;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *  Class of CampInformation. 
  *  Contain
  */
-public abstract class Slots {
-    private int totalSlots;
-    private int occupiedSlots;
-    private int remainingSlots;
+public abstract class Slots implements Serializable {
+    private Integer totalSlots;
+    private Integer occupiedSlots;
+    private Integer remainingSlots;
     protected ArrayList<String> stuRegistered = new ArrayList<>();
 
     /**
