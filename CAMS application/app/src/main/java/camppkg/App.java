@@ -4,8 +4,8 @@ import java.util.*;
 import authenticationpkg.Faculty;
 
 public class App {
-    public static void main(){
-        System.out.println("====Testing Begins Lesgo!====");
+    public static void main(String[] args) throws Exception {
+        System.out.println("=== Testing Begins Lesgo! Let's create 2 camps. ===");
         CampManager campManager = CampManager.getInstance();
 
         campManager.createCamp(
@@ -92,6 +92,10 @@ public class App {
 
         System.out.println("\n=== Let's try to turn visibility off for fun. ===");
         try { campManager.setVisibility("SCSEOCamp", false);
+        } catch(Exception e) {System.out.println("Your problem: " + e.getMessage() + "\n");}
+
+        System.out.println("\n=== Let's try to delete a camp. ===");
+        try { campManager.deleteCamp("SCSEOCamp");
         } catch(Exception e) {System.out.println("Your problem: " + e.getMessage() + "\n");}
 
         System.out.println("\n=== Let's save the file. ===");

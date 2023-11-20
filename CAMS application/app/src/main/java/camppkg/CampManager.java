@@ -1,8 +1,6 @@
 
 package camppkg;
 import java.util.*;
-
-import authenticationpkg.AuthUser;
 import authenticationpkg.Faculty;
 
 import java.io.Serializable;
@@ -40,13 +38,19 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 
     public void createCamp(CampInformation campInfo) {
         String campID = campInfo.getCampName();
-        if (campList.get(campID) != null) throw new RuntimeException("Camp not created due to invalid Camp ID");
+        if (campList.containsKey(campID)) throw new RuntimeException("Non-unique CampID");
         Camp camp = new Camp(campID, campInfo);
         campList.put(campID, camp);
     }
 
     public void deleteCamp(String campID) {
-        campList.remove(campID);
+        ArrayList<String> stuRegistered = getRegisteredStudents(campID);
+        if (!stuRegistered.isEmpty()) throw new RuntimeException("Cannot delete camp with students registered.");
+        else campList.remove(campID);
+    }
+
+    public HashMap<String, Camp> getAllCamps() {
+        return campList;
     }
 
     public ArrayList<String> getCreatedCamps(String staffID) {
@@ -204,16 +208,5 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         Camp c = campList.get(campID);
         return c.getRegisteredStudentRoles();
     }
-
-    public void editTotalSlots(String campID, int totalSlots){};
     
-    public ArrayList<String> getAllCamps(){
-        ArrayList<String> s = new ArrayList<String>();
-        for (String key : campList.keySet()){
-            s.add(key);
-        }
-        return s;
-    };
-
-    public void editVisibility(String campID, boolean openToWholeNTU){};
 }
