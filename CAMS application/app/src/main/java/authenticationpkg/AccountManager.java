@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 public class AccountManager implements Serializable {
 	private HashMap<String, AuthUser> accountDict;
 	private static final AccountManager accountManager = new AccountManager();
-	private static final String filename = "CAMS Application/src/main/resources/AccountManager.dat";
+	private static final String filename = "src/main/resources/AccountManager.dat";
 
 	private AccountManager() {
 		accountDict = readSerializedObject();

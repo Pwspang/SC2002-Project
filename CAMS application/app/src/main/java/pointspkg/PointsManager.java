@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 public class PointsManager implements Serializable {
     private HashMap<String, Integer> pointsDict;
     private static final PointsManager pointsManager = new PointsManager();
-    private static final String filename = "CAMS Application/src/main/resources/PointsManager.dat";
+    private static final String filename = "src/main/resources/PointsManager.dat";
 
     private PointsManager() {
         pointsDict = readSerializedObject();

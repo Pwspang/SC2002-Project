@@ -13,6 +13,10 @@ public abstract class ReportFilterCamp {
 
     }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public abstract void write();
 
 }
