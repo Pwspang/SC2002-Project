@@ -26,7 +26,7 @@ public class generatePointsDict {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {
-            fos = new FileOutputStream("PointsManager.dat");
+            fos = new FileOutputStream("CAMS Application/src/main/resources/PointsManager.dat");
             out = new ObjectOutputStream(fos);
             out.writeObject(myHashMap);
             out.close();

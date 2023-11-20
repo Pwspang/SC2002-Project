@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 public class PointsManager implements Serializable {
     private HashMap<String, Integer> pointsDict;
     private static final PointsManager pointsManager = new PointsManager();
-    private static final String filename = "PointsManager.dat";
+    private static final String filename = "CAMS Application/src/main/resources/PointsManager.dat";
 
     private PointsManager() {
         pointsDict = readSerializedObject();
@@ -33,24 +33,24 @@ public class PointsManager implements Serializable {
     }
 
     public HashMap<String, Integer> readSerializedObject() {
-		HashMap<String, Integer> pDetails = null;
-		FileInputStream fis = null;
-		ObjectInputStream in = null;
-		try {
-			fis = new FileInputStream(filename);
-			in = new ObjectInputStream(fis);
-			pDetails = (HashMap<String, Integer>) in.readObject();
-			in.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		// print out the size
-		// System.out.println(" Details Size: " + pDetails.size());
-		// System.out.println();
-		return pDetails;
-	}
+        HashMap<String, Integer> pDetails = null;
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+            fis = new FileInputStream(filename);
+            in = new ObjectInputStream(fis);
+            pDetails = (HashMap<String, Integer>) in.readObject();
+            in.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        // print out the size
+        // System.out.println(" Details Size: " + pDetails.size());
+        // System.out.println();
+        return pDetails;
+    }
 
     public static PointsManager getInstance() {
         return pointsManager;
