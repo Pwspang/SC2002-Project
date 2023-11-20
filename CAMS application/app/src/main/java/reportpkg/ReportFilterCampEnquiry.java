@@ -10,11 +10,11 @@ import feedbackpkg.*;
 
 public class ReportFilterCampEnquiry extends ReportFilterCamp {
 
-    public ReportFilterCampEnquiry(String campID, String filename) {
-        super(campID, filename);
+    public ReportFilterCampEnquiry(String campID) {
+        super(campID);
     }
 
-    public void write() {
+    public void write(String filename) {
         FeedbackManager feedbackManager = FeedbackManager.getInstance();
         ArrayList<Feedback> feedbackList = feedbackManager.getFeedbackList();
         String content = "";
@@ -27,7 +27,7 @@ public class ReportFilterCampEnquiry extends ReportFilterCamp {
         }
 
         try {
-            FileWriter fileWriter = new FileWriter(getFileName());
+            FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Write content to the file

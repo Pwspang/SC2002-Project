@@ -46,7 +46,7 @@ public class AuthStaff extends AuthUser {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editRegistrationClosingDate(campID, registrationClosingDate);
     }
-    
+
     public void editOpenTo(String campID, boolean openToNTU) {
         iCampStaff campManager = CampManager.getInstance();
         campManager.editOpenTo(campID, openToNTU);
@@ -57,7 +57,7 @@ public class AuthStaff extends AuthUser {
         campManager.editOpenTo(campID, faculty);
     }
 
-    public void toggleVisibility(String campID, boolean visiblity) {
+    public void setVisibility(String campID, boolean visiblity) {
         iCampStaff campManager = CampManager.getInstance();
         campManager.toggleVisibility(campID, visiblity);
     }
@@ -110,7 +110,7 @@ public class AuthStaff extends AuthUser {
         rwc.writeCampReport(filter);
     }
 
-    public iView getUI(){
+    public iView getUI() {
         return StaffUI.getInstance();
     }
 

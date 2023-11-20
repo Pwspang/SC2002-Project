@@ -10,11 +10,11 @@ import java.time.LocalDate;
 import camppkg.*;
 
 public class ReportFilterCampAttendee extends ReportFilterCamp {
-    public ReportFilterCampAttendee(String campID, String filename) {
-        super(campID, filename);
+    public ReportFilterCampAttendee(String campID) {
+        super(campID);
     }
 
-    public void write() {
+    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
         String campName = campInfo.getCampName();
@@ -25,7 +25,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        //int ccSlots = campInfo.getCampCommitteeSlots();
+        // int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
@@ -42,7 +42,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         content += "\nFaculty: " + userGroup;
         content += "\nLocation: " + location;
         content += "\nTotal Slots: " + totalSlots;
-        content += "\nCamp Committee Slots: " +  10; //ccSlots;
+        content += "\nCamp Committee Slots: " + 10; // ccSlots;
         content += "\nDescription: " + description;
         content += "\n\nStudent Details:";
 
@@ -55,7 +55,7 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         }
 
         try {
-            FileWriter fileWriter = new FileWriter(getFileName());
+            FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Write content to the file
