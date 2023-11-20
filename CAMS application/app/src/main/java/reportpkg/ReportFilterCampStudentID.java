@@ -13,7 +13,7 @@ public class ReportFilterCampStudentID extends ReportFilterCamp {
         super(studentID);
     }
 
-    public void write() {
+    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
 
         ArrayList<String> campList = campManager.getRegisteredCampList(getID());
