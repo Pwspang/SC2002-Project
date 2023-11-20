@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    java
 }
 
 repositories {
@@ -39,6 +40,6 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("CAMS")
-    // mainClass.set("authenticationpkg/generateAccountDict")
+    // mainClass.set("CAMS")
+    mainClass.set("authenticationpkg/generateAccountDict")
 }
