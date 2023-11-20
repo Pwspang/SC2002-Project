@@ -17,7 +17,7 @@ import camppkg.App;
  */
 public class CAMS {
     /*
-     * User object
+     * AuthUser object
      */
     private static AuthUser user=null;
     /*
@@ -77,14 +77,14 @@ public class CAMS {
     private static void login(){
         user = LoginUI.handleLogin();
 
-        TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();   
-
         if (user != null){
             currView = user.getUI();
         }
     }
-
+    
+    /**
+     * Logout function, sets user to null
+     */
     public static void logout(){
         user = null;
     }

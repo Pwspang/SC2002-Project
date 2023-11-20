@@ -13,6 +13,6 @@ public abstract class ReportFilterCamp {
 
     }
 
-    public abstract void write();
+    public void write(){};
 
 }

@@ -11,11 +11,12 @@ import authenticationpkg.*;;
 
 
 public class CampUI {
-        /**
+    /**
      * Get user input to create a camp object
      * @param user
      */
     public static void createCamp(AuthStaff user){
+        // To do fix formatting
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
@@ -66,6 +67,16 @@ public class CampUI {
      * @param user
      */
     public static void editCamp(AuthStaff user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+
+        ArrayList<String> campIDList = user.getCreatedCamps();
+
+        int campChoice = displayCamps(campIDList);
+
+        if (campChoice == 0){
+            return;
+        }
 
     }
 
