@@ -90,6 +90,10 @@ public class App {
         System.out.println(campManager.getRegisteredStudents("HallOCamp").toString());
         System.out.println(campManager.getRegisteredStudentRoles("HallOCamp").toString());
 
+        System.out.println("\n=== Let's try to turn visibility off for fun. ===");
+        try { campManager.setVisibility("SCSEOCamp", false);
+        } catch(Exception e) {System.out.println("Your problem: " + e.getMessage() + "\n");}
+
         System.out.println("\n=== Let's save the file. ===");
         String filename = "myCMfile.ser";
         FileOutputStream file = new FileOutputStream(filename);
