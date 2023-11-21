@@ -62,8 +62,10 @@ public class StaffUI implements iView{
                 CampUI.toggleVisibilityCamp((AuthStaff)user);
                 break;
             case 8:
+                FeedbackUI.viewEnquiry((AuthStaff) user);
                 break;
             case 9:
+                FeedbackUI.replyEnquiry((AuthStaff) user);
                 break;
             case 10:
                 FeedbackUI.viewSuggestion((AuthStaff) user);

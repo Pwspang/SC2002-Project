@@ -33,7 +33,7 @@ public class generateAccountDict {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {
-            fos = new FileOutputStream("CAMS Application/src/main/resources/AccountManager.dat");
+            fos = new FileOutputStream("src/main/resources/AccountManager.dat");
             out = new ObjectOutputStream(fos);
             out.writeObject(myHashMap);
             out.close();

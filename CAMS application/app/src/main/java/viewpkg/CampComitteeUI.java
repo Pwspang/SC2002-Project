@@ -5,6 +5,8 @@ import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 
 import authenticationpkg.*;
+import feedbackpkg.FeedbackManager;
+import viewpkg.subview.FeedbackUI;
 
 public class CampComitteeUI extends StudentUI{
     private static CampComitteeUI ui=null;
@@ -68,18 +70,23 @@ public class CampComitteeUI extends StudentUI{
                 super.handleOption(9, user);
                 break;
             case 8:
+                FeedbackUI.submitSuggestion((AuthCCMember) user);
                 terminal.println("Submit Suggestions");
                 break;
             case 9: 
+                FeedbackUI.viewEnquiry((AuthCCMember) user);
                 terminal.println("View Enquiry");
                 break;
             case 10: 
+                FeedbackUI.replyEnquiry((AuthCCMember) user);
                 terminal.println("Reply Enquiry");
                 break;
             case 11: 
+                FeedbackUI.editSuggestion((AuthCCMember) user);
                 terminal.println("Edit Suggestion");
                 break;
             case 12: 
+                FeedbackUI.deleteSuggestion((AuthCCMember) user);
                 terminal.println("Delete Suggestion");
                 break;
             case 13: 

@@ -60,7 +60,7 @@ public class PointsManager implements Serializable {
         return pointsDict;
     }
 
-    public int getPoints(String userID) {
+    public Integer getPoints(String userID) {
         return pointsDict.get(userID);
     }
 

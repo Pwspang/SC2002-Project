@@ -34,7 +34,6 @@ public class AccountManager implements Serializable {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try {
-
 			fos = new FileOutputStream(filename);
 			out = new ObjectOutputStream(fos);
 			out.writeObject(accountDict);
