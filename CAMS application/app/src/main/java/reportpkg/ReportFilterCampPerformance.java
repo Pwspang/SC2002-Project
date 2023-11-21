@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
 import camppkg.*;
+import pointspkg.*;
 
 public class ReportFilterCampPerformance extends ReportFilterCamp {
 
@@ -15,6 +16,7 @@ public class ReportFilterCampPerformance extends ReportFilterCamp {
 
     public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
+        PointsManager pointsManager = PointsManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
@@ -27,8 +29,9 @@ public class ReportFilterCampPerformance extends ReportFilterCamp {
         for (int i = 0; i < studentNameList.size(); i++) {
             String k = studentNameList.get(i);
             String v = roles.get(k);
+            Integer p = pointsManager.getPoints();
             if (v.equals("CCMember")) {
-                content += "\nUserID: " + k + " Role: " + v;
+                content += "\nUserID: " + k + " Points: " + p;
             }
         }
 

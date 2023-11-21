@@ -7,7 +7,7 @@ public class ReportWriterCamp {
     }
 
     public void writeCampReport(ReportFilterCamp filter) {
-        if (filter == null) {
+        if (filter == null || filter.getID() == null) {
             throw new RuntimeException("Cannot write report");
         }
         filter.write();
