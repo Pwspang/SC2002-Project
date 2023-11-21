@@ -5,6 +5,9 @@ import camppkg.*;
 import feedbackpkg.*;
 import pointspkg.*;
 import reportpkg.*;
+import viewpkg.CampComitteeUI;
+import viewpkg.StudentUI;
+import viewpkg.iView;
 
 public class AuthCCMember extends AuthStudent {
     public AuthCCMember(String name, String userID, String password, Faculty faculty) {
@@ -13,10 +16,10 @@ public class AuthCCMember extends AuthStudent {
 
     public ArrayList<String> getCampEnquiries() {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquiries(getUserID(), getRegisteredCampList("CCMember"));
+        return feedbackManager.getCampEnquiries(getRegisteredCampList("CCMember"));
     }
 
-    public void replyEnquiry(int feedbackID, String replyContent) {
+    public void replyEnquiry(int feedbackID, String replyContent) throws Exception {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();
         PointsManager pointManager = PointsManager.getInstance();
         feedbackManager.replyEnquiry(feedbackID, getRegisteredCampList("CCMember"), replyContent);
@@ -52,8 +55,12 @@ public class AuthCCMember extends AuthStudent {
     }
 
     // Report function
-    public void writeCampReport(ReportFilterCamp filter) {
-        ReportWriterCamp rwc = ReportWriterCamp.getInstance();
-        rwc.writeCampReport(filter);
+    public void writeCampReport(String filtername,  String ID, String filename) {
+        ReportManager rwc = ReportManager.getInstance();
+        rwc.writeCampReport(filtername, ID, filename);
     }
+
+    public iView getUI() {
+        return CampComitteeUI.getInstance();
+    };
 }

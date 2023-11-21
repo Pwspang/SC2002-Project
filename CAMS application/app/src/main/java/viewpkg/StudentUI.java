@@ -10,7 +10,7 @@ import viewpkg.subview.FeedbackUI;
 
 public class StudentUI implements iView{
     private static StudentUI ui=null;
-    private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Reply to Enquiry", "Delete Enquiry", "Withdraw from Camp"};
+    private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Enquiry", "Delete Enquiry", "Edit Enquiry", "Withdraw from Camp"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -69,7 +69,10 @@ public class StudentUI implements iView{
             case 9:
                 FeedbackUI.deleteEnquiry((AuthStudent) user);
                 break;
-            case 10: 
+            case 10:
+                FeedbackUI.editEnquiry((AuthStudent) user);
+                break;  
+            case 11: 
                 // Withdraw from camp
                 CampUI.withdrawFromCamp((AuthStudent) user);
                 break;

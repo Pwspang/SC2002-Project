@@ -59,7 +59,7 @@ public class AuthStudent extends AuthUser {
         feedbackManager.submitEnquiry(getUserID(), campID, content);
     }
 
-    public void editEnquiry(int feedbackID, String newContent) {
+    public void editEnquiry(int feedbackID, String newContent) throws Exception {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();
         feedbackManager.editEnquiry(feedbackID, getUserID(), newContent);
     }

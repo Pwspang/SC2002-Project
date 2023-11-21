@@ -6,4 +6,5 @@ public enum Faculty {
     EEE,
     NBS,
     SSS
+    
 }

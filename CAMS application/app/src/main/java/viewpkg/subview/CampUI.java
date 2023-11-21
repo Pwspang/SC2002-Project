@@ -115,15 +115,21 @@ public class CampUI {
 
         campIDList.add("Back to main menu");
 
-        terminal.setBookmark("toggleVisibilityCamps");
-
         int campChoice = displayCamps(campIDList);
 
         if (campChoice == campIDList.size()){
             return;
         }
 
-        terminal.resetToBookmark("toggleVisibilityCamps");
+        boolean visible = textIO.newBooleanInputReader()
+            .withDefaultValue(true)
+            .read("Visible?");
+
+        try {
+            user.setVisibility(campIDList.get(campChoice-1), visible);
+        } catch (Exception e){
+            terminal.println(e.getMessage());
+        }
 
     }
 

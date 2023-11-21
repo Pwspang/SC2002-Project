@@ -7,6 +7,7 @@ import viewpkg.*;
 import viewpkg.subview.LoginUI;
 import authenticationpkg.*;
 import camppkg.CampManager;
+import feedbackpkg.FeedbackManager;
 
 
 /**
@@ -29,7 +30,9 @@ public class CAMS {
      * Initial entry to the application
      */
     public static void main(String[] args){
+        startAllManager();
         start();
+        closeAllManager();
     }
 
     /*
@@ -41,7 +44,7 @@ public class CAMS {
 
         int choice;
         boolean done = true;
-        startAllManager();
+        
         // Current state to call currView.displayOptions() on loop
         while (done){
             // debugging block
@@ -49,10 +52,11 @@ public class CAMS {
                 if (user == null){
                     login();
                 } else {
+                    terminal.setBookmark("Main View");
+                    terminal.printf("Welcome %s from %s\n", user.getName(), user.getFaculty().name());
                     choice = currView.displayOptions();
                     switch(choice){
                         case 1:
-                            closeAllManager();
                             done = false;
                             break;
                         case 2:
@@ -64,6 +68,7 @@ public class CAMS {
                         default: 
                             currView.handleOption(choice, user);
                     }
+                    terminal.resetToBookmark("Main View");
                 }
             } catch (Exception e){
                 terminal.print(e.getMessage());
@@ -96,12 +101,14 @@ public class CAMS {
         // Added for testing
         AccountManager.getInstance();
         CampManager.getInstance();
+        FeedbackManager.getInstance();
         
     }
     /*
      * Stops all manager object, deserializing the objects to dat file
      */
     private static void closeAllManager(){
+        
         //something.close() -> to serialize all the objects
         AccountManager accountManager = AccountManager.getInstance();
         accountManager.writeSerializedObject();
@@ -109,6 +116,12 @@ public class CAMS {
         CampManager campManager = CampManager.getInstance();
         campManager.writeSerializedObject();
 
+        FeedbackManager feedbackManager = FeedbackManager.getInstance();
+        feedbackManager.writeSerialisedObj();
+
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+        terminal.dispose();
     }
 
 }

@@ -10,6 +10,8 @@ package feedbackpkg;
      */
     private Boolean isReplied;
 
+    private String replyString;
+
      /**
      * Constructs a new Enquiry with the specified ID, user ID, campaign ID, content, and reply status.
      *
@@ -22,6 +24,7 @@ package feedbackpkg;
     public Enquiry(int feedbackID, String userID, String campID, String content, boolean isReplied) {
         super(feedbackID, userID, campID, content);
         this.isReplied = false;
+        this.replyString = " ";
     }
 
     /**
@@ -33,6 +36,14 @@ package feedbackpkg;
         return this.isReplied;
     }
 
+    public String getReplyString(){
+        return replyString;
+    }
+
+    public void setReplyString(String replyString){
+        this.replyString = replyString;
+    }
+
     /**
      * Sets whether the enquiry has been replied to.
      *
@@ -42,6 +53,8 @@ package feedbackpkg;
         this.isReplied = isReplied;
     }
 
+    
+
     /**
      * Returns a string representation of the enquiry.
      *
@@ -49,7 +62,7 @@ package feedbackpkg;
      */
     @Override
     public String toString() {
-        return "Enquiry ID: " + getFeedbackID() + ", User ID: " + getUserID() + ", Camp ID: " + getCampID() + ", Content: " + getContent() + ", Replied: " + isReplied;
+        return String.format("%s:%s:%s:%s:%s", getFeedbackID(), getUserID(), getCampID(), getContent(), getReplyString());
     }
 
 

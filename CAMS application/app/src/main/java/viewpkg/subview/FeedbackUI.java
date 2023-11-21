@@ -7,6 +7,7 @@ import org.beryx.textio.TextTerminal;
 import authenticationpkg.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import de.vandermeer.asciitable.*;
 
@@ -44,8 +45,6 @@ public class FeedbackUI {
         ArrayList<String> enquiries = user.getCampEnquiries();
 
         displayFeedback(enquiries);
-
-
 
     }
 
@@ -167,6 +166,7 @@ public class FeedbackUI {
 
         int feedbackID = textIO.newIntInputReader()
             .read("Enter Enquiry ID");
+        
         try {
             user.deleteEnquiry(feedbackID);
         } catch (Exception e){
@@ -219,8 +219,6 @@ public class FeedbackUI {
         TextTerminal terminal = textIO.getTextTerminal();  
 
         ArrayList<String> campIDList = user.getRegisteredCampList("CCMember");
-        
-        int option = CampUI.displayCamps(campIDList);
 
         if (campIDList.size() == 0) {
             return;
@@ -230,7 +228,7 @@ public class FeedbackUI {
             .read("Enter Suggestion");
         
         try {
-            user.submitSuggestion(campIDList.get(option), content);
+            user.submitSuggestion(campIDList.get(0), content);
         } catch (Exception e){
             terminal.println(e.getMessage());
         }
@@ -260,10 +258,10 @@ public class FeedbackUI {
             .read("Enter Suggestion ID");
         
         String content = textIO.newStringInputReader()
-            .read("Enter Suggestion");
+            .read("Enter content");
         
         try {
-            user.editEnquiry(feedbackID, content);
+            user.editSuggestion(feedbackID, content);
         } catch (Exception e){
             terminal.println(e.getMessage());
         }
@@ -300,10 +298,18 @@ public class FeedbackUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
+        if (feedbackIDList.size() == 0){
+            terminal.println("No feedback found.");
+            return;
+        }
+
         AsciiTable at = new AsciiTable();
         at.addRule();
+        at.addRow("Feedback ID", "User ID", "Camp ID", "Content", "Reply");
+        at.addRule();
         for (String s: feedbackIDList){
-            at.addRow(s);
+            String [] si = s.split(":");
+            at.addRow(si[0], si[1], si[2], si[3], si[4]);
             at.addRule();
         }
         at.getRenderer().setCWC(new CWC_LongestLine());

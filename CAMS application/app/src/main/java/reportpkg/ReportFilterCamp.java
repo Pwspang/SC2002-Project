@@ -17,7 +17,7 @@ public abstract class ReportFilterCamp {
         this.ID = ID;
     }
 
-    public abstract void write();
+    public abstract void write(String filename);
 
 
 }

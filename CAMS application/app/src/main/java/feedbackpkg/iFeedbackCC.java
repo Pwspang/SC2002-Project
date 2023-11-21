@@ -10,11 +10,10 @@ public interface iFeedbackCC extends iFeedbackStudent {
     /**
      * Retrieves a list of enquiries related to the camps that the user is registered for.
      *
-     * @param userID The ID of the user.
      * @param regCampList A list of camp IDs that the user is registered for.
      * @return A list of enquiries related to the camps that the user is registered for.
      */
-    public ArrayList<String> getCampEnquiries(String userID, ArrayList<String> regCampList);
+    public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList);
 
     /**
      * Replies to an enquiry.

@@ -27,7 +27,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 			out = new ObjectOutputStream(fos);
 			out.writeObject(campList);
 			out.close();
-			System.out.println("Object Persisted");
+			System.out.println("Camp Manager Object Persisted");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -93,16 +93,13 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         else campList.remove(campID);
     }
 
-    public HashMap<String, Camp> getAllCamps() {
-        return campList;
-    }
-
     public ArrayList<String> getCreatedCamps(String staffID) {
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<String>();
         for (String campID : campList.keySet()) {
             Camp c = campList.get(campID);
-            if (staffID == c.getCampInfo().getStaffInCharge()) result.add(campID);
+            if (staffID.equals(c.getCampInfo().getStaffInCharge()) ) result.add(campID);
         }
+        Collections.sort(result);
         return result;
     }
 
@@ -162,7 +159,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
     // iCampStudent
 
     public ArrayList<String> getVisibleCampList(Faculty faculty) {
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<String>();
         for (String campID : campList.keySet()) {
             Camp c = campList.get(campID);
             if (c.getVisibility() == false) continue;
@@ -171,6 +168,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
                 result.add(campID);
             }
         }
+        Collections.sort(result);
         return result;
     }
 
@@ -188,6 +186,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
                 }
             }
         }
+        Collections.sort(result);
         return result;
     }
 
@@ -200,6 +199,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
             if (s.hasStudent(studentID)) result.add(campID);
             continue;
         }
+        Collections.sort(result);
         return result;
     }
 
@@ -254,10 +254,11 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
     }
     
     public ArrayList<String> getAllCamps(){
-        ArrayList<String> s = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<String>();
         for (String key : campList.keySet()){
-            s.add(key);
+            result.add(key);
         }
-        return s;
+        Collections.sort(result);
+        return result;
     };
 }

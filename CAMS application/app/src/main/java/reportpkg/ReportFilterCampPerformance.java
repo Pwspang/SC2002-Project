@@ -29,7 +29,7 @@ public class ReportFilterCampPerformance extends ReportFilterCamp {
         for (int i = 0; i < studentNameList.size(); i++) {
             String k = studentNameList.get(i);
             String v = roles.get(k);
-            Integer p = pointsManager.getPoints();
+            Integer p = pointsManager.getPoints(k);
             if (v.equals("CCMember")) {
                 content += "\nUserID: " + k + " Points: " + p;
             }

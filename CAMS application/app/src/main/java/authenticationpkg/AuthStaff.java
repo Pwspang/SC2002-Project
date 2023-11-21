@@ -80,10 +80,10 @@ public class AuthStaff extends AuthUser {
 
     public ArrayList<String> getCampEnquiries() {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
-        return feedbackManager.getCampEnquiries(getUserID(), getCreatedCamps());
+        return feedbackManager.getCampEnquiries(getCreatedCamps());
     }
 
-    public void replyEnquiry(int feedbackID, String replyContent) {
+    public void replyEnquiry(int feedbackID, String replyContent) throws Exception {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
         feedbackManager.replyEnquiry(feedbackID, getCreatedCamps(), replyContent);
     }
@@ -95,7 +95,7 @@ public class AuthStaff extends AuthUser {
 
     }
 
-    public void approveSuggestion(int feedbackID) {
+    public void approveSuggestion(int feedbackID) throws Exception {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
         Feedback f = this.getFeedback(feedbackID);
         PointsManager pointsManager = PointsManager.getInstance();
@@ -105,9 +105,9 @@ public class AuthStaff extends AuthUser {
 
     // Report function
 
-    public void writeCampReport(ReportFilterCamp filter) {
-        ReportWriterCamp rwc = ReportWriterCamp.getInstance();
-        rwc.writeCampReport(filter);
+    public void writeCampReport(String filtername,  String ID, String filename) {
+        ReportManager rwc = ReportManager.getInstance();
+        rwc.writeCampReport(filtername, ID, filename);
     }
 
     public iView getUI() {

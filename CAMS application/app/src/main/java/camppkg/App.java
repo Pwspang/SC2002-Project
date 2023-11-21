@@ -114,10 +114,6 @@ public class App {
         in.close();
         file.close();
         System.out.println("Object has been deserialized");
-        System.out.println(object1.getAllCamps().toString()); // it works!
-    } catch (Exception e){
-        System.out.print(e.getMessage());
-    } */
-    
-}
+        System.out.println(object1.getAllCamps().toString()); // it works    
+    }
 }

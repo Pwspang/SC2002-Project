@@ -8,13 +8,15 @@ public class ReportManager {
 
     private ReportManager() {
         reportFilterDict = new HashMap<String, ReportFilterCamp>();
+
+        /* 
         reportFilterDict.put("ReportFilterCampAttendee", new ReportFilterCampAttendee());
         reportFilterDict.put("ReportFilterCampCCMember", new ReportFilterCampCCMember());
         reportFilterDict.put("ReportFilterCampEnquiry", new ReportFilterCampEnquiry());
         reportFilterDict.put("ReportFilterCampPerformance", new ReportFilterCampPerformance());
         reportFilterDict.put("ReportFilterCampStudent", new ReportFilterCampStudent());
         reportFilterDict.put("ReportFilterCampStudentID", new ReportFilterCampStudentID());
-
+        */
     }
 
     public ReportFilterCamp getFilter(String nameOfFilter, String ID) {

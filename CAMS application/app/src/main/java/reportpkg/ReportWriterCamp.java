@@ -6,11 +6,11 @@ public class ReportWriterCamp {
     private ReportWriterCamp() {
     }
 
-    public void writeCampReport(ReportFilterCamp filter) {
+    public void writeCampReport(ReportFilterCamp filter, String filename) {
         if (filter == null || filter.getID() == null) {
             throw new RuntimeException("Cannot write report");
         }
-        filter.write();
+        filter.write(filename);
 
     }
 

@@ -12,7 +12,7 @@ public interface iFeedbackStudent {
      * @param studentID The ID(Name) of the user whose enquiries are to be retrieved.
      * @return A list of enquiries made by the specified user.
      */
-    public ArrayList<String> getEnquiries(String studentID) throws Exception;
+    public ArrayList<String> getEnquiries(String studentID);
 
     /**
      * Submits a new enquiry for a specific camp.

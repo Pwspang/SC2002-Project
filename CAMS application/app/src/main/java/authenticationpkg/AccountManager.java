@@ -38,7 +38,7 @@ public class AccountManager implements Serializable {
 			out = new ObjectOutputStream(fos);
 			out.writeObject(accountDict);
 			out.close();
-			System.out.println("Object Persisted");
+			System.out.println("Account Object Persisted");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

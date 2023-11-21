@@ -50,6 +50,6 @@ public class Suggestion extends Feedback {
      */
     @Override
     public String toString() {
-        return "Suggestion ID: " + getFeedbackID() + ", User ID: " + getUserID() + ", Camp ID: " + getCampID() + ", Content: " + getContent() + ", Approved: " + isApproved;
+        return String.format("%s:%s:%s:%s:%s", getFeedbackID(), getUserID(), getCampID(), getContent(), isApproved);
     }
 }

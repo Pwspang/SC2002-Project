@@ -19,7 +19,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * The list of feedbacks.
      */
-    private ArrayList<Feedback> feedbackList = new ArrayList<>();
+    private ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
 
     /**
      * The singleton instance of FeedbackManager.
@@ -29,7 +29,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * The filename for serialized feedback data.
      */
-    private static final String filename = "feedbacks.dat";
+    private static final String filename = "src/main/resources/FeedbackManager.dat";
 
     /**
      * Private constructor for the singleton FeedbackManager.
@@ -92,7 +92,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      */
     public void addFeedback(Feedback feedback) {
         feedbackList.add(feedback);
-        writeSerialisedObj();
     }
 
     /**
@@ -110,11 +109,10 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
             out.writeObject(feedbackList);
             out.close();
             fos.close();
-            System.out.println("Object Persisted");
+            System.out.println("Feedback Object Persisted");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return list;
     }
 
     /**
@@ -160,28 +158,20 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      *                  retrieved
      * @return a list of string representations of the enquiries made by the
      *         specified student
-     * @throws Exception if no enquiries are found for the specified student
      */
     @Override
-    public ArrayList<String> getEnquiries(String studentID) throws Exception {
+    public ArrayList<String> getEnquiries(String studentID) {
         ArrayList<String> EnquiryList = new ArrayList<>();
-        boolean userFound = false;
         if (feedbackList.size() == 0) {
             return EnquiryList;
         }
         for (Feedback f : feedbackList) {
             if (f.getUserID().equals(studentID) && f instanceof Enquiry) {
-                userFound = true;
 
                 Enquiry e = (Enquiry) f;
                 // check if enquiry is not replied
-                if (!e.isReplied()) {
-                    EnquiryList.add(f.toString());
-                }
+                EnquiryList.add(f.toString());
             }
-        }
-        if (!userFound) {
-            throw new Exception("User not found");
         }
         // // For testing
         // for(String s: EnquiryList){
@@ -240,10 +230,9 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                 if (!e.isReplied()) {
                     f.setContent(newContent);
                     isEdited = true;
-
-                    // update file
-                    writeSerialisedObj();
                     break;
+                } else {
+                    throw new Exception("Cannot edit replied enquiry");
                 }
             }
         }
@@ -282,10 +271,9 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                 if (!e.isReplied()) {
                     feedbackList.remove(f);
                     isFound = true;
-
-                    // update file
-                    writeSerialisedObj();
                     break;
+                } else {
+                    throw new RuntimeException("Cannot delete replied Enquiry");
                 }
             }
         }
@@ -315,11 +303,11 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      * @throws Exception if no enquiries are found for the specified camp
      */
     @Override
-    public ArrayList<String> getCampEnquiries(String userID, ArrayList<String> regCampList) {
+    public ArrayList<String> getCampEnquiries(ArrayList<String> regCampList) {
         ArrayList<String> CampEnquiriesList = new ArrayList<>();
 
         for (Feedback f : feedbackList) {
-            if (f.getUserID().equals(userID) && f instanceof Enquiry) {
+            if (f instanceof Enquiry) {
                 // get all enquiries that are in the camp that the CC oversees
                 for (String campID : regCampList) {
                     if (f.getCampID().equals(campID)) {
@@ -327,10 +315,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                     }
                 }
             }
-        }
-
-        if (CampEnquiriesList.size() == 0) {
-            throw new NullPointerException("No enquiries found");
         }
 
         // For testing
@@ -370,13 +354,11 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                 Enquiry e = (Enquiry) f;
                 // check if the campID for the feedback is in the regCampList
                 if (regCampList.contains(e.getCampID())) {
-                    e.setContent(replyContent);
+                    if (e.isReplied()) throw new Exception("Enquiry is already replied to.");
+                    e.setReplyString(replyContent);
                     e.setIsReplied(true);
 
                     isFound = true;
-
-                    // update file
-                    writeSerialisedObj();
                     break;
                 }
                 if (isFound) {
@@ -406,7 +388,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      */
     @Override
     public ArrayList<String> getSuggestions(String CampCommID) {
-        ArrayList<String> SuggestionList = new ArrayList<>();
+        ArrayList<String> SuggestionList = new ArrayList<String>();
 
         for (Feedback f : feedbackList) {
             if (f.getUserID().equals(CampCommID) && f instanceof Suggestion) {
@@ -416,10 +398,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                     SuggestionList.add(f.toString());
                 }
             }
-        }
-
-        if (SuggestionList.size() == 0) {
-            throw new NullPointerException("No suggestions found");
         }
 
         // // For testing
@@ -453,15 +431,15 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                 if (!s.isApproved()) {
                     f.setContent(newContent);
                     isEdited = true;
-
-                    // update file
-                    writeSerialisedObj();
                     break;
+                } else {
+                    throw new RuntimeException("Cannot edit approved suggestion.");
                 }
             }
-            if (!isEdited) {
-                throw new NullPointerException("Suggestion not found or already approved");
-            }
+
+        }
+        if (!isEdited) {
+                throw new NullPointerException("Suggestion not found");
         }
     }
 
@@ -490,14 +468,10 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
 
                     // //For testing
                     //System.out.println("Suggestion deleted");
-
-                    // update file
-                    writeSerialisedObj();
                     break;
+                } else {
+                    throw new RuntimeException("Cannot delete approved suggestion");
                 }
-            }
-            if (isFound) {
-                break;
             }
         }
         if (!isFound) {
@@ -577,9 +551,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                 if (!s.isApproved()) {
                     s.setIsApproved(true);
                     isFound = true;
-
-                    // update file
-                    writeSerialisedObj();
                     break;
                 }
             }
