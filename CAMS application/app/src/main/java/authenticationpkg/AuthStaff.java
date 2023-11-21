@@ -59,7 +59,7 @@ public class AuthStaff extends AuthUser {
 
     public void setVisibility(String campID, boolean visiblity) {
         iCampStaff campManager = CampManager.getInstance();
-        campManager.toggleVisibility(campID, visiblity);
+        campManager.setVisibility(campID, visiblity);
     }
 
     public void editLocation(String campID, String location) {

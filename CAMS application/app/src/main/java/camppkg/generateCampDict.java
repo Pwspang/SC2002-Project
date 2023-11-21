@@ -27,7 +27,7 @@ public class generateCampDict implements Serializable{
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {
-            fos = new FileOutputStream("CampManager.dat");
+            fos = new FileOutputStream("src/main/resources/CampManager.dat");
             out = new ObjectOutputStream(fos);
             out.writeObject(myHashMap);
             out.close();
