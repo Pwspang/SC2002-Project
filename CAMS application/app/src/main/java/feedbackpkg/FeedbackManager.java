@@ -29,7 +29,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * The filename for serialized feedback data.
      */
-    private static final String filename = "src/main/resources/FeedbackManager.dat";
+    private static final String filename = "feedbacks.dat";
 
     /**
      * Private constructor for the singleton FeedbackManager.
@@ -108,8 +108,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
             ObjectOutputStream out = new ObjectOutputStream(fos);
             out.writeObject(feedbackList);
             out.close();
-            fos.close();
-            System.out.println("Feedback Object Persisted");
+            System.out.println("Object Persisted");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -180,23 +179,22 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         return EnquiryList;
     }
 
+    
     /**
-     * Submits an enquiry to the system.
+     * Submits a new enquiry for a specific camp.
      * 
-     * This method creates a new Enquiry object with the specified student ID, camp
-     * ID, and content.
+     * This method creates a new Enquiry object with the specified user ID, camp ID,
+     * and content.
      * The new Enquiry object is added to the feedback list.
      * 
-     * @param studentID the ID(Name) of the student who made the enquiry
-     * @param campID    the ID(Name) of the camp the enquiry is associated with
+     * @param studentID the ID(Name) of the student submitting the enquiry
+     * @param campID    the ID(Name) of the camp that the enquiry is for
      * @param content   the content of the enquiry
      */
     @Override
     public void submitEnquiry(String studentID, String campID, String content) {
-        int feedbackID = feedbackList.size() + 1;
-        Enquiry enquiry = new Enquiry(feedbackID, studentID, campID, content, false);
+        Enquiry enquiry = new Enquiry(studentID, campID, content, false);
         addFeedback(enquiry);
-
     }
 
     /**
@@ -316,8 +314,10 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
                 }
             }
         }
-
-        // For testing
+        if(CampEnquiriesList.size() == 0){
+            throw new NullPointerException("No enquiries found");
+        }
+        // // For testing
         // for(String s: CampEnquiriesList){
         // System.out.println(s.toString());
         // }
@@ -479,22 +479,22 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         }
     }
 
+
     /**
-     * Submits a suggestion to the system.
+     * Submits a new suggestion for a specific camp.
      *
      * This method creates a new Suggestion object with the specified user ID, camp ID, and content.
      * The new Suggestion object is added to the feedback list.
      *
-     * @param CampCommID The ID(Name) of the user who made the suggestion.
-     * @param campID The ID(Name) of the camp the suggestion is associated with.
+     * @param CampCommID The ID of the user submitting the suggestion.
+     * @param campID The ID of the camp that the suggestion is for.
      * @param content The content of the suggestion.
      */
     @Override
     public void submitSuggestion(String CampCommID, String campID, String content) {
-        int newFeedbackID = feedbackList.size() + 1;
-        Suggestion suggestion = new Suggestion(newFeedbackID, CampCommID, campID, content, false);
+        Suggestion suggestion = new Suggestion(CampCommID, campID, content, false);
         addFeedback(suggestion);
-
+        
     }
 
     // --- iFeedbackStaff --- (enquiry methods done in iFeedbackCC)
@@ -523,7 +523,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
         if(CampSuggestionsList.size() == 0){
             throw new NullPointerException("No suggestions found");
         }
-        // //For testing
+        // // //For testing
         // for(String s: CampSuggestionsList){
         //     System.out.println(s.toString());
         // }
