@@ -282,7 +282,7 @@ public class CampUI {
         }
             
         String roleID = textIO.newStringInputReader()
-            .withInlinePossibleValues("Attendee","CCMember")
+            .withNumberedPossibleValues("Attendee","CCMember")
             .read("Role");
 
         terminal.resetToBookmark("registerForCamp");
@@ -336,7 +336,7 @@ public class CampUI {
 
         String ID;
         
-        if (filename.equals("ReportFilterCampStudentID")){
+        if (filtername.equals("ReportFilterCampStudentID")){
             ID = textIO.newStringInputReader()
                 .read("Student ID");
         } else {

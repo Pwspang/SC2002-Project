@@ -49,15 +49,12 @@ public class StudentUI implements iView{
 
         switch(option){
             case 4:
-                //view available camp
                 CampUI.viewAvailableCamp((AuthStudent) user);
                 break;
             case 5:
-                //register for camp
                 CampUI.registerForCamp((AuthStudent) user);
                 break;
             case 6:
-                // View Registered Camp
                 CampUI.viewRegisteredCamp((AuthStudent) user);
                 break;
             case 7: 

@@ -41,8 +41,6 @@ public class FeedbackUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
-
-
         try{   
 
             ArrayList<String> enquiries = user.getCampEnquiries();
@@ -195,9 +193,14 @@ public class FeedbackUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal();  
 
-        ArrayList<String> feedback = user.getCampEnquiries();
+        try {
+            ArrayList<String> feedback = user.getCampEnquiries();
 
-        displayFeedback(feedback);
+            displayFeedback(feedback);
+        } catch (Exception e){
+            terminal.println(e.getMessage());
+        }
+
     }
 
     /**

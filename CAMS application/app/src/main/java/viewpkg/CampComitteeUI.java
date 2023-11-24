@@ -5,6 +5,7 @@ import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 
 import authenticationpkg.*;
+import viewpkg.subview.CampUI;
 import viewpkg.subview.FeedbackUI;
 
 public class CampComitteeUI extends StudentUI{
@@ -95,7 +96,7 @@ public class CampComitteeUI extends StudentUI{
                 FeedbackUI.deleteSuggestion((AuthCCMember) user);
                 break;
             case 16: 
-                terminal.println("Generate Report");
+                CampUI.generateCampReport((AuthCCMember) user);
                 break;
 
         }
