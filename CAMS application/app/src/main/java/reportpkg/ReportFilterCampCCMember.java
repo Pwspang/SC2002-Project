@@ -10,12 +10,27 @@ import authenticationpkg.AccountManager;
 import authenticationpkg.Faculty;
 import camppkg.*;
 
+/**
+ * ReportFilterCampCCMember inherits from ReportFilterCamp.
+ * The type of report written by this filter is the information of camp and
+ * list of all CCMembers.
+ */
 public class ReportFilterCampCCMember extends ReportFilterCamp {
 
-    public ReportFilterCampCCMember(String campID, String filename) {
+    /**
+     * Constructor used to instantiate the ReportFilterCampCCMember with campID.
+     * 
+     * @param campID The campID associated to the camp.
+     */
+    public ReportFilterCampCCMember(String campID) {
         super(campID);
     }
 
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
     public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());

@@ -9,12 +9,27 @@ import camppkg.*;
 import authenticationpkg.Faculty;
 import java.time.LocalDate;
 
+/**
+ * ReportFilterCampStudent inherits from ReportFilterCamp.
+ * The type of report written by this filter is a list of students that attends
+ * the camp.
+ */
 public class ReportFilterCampStudent extends ReportFilterCamp {
 
+    /**
+     * Constructor used to instantiate the ReportFilterCampStudent with campID.
+     * 
+     * @param campID The campID associated to the camp.
+     */
     public ReportFilterCampStudent(String campID) {
         super(campID);
     }
 
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
     public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         CampInformation campInfo = campManager.getCampInfo(getID());

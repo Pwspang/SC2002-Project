@@ -159,6 +159,12 @@ public abstract class AuthUser implements Serializable {
         return feedbackManager.getFeedback(feedbackID);
     }
 
+    /**
+     * Gets the UI to display for each account type
+     * 
+     * @return iView object for the corresponding user
+     */
+
     public abstract iView getUI();
 
 }
