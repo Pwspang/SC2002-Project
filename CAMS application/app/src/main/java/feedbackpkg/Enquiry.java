@@ -21,8 +21,8 @@ package feedbackpkg;
      * @param content the content of the enquiry
      * @param isReplied whether the enquiry has been replied to
      */
-    public Enquiry(int feedbackID, String userID, String campID, String content, boolean isReplied) {
-        super(feedbackID, userID, campID, content);
+    public Enquiry(String userID, String campID, String content, boolean isReplied) {
+        super(userID, campID, content);
         this.isReplied = false;
         this.replyString = " ";
     }
@@ -62,7 +62,7 @@ package feedbackpkg;
      */
     @Override
     public String toString() {
-        return String.format("%s:%s:%s:%s:%s", getFeedbackID(), getUserID(), getCampID(), getContent(), getReplyString());
+        return "Enquiry ID: " + getFeedbackID() + ", User ID: " + getUserID() + ", Camp ID: " + getCampID() + ", Content: " + getContent() + ", Approved: " + isApproved;
     }
 
 

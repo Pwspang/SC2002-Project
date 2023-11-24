@@ -20,8 +20,8 @@ public class Suggestion extends Feedback {
      * @param content the content of the suggestion
      * @param isApproved whether the suggestion has been approved
      */
-    public Suggestion(int feedbackID, String userID, String campID, String content, boolean isApproved) {
-        super(feedbackID, userID, campID, content);
+    public Suggestion(String userID, String campID, String content, boolean isApproved) {
+        super(userID, campID, content);
         this.isApproved = false;
     }
 
@@ -50,6 +50,6 @@ public class Suggestion extends Feedback {
      */
     @Override
     public String toString() {
-        return String.format("%s:%s:%s:%s:%s", getFeedbackID(), getUserID(), getCampID(), getContent(), isApproved);
+        return "Suggestion ID: " + getFeedbackID() + ", User ID: " + getUserID() + ", Camp ID: " + getCampID() + ", Content: " + getContent() + ", Approved: " + isApproved;
     }
 }

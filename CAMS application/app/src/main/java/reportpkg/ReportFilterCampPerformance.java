@@ -8,12 +8,26 @@ import authenticationpkg.AccountManager;
 import camppkg.*;
 import pointspkg.*;
 
+/**
+ * ReportFilterCampPerformance inherits from ReportFilterCamp.
+ * The type of report written by this filter is a list of points that each
+ * student has.
+ */
 public class ReportFilterCampPerformance extends ReportFilterCamp {
-
+    /**
+     * Constructor used to instantiate the ReportFilterCampPerformance with campID.
+     * 
+     * @param campID The campID associated to the camp.
+     */
     public ReportFilterCampPerformance(String campID) {
         super(campID);
     }
 
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
     public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
         PointsManager pointsManager = PointsManager.getInstance();

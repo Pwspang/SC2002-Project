@@ -8,6 +8,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Generates the initial accountDict.dat file for AccountManager.
+ */
 public class generateAccountDict {
     public static void main(String args[]) {
         HashMap<String, AuthUser> myHashMap = new HashMap<>();
