@@ -14,10 +14,10 @@ public class AuthStaff extends AuthUser {
 
     // Camp Functions
     public void createCamp(String campName, String startDate, String endDate, String registratonClosingDate,
-            boolean openToNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
+            boolean openToNTU, String location, int totalSlots, int campCommitteeSlots,
             String description) {
         iCampStaff campManager = CampManager.getInstance();
-        campManager.createCamp(getUserID(), campName, startDate, endDate, registratonClosingDate, openToNTU, userGroup,
+        campManager.createCamp(getUserID(), campName, startDate, endDate, registratonClosingDate, openToNTU, getFaculty(),
                 location, totalSlots, campCommitteeSlots, description);
     }
 

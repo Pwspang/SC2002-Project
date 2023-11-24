@@ -1,12 +1,10 @@
 package authenticationpkg;
 
 import java.util.ArrayList;
-import camppkg.*;
 import feedbackpkg.*;
 import pointspkg.*;
 import reportpkg.*;
-import viewpkg.CampComitteeUI;
-import viewpkg.StudentUI;
+import viewpkg.CampComitteeUI; 
 import viewpkg.iView;
 
 public class AuthCCMember extends AuthStudent {

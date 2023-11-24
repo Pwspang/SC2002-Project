@@ -19,7 +19,7 @@ public class CampUI {
         // To do fix formatting
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
-
+        
         String campName, startDate, endDate, registrationClosingDate, location, description;
         boolean openToWholeNTU;
         int totalSlots, campComitteeSlots;
@@ -52,7 +52,7 @@ public class CampUI {
         description = textIO.newStringInputReader()
             .read("Description");
         try{
-            user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, Faculty.NBS, location, totalSlots, campComitteeSlots, description);
+            user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, location, totalSlots, campComitteeSlots, description);
         } catch (Exception e){
             terminal.println(e.getMessage());
             return;
