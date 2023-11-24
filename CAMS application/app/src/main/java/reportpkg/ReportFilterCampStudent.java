@@ -10,7 +10,7 @@ import authenticationpkg.Faculty;
 import java.time.LocalDate;
 
 /**
- * ReportFilterCampStudent inherits from ReportFilterCamp.
+ * ReportFilterCampStudent implements ReportFilterCamp.
  * The type of report written by this filter is a list of students that attends
  * the camp.
  */

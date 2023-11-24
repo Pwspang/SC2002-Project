@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import feedbackpkg.*;
 import pointspkg.*;
 import reportpkg.*;
-import viewpkg.CampComitteeUI; 
+import viewpkg.CampComitteeUI;
 import viewpkg.iView;
 
 /**

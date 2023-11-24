@@ -11,7 +11,7 @@ import authenticationpkg.Faculty;
 import camppkg.*;
 
 /**
- * ReportFilterCampCCMember inherits from ReportFilterCamp.
+ * ReportFilterCampCCMember implements ReportFilterCamp.
  * The type of report written by this filter is the information of camp and
  * list of all CCMembers.
  */

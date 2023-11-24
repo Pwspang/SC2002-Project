@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import camppkg.*;
 
 /**
- * ReportFilterCampAttendee inherits from ReportFilterCamp.
+ * ReportFilterCampAttendee implements ReportFilterCamp.
  * The type of report written by this filter is the information of camp and
  * list of all attendees.
  */
