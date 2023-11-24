@@ -127,12 +127,6 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         campinfo.setOpenToWholeNTU(openToWholeNTU);
     }
 
-    public void editOpenTo(String campID, Faculty faculty) {
-        Camp c = campList.get(campID);
-        CampInformation campinfo = c.getCampInfo();
-        campinfo.setUserGroup(faculty);
-    }
-
     public void editLocation(String campID, String location) {
         Camp c = campList.get(campID);
         CampInformation campinfo = c.getCampInfo();
@@ -229,10 +223,20 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 
         return !startA.isAfter(endB) && !endA.isBefore(startB);
     }
+
+    public boolean isOver(String campID) {
+        Camp c = campList.get(campID);
+        LocalDate registerationClosingDate = c.getCampInfo().getRegisterationClosingDate();
+        LocalDate today = LocalDate.now();
+        return today.isAfter(registerationClosingDate);
+    }
         
     public void register(String campID, String studentID, String roleID) {
         if (getRegisteredStudents(campID).contains(studentID)) {
             throw new RuntimeException(studentID + " is already registered for " + campID);
+        }
+        if (isOver(campID)) {
+            throw new RuntimeException(campID + " registration period is over.");
         }
         ArrayList<String> registeredCampList = getRegisteredCampList(studentID);
         for (String icampID : registeredCampList) {
