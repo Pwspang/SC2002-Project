@@ -6,10 +6,11 @@ import org.beryx.textio.TextTerminal;
 
 import authenticationpkg.*;
 import viewpkg.subview.CampUI;
+import viewpkg.subview.FeedbackUI;
 
 public class StudentUI implements iView{
     private static StudentUI ui=null;
-    private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Reply to Enquiry", "Withdraw from Camp"};
+    private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Enquiry", "Delete Enquiry", "Edit Enquiry", "Withdraw from Camp"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -60,12 +61,18 @@ public class StudentUI implements iView{
                 CampUI.viewRegisteredCamp((AuthStudent) user);
                 break;
             case 7: 
-                terminal.println("Submit Enquiry for Camp");
+                FeedbackUI.submitEnquiry((AuthStudent) user);
                 break;
             case 8:
-                terminal.println("View Reply to Enquiry");
+                FeedbackUI.viewEnquiry((AuthStudent) user);
                 break;
-            case 9: 
+            case 9:
+                FeedbackUI.deleteEnquiry((AuthStudent) user);
+                break;
+            case 10:
+                FeedbackUI.editEnquiry((AuthStudent) user);
+                break;  
+            case 11: 
                 // Withdraw from camp
                 CampUI.withdrawFromCamp((AuthStudent) user);
                 break;

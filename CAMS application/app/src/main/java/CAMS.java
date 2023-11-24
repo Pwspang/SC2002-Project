@@ -6,7 +6,9 @@ import org.beryx.textio.TextTerminal;
 import viewpkg.*;
 import viewpkg.subview.LoginUI;
 import authenticationpkg.*;
-import camppkg.App;
+import camppkg.CampManager;
+import feedbackpkg.FeedbackManager;
+import pointspkg.PointsManager;
 
 
 /**
@@ -17,7 +19,7 @@ import camppkg.App;
  */
 public class CAMS {
     /*
-     * User object
+     * AuthUser object
      */
     private static AuthUser user=null;
     /*
@@ -29,7 +31,9 @@ public class CAMS {
      * Initial entry to the application
      */
     public static void main(String[] args){
+        startAllManager();
         start();
+        closeAllManager();
     }
 
     /*
@@ -41,7 +45,7 @@ public class CAMS {
 
         int choice;
         boolean done = true;
-        startAllManager();
+        
         // Current state to call currView.displayOptions() on loop
         while (done){
             // debugging block
@@ -49,10 +53,11 @@ public class CAMS {
                 if (user == null){
                     login();
                 } else {
+                    terminal.setBookmark("Main View");
+                    terminal.printf("Welcome %s from %s\n", user.getName(), user.getFaculty().name());
                     choice = currView.displayOptions();
                     switch(choice){
                         case 1:
-                            closeAllManager();
                             done = false;
                             break;
                         case 2:
@@ -64,6 +69,7 @@ public class CAMS {
                         default: 
                             currView.handleOption(choice, user);
                     }
+                    terminal.resetToBookmark("Main View");
                 }
             } catch (Exception e){
                 terminal.print(e.getMessage());
@@ -77,14 +83,21 @@ public class CAMS {
     private static void login(){
         user = LoginUI.handleLogin();
 
-        TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();   
-
         if (user != null){
             currView = user.getUI();
         }
-    }
 
+        /* 
+        if (user.getPassword().equals("password")){
+            LoginUI.resetPassword(user);
+        }
+        */
+        
+    }
+    
+    /**
+     * Logout function, sets user to null
+     */
     public static void logout(){
         user = null;
     }
@@ -94,22 +107,33 @@ public class CAMS {
     private static void startAllManager(){
         //something.getInstance()
         // Added for testing
-        AccountManager accountManager = AccountManager.getInstance();
-
-        // Using testfrom camppkg 
-        App.main();
+        AccountManager.getInstance();
+        CampManager.getInstance();
+        FeedbackManager.getInstance();
+        PointsManager.getInstance();
         
     }
     /*
      * Stops all manager object, deserializing the objects to dat file
      */
     private static void closeAllManager(){
+        
         //something.close() -> to serialize all the objects
         AccountManager accountManager = AccountManager.getInstance();
         accountManager.writeSerializedObject();
 
+        CampManager campManager = CampManager.getInstance();
+        campManager.writeSerializedObject();
+
+        FeedbackManager feedbackManager = FeedbackManager.getInstance();
+        feedbackManager.writeSerialisedObj();
+
+        PointsManager pointsManager = PointsManager.getInstance();
+        pointsManager.writeSerializedObject();
+
         TextIO textIO = TextIoFactory.getTextIO();
-        textIO.dispose();
+        TextTerminal terminal = textIO.getTextTerminal(); 
+        terminal.dispose();
     }
 
 }

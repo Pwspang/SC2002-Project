@@ -8,6 +8,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Generates the initial pointsDict.dat file for PointsManager.
+ */
 public class generatePointsDict {
     public static void main(String args[]) {
         HashMap<String, Integer> myHashMap = new HashMap<>();
@@ -26,7 +29,7 @@ public class generatePointsDict {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
         try {
-            fos = new FileOutputStream("CAMS Application/src/main/resources/PointsManager.dat");
+            fos = new FileOutputStream("src/main/resources/PointsManager.dat");
             out = new ObjectOutputStream(fos);
             out.writeObject(myHashMap);
             out.close();

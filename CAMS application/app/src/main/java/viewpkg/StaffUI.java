@@ -5,7 +5,6 @@ import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 
 import authenticationpkg.*;
-import feedbackpkg.Feedback;
 import viewpkg.subview.CampUI;
 import viewpkg.subview.FeedbackUI;
 
@@ -13,7 +12,7 @@ import viewpkg.subview.FeedbackUI;
 
 public class StaffUI implements iView{
     private static StaffUI ui=null;
-    private static String[] options = {"Exit Program", "Logout", "Change password", "Create Camp", "Edit Camp", "View All Camps", "Toggle Visibility of Camp", "View Enquiry", "Reply Enquriy", "View Suggestions","Accept/Reject Suggestion", "Generate Report"};
+    private static String[] options = {"Exit Program", "Logout", "Change password", "Create Camp", "Edit Camp", "Delete Camp", "View Created Camps", "View All Camps", "Toggle Visibility of Camp", "View Enquiry", "Reply Enquriy", "View Suggestions","Accept Suggestion", "Generate Report"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -56,22 +55,31 @@ public class StaffUI implements iView{
                 CampUI.editCamp((AuthStaff)user);
                 break;
             case 6:
-                CampUI.viewAllCamps((AuthStaff)user);
+                CampUI.deleteCamp((AuthStaff) user);
                 break;
-            case 7: 
-                CampUI.toggleVisibilityCamp((AuthStaff)user);
+            case 7:
+                CampUI.viewCreatedCamp((AuthStaff) user);
                 break;
             case 8:
+                CampUI.viewAllCamps((AuthStaff)user);
                 break;
-            case 9:
+            case 9: 
+                CampUI.toggleVisibilityCamp((AuthStaff)user);
                 break;
             case 10:
-                FeedbackUI.viewSuggestion((AuthStaff) user);
+                FeedbackUI.viewEnquiry((AuthStaff) user);
                 break;
-            case 11: 
-                FeedbackUI.replySuggestion((AuthStaff) user);
+            case 11:
+                FeedbackUI.replyEnquiry((AuthStaff) user);
                 break;
             case 12:
+                FeedbackUI.viewSuggestion((AuthStaff) user);
+                break;
+            case 13: 
+                FeedbackUI.replySuggestion((AuthStaff) user);
+                break;
+            case 14:
+                CampUI.generateCampReport((AuthStaff) user);
                 break;
         }
 

@@ -6,19 +6,27 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
 import camppkg.*;
+import pointspkg.*;
 
-public class ReportFilterCampPerformance extends ReportFilterCamp {
+/**
+ * ReportFilterCampPerformance inherits from ReportFilterCamp.
+ * The type of report written by this filter is a list of points that each
+ * student has.
+ */
+public class ReportFilterCampPerformance implements ReportFilterCamp {
 
-    public ReportFilterCampPerformance(String campID) {
-        super(campID);
-    }
-
-    public void write(String filename) {
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
+    public void write(String campID, String filename) {
         CampManager campManager = CampManager.getInstance();
-        CampInformation campInfo = campManager.getCampInfo(getID());
+        PointsManager pointsManager = PointsManager.getInstance();
+        CampInformation campInfo = campManager.getCampInfo(campID);
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
-        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(campID);
 
         Collections.sort(studentNameList);
 
@@ -27,8 +35,9 @@ public class ReportFilterCampPerformance extends ReportFilterCamp {
         for (int i = 0; i < studentNameList.size(); i++) {
             String k = studentNameList.get(i);
             String v = roles.get(k);
+            Integer p = pointsManager.getPoints(k);
             if (v.equals("CCMember")) {
-                content += "\nUserID: " + k + " Role: " + v;
+                content += "\nUserID: " + k + " Points: " + p;
             }
         }
 

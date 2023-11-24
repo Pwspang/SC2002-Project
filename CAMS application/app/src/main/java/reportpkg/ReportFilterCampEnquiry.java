@@ -8,18 +8,23 @@ import authenticationpkg.AccountManager;
 import camppkg.*;
 import feedbackpkg.*;
 
-public class ReportFilterCampEnquiry extends ReportFilterCamp {
+/**
+ * ReportFilterCampEnquiry inherits from ReportFilterCamp.
+ * The type of report written by this filter is a list of enquiries for a camp.
+ */
+public class ReportFilterCampEnquiry implements ReportFilterCamp {
 
-    public ReportFilterCampEnquiry(String campID) {
-        super(campID);
-    }
-
-    public void write(String filename) {
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
+    public void write(String campID, String filename) {
         FeedbackManager feedbackManager = FeedbackManager.getInstance();
         ArrayList<Feedback> feedbackList = feedbackManager.getFeedbackList();
         String content = "";
         for (int i = 0; i < feedbackList.size(); i++) {
-            if (feedbackList.get(i).getCampID().equals(getID()) && feedbackList.get(i) instanceof Enquiry) {
+            if (feedbackList.get(i).getCampID().equals(campID) && feedbackList.get(i) instanceof Enquiry) {
                 content += "UserID: " + feedbackList.get(i).getUserID();
                 content += "\nContent: " + feedbackList.get(i).getContent();
                 content += "\n\n";

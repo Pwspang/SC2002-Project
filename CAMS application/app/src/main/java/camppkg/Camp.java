@@ -11,7 +11,7 @@ public class Camp implements Serializable {
 
     public Camp(String campID, CampInformation campinfo) {
         this.id = campID;
-        this.visibility = false;
+        this.visibility = true;
         this.campinfo = campinfo;
     }
 

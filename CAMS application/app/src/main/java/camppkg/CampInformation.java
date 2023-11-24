@@ -37,7 +37,7 @@ public class CampInformation implements Serializable {
         String startDate,
         String endDate, 
         String registrationClosingDate, 
-        boolean openToWholeNTU,
+        Boolean openToWholeNTU,
         Faculty userGroup,
         String location,
         int totalSlots,

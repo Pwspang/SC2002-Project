@@ -1,18 +1,24 @@
 package reportpkg;
 
-public abstract class ReportFilterCamp {
+import authenticationpkg.AuthUser;
 
-    private String ID;
+/**
+ * ReportFilterCamp is an abstract class that represents the base class of all
+ * types of filters.
+ * It includes attributes: ID.
+ * ID is dependent on the type of filter used.
+ * Possible IDs: campID, userID.
+ * 
+ */
 
-    public ReportFilterCamp(String ID) {
-        this.ID = ID;
-    }
+interface ReportFilterCamp {
 
-    public String getID() {
-        return ID;
-
-    }
-
-    public abstract void write();
+    /**
+     * Writes the report to a specified file name.
+     * 
+     * @param ID Either UserID or CampID
+     * @param filename The file name that the report will be written to.
+     */
+    void write(String ID, String filename);
 
 }

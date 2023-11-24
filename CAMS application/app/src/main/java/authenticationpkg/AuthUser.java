@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import feedbackpkg.*;
 import camppkg.*;
-import pointspkg.*;
 import viewpkg.iView;
 
 /**
@@ -154,10 +153,16 @@ public abstract class AuthUser implements Serializable {
      * @param feedbackID Feedback object's feedbackID
      * @return Feedback object associated with the corresponding feedbackID
      */
-    public Feedback getFeedback(int feedbackID) {
+    public Feedback getFeedback(int feedbackID) throws Exception {
         FeedbackManager feedbackManager = FeedbackManager.getInstance();
         return feedbackManager.getFeedback(feedbackID);
     }
+
+    /**
+     * Gets the UI to display for each account type
+     * 
+     * @return iView object for the corresponding user
+     */
 
     public abstract iView getUI();
 

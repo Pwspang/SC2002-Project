@@ -5,18 +5,26 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
+import authenticationpkg.Faculty;
 import camppkg.*;
 
-public class ReportFilterCampStudentID extends ReportFilterCamp {
+/**
+ * ReportFilterCampStudentID inherits from ReportFilterCamp.
+ * The type of report written by this filter is a list of camps that this
+ * student has joined.
+ */
+public class ReportFilterCampStudentID implements ReportFilterCamp {
 
-    public ReportFilterCampStudentID(String studentID) {
-        super(studentID);
-    }
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
+    public void write(String userID, String filename) {
 
-    public void write(String filename) {
         CampManager campManager = CampManager.getInstance();
 
-        ArrayList<String> campList = campManager.getRegisteredCampList(getID());
+        ArrayList<String> campList = campManager.getRegisteredCampList(userID);
 
         String content = "";
 

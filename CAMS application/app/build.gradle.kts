@@ -41,4 +41,6 @@ application {
     // Define the main class for the application.
     mainClass.set("CAMS")
     // mainClass.set("authenticationpkg/generateAccountDict")
+    // mainClass.set("camppkg/generateCampDict")
+    // mainClass.set("pointspkg/generatePointsDict")
 }
