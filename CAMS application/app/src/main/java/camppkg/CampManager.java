@@ -127,12 +127,6 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         campinfo.setOpenToWholeNTU(openToWholeNTU);
     }
 
-    public void editOpenTo(String campID, Faculty faculty) {
-        Camp c = campList.get(campID);
-        CampInformation campinfo = c.getCampInfo();
-        campinfo.setUserGroup(faculty);
-    }
-
     public void editLocation(String campID, String location) {
         Camp c = campList.get(campID);
         CampInformation campinfo = c.getCampInfo();

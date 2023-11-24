@@ -21,9 +21,7 @@ public interface iCampStaff {
     void setVisibility(String campID, boolean visiblity);
 
     void editOpenTo(String campID, boolean openToWholeNTU);
-
-    void editOpenTo(String campID, Faculty faculty);
-
+    
     void editLocation(String campID, String location);
 
     void editSlots(String campID, String roleID, int totalSlots);

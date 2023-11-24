@@ -114,17 +114,6 @@ public class AuthStaff extends AuthUser {
     }
 
     /**
-     * Edits the faculty that the camp is open to.
-     * 
-     * @param campID  The campID associated with the camp.
-     * @param faculty The new faculty that the camp is open to.
-     */
-    public void editOpenTo(String campID, Faculty faculty) {
-        iCampStaff campManager = CampManager.getInstance();
-        campManager.editOpenTo(campID, faculty);
-    }
-
-    /**
      * Sets the visibility of camp.
      * 
      * @param campID    The campID associated with the camp.
