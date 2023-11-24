@@ -9,7 +9,7 @@ import authenticationpkg.Faculty;
 import camppkg.*;
 
 /**
- * ReportFilterCampStudentID inherits from ReportFilterCamp.
+ * ReportFilterCampStudentID implements ReportFilterCamp.
  * The type of report written by this filter is a list of camps that this
  * student has joined.
  */

@@ -9,7 +9,7 @@ import camppkg.*;
 import pointspkg.*;
 
 /**
- * ReportFilterCampPerformance inherits from ReportFilterCamp.
+ * ReportFilterCampPerformance implements ReportFilterCamp.
  * The type of report written by this filter is a list of points that each
  * student has.
  */
