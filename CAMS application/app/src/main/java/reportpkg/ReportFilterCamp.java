@@ -11,44 +11,14 @@ import authenticationpkg.AuthUser;
  * 
  */
 
-public abstract class ReportFilterCamp {
-
-    /**
-     * ID is dependent on the type of filter used.
-     * Possible IDs: campID, userID.
-     */
-    private String ID;
-
-    /**
-     * Creates a new ReportFilterCamp with the given parameters.
-     * This is an abstract class that cannot be instantiated.
-     */
-    public ReportFilterCamp(String ID) {
-        this.ID = ID;
-    }
-
-    /**
-     * Gets the ID of the search term for ReportFilterCamp.
-     * 
-     * @return The ID of the search term.
-     */
-    public String getID() {
-        return ID;
-
-    }
-
-    /**
-     * Sets the ID of the search term for ReportFilterCamp.
-     */
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+interface ReportFilterCamp {
 
     /**
      * Writes the report to a specified file name.
      * 
+     * @param ID Either UserID or CampID
      * @param filename The file name that the report will be written to.
      */
-    public abstract void write(String filename);
+    void write(String ID, String filename);
 
 }

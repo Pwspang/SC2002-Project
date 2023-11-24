@@ -7,7 +7,6 @@ import org.beryx.textio.TextTerminal;
 import authenticationpkg.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import de.vandermeer.asciitable.*;
 
@@ -42,9 +41,17 @@ public class FeedbackUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
 
-        ArrayList<String> enquiries = user.getCampEnquiries();
 
-        displayFeedback(enquiries);
+
+        try{   
+
+            ArrayList<String> enquiries = user.getCampEnquiries();
+
+            displayFeedback(enquiries);
+
+        } catch (Exception e){
+            terminal.println(e.getMessage());
+        }
 
     }
 
@@ -71,10 +78,16 @@ public class FeedbackUI {
         }
 
         terminal.resetToBookmark("selectCamp");
-        
-        ArrayList<String> feedbackIDList = user.getCampSuggestions(campIDList.get(campChoice-1));
 
-        displayFeedback(feedbackIDList);
+        try{   
+            ArrayList<String> feedbackIDList = user.getCampSuggestions(campIDList.get(campChoice-1));
+
+            displayFeedback(feedbackIDList);
+
+        } catch (Exception e){
+            terminal.println(e.getMessage());
+        }
+
     }
 
     /**
@@ -105,7 +118,7 @@ public class FeedbackUI {
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal();  
 
-        ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
+        ArrayList<String> campIDList = user.getVisibleCampList();
         
         int option = CampUI.displayCamps(campIDList);
 
@@ -240,8 +253,16 @@ public class FeedbackUI {
      * @param user
      */
     public static void viewSuggestion(AuthCCMember user){
+        TextIO textIO = TextIoFactory.getTextIO();
+        TextTerminal terminal = textIO.getTextTerminal();  
+
         ArrayList<String> feedbackList = user.getSuggestions();
-        displayFeedback(feedbackList);
+        try {
+            displayFeedback(feedbackList);
+        } catch (Exception e){
+            terminal.println(e.getMessage());
+        }
+        
     }
 
     /**

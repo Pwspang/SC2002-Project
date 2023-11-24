@@ -9,19 +9,22 @@ public class ReportManager {
     private ReportManager() {
         reportFilterDict = new HashMap<String, ReportFilterCamp>();
 
-        /* 
+        
         reportFilterDict.put("ReportFilterCampAttendee", new ReportFilterCampAttendee());
         reportFilterDict.put("ReportFilterCampCCMember", new ReportFilterCampCCMember());
         reportFilterDict.put("ReportFilterCampEnquiry", new ReportFilterCampEnquiry());
         reportFilterDict.put("ReportFilterCampPerformance", new ReportFilterCampPerformance());
         reportFilterDict.put("ReportFilterCampStudent", new ReportFilterCampStudent());
         reportFilterDict.put("ReportFilterCampStudentID", new ReportFilterCampStudentID());
-        */
+        
+    }
+
+    public ArrayList<String> getFilterList(){
+        return new ArrayList<>(reportFilterDict.keySet());
     }
 
     public ReportFilterCamp getFilter(String nameOfFilter, String ID) {
         ReportFilterCamp rfc = reportFilterDict.get(nameOfFilter);
-        rfc.setID(ID);
         return rfc;
     }
 
@@ -31,7 +34,7 @@ public class ReportManager {
 
     public void writeCampReport(String nameOfFilter, String ID, String filename) {
         ReportFilterCamp rfc = getFilter(nameOfFilter, ID);
-        rfc.write(filename);
+        rfc.write(ID, filename);
     }
 
     public static ReportManager getInstance() {

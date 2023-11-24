@@ -14,25 +14,15 @@ import java.time.LocalDate;
  * The type of report written by this filter is a list of students that attends
  * the camp.
  */
-public class ReportFilterCampStudent extends ReportFilterCamp {
-
-    /**
-     * Constructor used to instantiate the ReportFilterCampStudent with campID.
-     * 
-     * @param campID The campID associated to the camp.
-     */
-    public ReportFilterCampStudent(String campID) {
-        super(campID);
-    }
-
+public class ReportFilterCampStudent implements ReportFilterCamp {
     /**
      * Writes the report to a specfiied file name.
      * 
      * @param filename The file name that the report will be written to.
      */
-    public void write(String filename) {
+    public void write(String campID, String filename) {
         CampManager campManager = CampManager.getInstance();
-        CampInformation campInfo = campManager.getCampInfo(getID());
+        CampInformation campInfo = campManager.getCampInfo(campID);
         String campName = campInfo.getCampName();
         LocalDate startDate = campInfo.getStartDate();
         LocalDate endDate = campInfo.getEndDate();
@@ -44,8 +34,8 @@ public class ReportFilterCampStudent extends ReportFilterCamp {
         int ccSlots = 1;// campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
-        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(campID);
 
         Collections.sort(studentNameList);
 

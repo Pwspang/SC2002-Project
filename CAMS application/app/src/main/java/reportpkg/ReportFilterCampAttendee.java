@@ -14,25 +14,16 @@ import camppkg.*;
  * The type of report written by this filter is the information of camp and
  * list of all attendees.
  */
-public class ReportFilterCampAttendee extends ReportFilterCamp {
-
-    /**
-     * Constructor used to instantiate the ReportFilterCampAttendee with campID.
-     * 
-     * @param campID The campID associated to the camp.
-     */
-    public ReportFilterCampAttendee(String campID) {
-        super(campID);
-    }
+public class ReportFilterCampAttendee implements ReportFilterCamp {
 
     /**
      * Writes the report to a specfiied file name.
      * 
      * @param filename The file name that the report will be written to.
      */
-    public void write(String filename) {
+    public void write(String campID, String filename) {
         CampManager campManager = CampManager.getInstance();
-        CampInformation campInfo = campManager.getCampInfo(getID());
+        CampInformation campInfo = campManager.getCampInfo(campID);
         String campName = campInfo.getCampName();
         LocalDate startDate = campInfo.getStartDate();
         LocalDate endDate = campInfo.getEndDate();
@@ -44,8 +35,8 @@ public class ReportFilterCampAttendee extends ReportFilterCamp {
         // int ccSlots = campInfo.getCampCommitteeSlots();
         String description = campInfo.getDescription();
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
-        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(campID);
 
         Collections.sort(studentNameList);
 

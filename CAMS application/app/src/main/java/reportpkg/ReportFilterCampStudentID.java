@@ -13,27 +13,18 @@ import camppkg.*;
  * The type of report written by this filter is a list of camps that this
  * student has joined.
  */
-public class ReportFilterCampStudentID extends ReportFilterCamp {
-
-    /**
-     * Constructor used to instantiate the ReportFilterCampStudentID with studentID.
-     * 
-     * @param studentID studentID related to the student.
-     */
-    public ReportFilterCampStudentID(String studentID) {
-        super(studentID);
-    }
+public class ReportFilterCampStudentID implements ReportFilterCamp {
 
     /**
      * Writes the report to a specfiied file name.
      * 
      * @param filename The file name that the report will be written to.
      */
-    public void write(String filename) {
+    public void write(String userID, String filename) {
 
         CampManager campManager = CampManager.getInstance();
 
-        ArrayList<String> campList = campManager.getRegisteredCampList(getID());
+        ArrayList<String> campList = campManager.getRegisteredCampList(userID);
 
         String content = "";
 

@@ -13,28 +13,20 @@ import pointspkg.*;
  * The type of report written by this filter is a list of points that each
  * student has.
  */
-public class ReportFilterCampPerformance extends ReportFilterCamp {
-    /**
-     * Constructor used to instantiate the ReportFilterCampPerformance with campID.
-     * 
-     * @param campID The campID associated to the camp.
-     */
-    public ReportFilterCampPerformance(String campID) {
-        super(campID);
-    }
+public class ReportFilterCampPerformance implements ReportFilterCamp {
 
     /**
      * Writes the report to a specfiied file name.
      * 
      * @param filename The file name that the report will be written to.
      */
-    public void write(String filename) {
+    public void write(String campID, String filename) {
         CampManager campManager = CampManager.getInstance();
         PointsManager pointsManager = PointsManager.getInstance();
-        CampInformation campInfo = campManager.getCampInfo(getID());
+        CampInformation campInfo = campManager.getCampInfo(campID);
 
-        ArrayList<String> studentNameList = campManager.getRegisteredStudents(getID());
-        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(getID());
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(campID);
 
         Collections.sort(studentNameList);
 

@@ -29,7 +29,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
     /**
      * The filename for serialized feedback data.
      */
-    private static final String filename = "feedbacks.dat";
+    private static final String filename = "src/main/resources/FeedbackManager.dat";
 
     /**
      * Private constructor for the singleton FeedbackManager.

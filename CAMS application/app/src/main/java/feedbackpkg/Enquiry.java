@@ -62,7 +62,7 @@ package feedbackpkg;
      */
     @Override
     public String toString() {
-        return "Enquiry ID: " + getFeedbackID() + ", User ID: " + getUserID() + ", Camp ID: " + getCampID() + ", Content: " + getContent() + ", Approved: " + isApproved;
+        return String.format("%s:%s:%s:%s:%s", getFeedbackID(), getUserID(), getCampID(), getContent(), getReplyString());
     }
 
 

@@ -8,6 +8,7 @@ import viewpkg.subview.LoginUI;
 import authenticationpkg.*;
 import camppkg.CampManager;
 import feedbackpkg.FeedbackManager;
+import pointspkg.PointsManager;
 
 
 /**
@@ -85,6 +86,13 @@ public class CAMS {
         if (user != null){
             currView = user.getUI();
         }
+
+        /* 
+        if (user.getPassword().equals("password")){
+            LoginUI.resetPassword(user);
+        }
+        */
+        
     }
     
     /**
@@ -102,6 +110,7 @@ public class CAMS {
         AccountManager.getInstance();
         CampManager.getInstance();
         FeedbackManager.getInstance();
+        PointsManager.getInstance();
         
     }
     /*
@@ -118,6 +127,9 @@ public class CAMS {
 
         FeedbackManager feedbackManager = FeedbackManager.getInstance();
         feedbackManager.writeSerialisedObj();
+
+        PointsManager pointsManager = PointsManager.getInstance();
+        pointsManager.writeSerializedObject();
 
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal terminal = textIO.getTextTerminal(); 
