@@ -9,8 +9,7 @@ import java.util.*;
  */
 public abstract class Slots implements Serializable {
     private Integer totalSlots;
-    private Integer occupiedSlots;
-    private Integer remainingSlots;
+    protected Integer occupiedSlots;
     protected ArrayList<String> stuRegistered = new ArrayList<>();
 
     /**
@@ -22,14 +21,13 @@ public abstract class Slots implements Serializable {
     public Slots(int totalSlots) {
         this.totalSlots = totalSlots;
         this.occupiedSlots = 0;
-        this.remainingSlots = totalSlots;
     }
 
     public String toString() {
         return (
             "\tTotal slots: " + totalSlots + "\n" +
             "\tOccupied slots: " + occupiedSlots + "\n" +
-            "\tRemaining slots: " + remainingSlots + "\n");
+            "\tRemaining slots: " + this.getRemainingSlots() + "\n");
     }
 
     public String getRoleID() {
@@ -45,7 +43,7 @@ public abstract class Slots implements Serializable {
     }
 
     public int getRemainingSlots() {
-        return remainingSlots;
+        return totalSlots - occupiedSlots;
     }
 
     public ArrayList<String> getStuRegistered() {
@@ -57,16 +55,11 @@ public abstract class Slots implements Serializable {
             String.format("There are already %d occupied.", this.occupiedSlots));
         this.totalSlots = totalSlots;
     }
-
-    public void addCount(int delta) {
-        this.occupiedSlots += delta;
-        this.remainingSlots -= delta;
-    }
         
     public void register(String studentID) {
-        if (this.remainingSlots <= 0) throw new RuntimeException("No vacancy.");
+        if (this.getRemainingSlots() <= 0) throw new RuntimeException("No vacancy.");
         this.stuRegistered.add(studentID);
-        this.addCount(1);
+        occupiedSlots++;
     }
 
     public void withdraw(String studentID) {

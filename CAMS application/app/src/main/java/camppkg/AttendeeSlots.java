@@ -16,7 +16,7 @@ public class AttendeeSlots extends Slots {
     public void withdraw(String studentID) {
         if (!stuRegistered.contains(studentID)) throw new RuntimeException("Not registered.");
         stuRegistered.remove(studentID);
-        this.addCount(-1);
+        occupiedSlots--;
     }
 
 }
