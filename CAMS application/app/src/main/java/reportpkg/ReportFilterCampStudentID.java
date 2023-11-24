@@ -7,13 +7,29 @@ import java.io.IOException;
 import authenticationpkg.AccountManager;
 import camppkg.*;
 
+/**
+ * ReportFilterCampStudentID inherits from ReportFilterCamp.
+ * The type of report written by this filter is a list of camps that this
+ * student has joined.
+ */
 public class ReportFilterCampStudentID extends ReportFilterCamp {
 
+    /**
+     * Constructor used to instantiate the ReportFilterCampStudentID with studentID.
+     * 
+     * @param studentID studentID related to the student.
+     */
     public ReportFilterCampStudentID(String studentID) {
         super(studentID);
     }
 
+    /**
+     * Writes the report to a specfiied file name.
+     * 
+     * @param filename The file name that the report will be written to.
+     */
     public void write(String filename) {
+
         CampManager campManager = CampManager.getInstance();
 
         ArrayList<String> campList = campManager.getRegisteredCampList(getID());
