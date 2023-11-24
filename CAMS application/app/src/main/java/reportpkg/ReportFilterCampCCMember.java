@@ -33,7 +33,7 @@ public class ReportFilterCampCCMember implements ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        int ccSlots = campInfo.getCampCommitteeSlots();
+        int ccSlots = campManager.getCampCommitteeSlots(campInfo.getCampName());
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);

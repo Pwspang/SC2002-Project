@@ -8,7 +8,11 @@ import reportpkg.ReportManager;
 
 import java.util.*;
 
-import authenticationpkg.*;;
+import authenticationpkg.*;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 
 public class CampUI {
@@ -28,15 +32,39 @@ public class CampUI {
 
         campName = textIO.newStringInputReader()
             .read("Camp Name");
-
-        startDate = textIO.newStringInputReader()
-            .read("Start Date");
-
-        endDate = textIO.newStringInputReader()
-            .read("End Date");
         
-        registrationClosingDate = textIO.newStringInputReader()
-            .read("Registration Closing Date");
+        Pattern pattern = Pattern.compile("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
+        // Checking date format 
+        do {
+            startDate = textIO.newStringInputReader()
+                .read("Start Date");
+            matcher = pattern.matcher(startDate);
+            if (matcher.find()) {
+                break;
+            }
+            terminal.println("Invalid date format use YYYY-MM-DD.");
+        } while (true);
+
+        do {
+            endDate = textIO.newStringInputReader()
+                .read("Start Date");
+            matcher = pattern.matcher(endDate);
+            if (matcher.find()) {
+                break;
+            }
+            terminal.println("Invalid date format use YYYY-MM-DD.");
+        } while (true);
+
+        do {
+            registrationClosingDate = textIO.newStringInputReader()
+                .read("Start Date");
+            matcher = pattern.matcher(registrationClosingDate);
+            if (matcher.find()) {
+                break;
+            }
+            terminal.println("Invalid date format use YYYY-MM-DD.");
+        } while (true);
         
         openToWholeNTU = textIO.newBooleanInputReader()
             .withDefaultValue(true)
@@ -59,7 +87,7 @@ public class CampUI {
 
         try{
             user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, location, totalSlots, campComitteeSlots, description);
-            terminal.printf("%s created.\n");
+            terminal.printf("%s created.\n", campName);
         } catch (Exception e){
             terminal.println("Camp not created due to " + e.getMessage());
             return;
@@ -128,7 +156,8 @@ public class CampUI {
         }
         ArrayList<String> options = new ArrayList<>(Arrays.asList("Camp Committee Slots", "Start/End Date", "Registration Ending Date", "Description", "Location", "Open to whole NTU"));
         int option = displayCamps(options);
-
+        Pattern pattern = Pattern.compile("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
         try{
             switch (option){
                 case 1:
@@ -136,16 +165,39 @@ public class CampUI {
                 user.editCampCommitteeSlots(campIDList.get(campChoice-1), slots);
                 break;
                 case 2:
-                String startDate = textIO.newStringInputReader()
-                    .read("Start Date");
+                String startDate, endDate;
+                do {
+                    startDate = textIO.newStringInputReader()
+                        .read("Start Date");
+                    matcher = pattern.matcher(startDate);
+                    if (matcher.find()) {
+                        break;
+                    }
+                    terminal.println("Invalid date format use YYYY-MM-DD.");
+                } while (true);
 
-                String endDate = textIO.newStringInputReader()
-                    .read("End Date");
+                do {
+                    endDate = textIO.newStringInputReader()
+                        .read("Start Date");
+                    matcher = pattern.matcher(endDate);
+                    if (matcher.find()) {
+                        break;
+                    }
+                    terminal.println("Invalid date format use YYYY-MM-DD.");
+                } while (true);
                 user.editDate(campIDList.get(campChoice-1), startDate, endDate);
                 break;
                 case 3:
-                String registrationClosingDate = textIO.newStringInputReader()
-                    .read("Registration Closing Date");
+                String registrationClosingDate;
+                do {
+                    registrationClosingDate = textIO.newStringInputReader()
+                        .read("Start Date");
+                    matcher = pattern.matcher(registrationClosingDate);
+                    if (matcher.find()) {
+                        break;
+                    }
+                    terminal.println("Invalid date format use YYYY-MM-DD.");
+                } while (true);
                 user.editRegistrationClosingDate(campIDList.get(campChoice-1), registrationClosingDate);
                 break;
                 case 4:

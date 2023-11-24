@@ -146,6 +146,13 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         s.setTotalSlots(totalSlots);
     }
 
+    public int getCampCommitteeSlots(String campID){
+        Camp c = campList.get(campID);
+        CampInformation campinfo = c.getCampInfo();
+        Slots s = campinfo.getSlotsFor("CCMember");
+        return s.getTotalSlots();
+    }
+
     public void editCampCommitteeSlots(String campID, int campCommitteeSlots) {
         editSlots(campID, "CCMember", campCommitteeSlots);
     }
