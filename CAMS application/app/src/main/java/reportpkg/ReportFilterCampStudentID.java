@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import authenticationpkg.AccountManager;
+import authenticationpkg.Faculty;
 import camppkg.*;
 
 /**
