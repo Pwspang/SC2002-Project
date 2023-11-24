@@ -16,7 +16,7 @@ public class LoginUI{
      */
     public static AuthUser handleLogin(){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();
+        TextTerminal<?> terminal = textIO.getTextTerminal();
         terminal.setBookmark("login");
 
         terminal.println("""
@@ -68,7 +68,7 @@ public class LoginUI{
      */
     public static void resetPassword(AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();
+        TextTerminal<?> terminal = textIO.getTextTerminal();
 
         terminal.setBookmark("resetPassword");
 

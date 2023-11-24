@@ -8,6 +8,9 @@ import authenticationpkg.*;
 import viewpkg.subview.CampUI;
 import viewpkg.subview.FeedbackUI;
 
+/**
+ * UI for CampComittee
+ */
 public class CampComitteeUI extends StudentUI{
     private static CampComitteeUI ui=null;
     private static String[] options = {"Exit Program", "Logout", "Change password", "View available camps", "Register for Camp", "View Registered Camps", "Submit Enquiry", "Edit Enquiry", "Withdraw from Camp", "Submit Suggestions", "View Enquiry", "Reply Enquiry", "View Suggestion", "Edit Suggestion", "Delete Suggestion", "Generate Report"};
@@ -21,7 +24,7 @@ public class CampComitteeUI extends StudentUI{
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();   
+        TextTerminal<?> terminal = textIO.getTextTerminal();   
         terminal.setBookmark("campComitteeUI");
 
         // To change header
@@ -46,7 +49,7 @@ public class CampComitteeUI extends StudentUI{
      */
     public void handleOption(int option, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         terminal.setBookmark("campcomitteeUI");
 

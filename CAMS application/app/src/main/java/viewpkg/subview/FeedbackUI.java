@@ -18,7 +18,7 @@ public class FeedbackUI {
      */
     public static void replyEnquiry(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         viewEnquiry(user);
 
@@ -39,7 +39,7 @@ public class FeedbackUI {
 
     public static void viewEnquiry(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         try{   
 
@@ -60,7 +60,7 @@ public class FeedbackUI {
     public static void viewSuggestion(AuthStaff user){
         // ArrayList<Integer> feedbackIDList = user.getFeedback();
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         // Select Camp to view suggestion 
         ArrayList<String> campIDList = user.getCreatedCamps();
@@ -94,7 +94,7 @@ public class FeedbackUI {
      */
     public static void replySuggestion(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         viewSuggestion(user);
 
@@ -114,7 +114,7 @@ public class FeedbackUI {
      */
     public static void submitEnquiry(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         ArrayList<String> campIDList = user.getVisibleCampList();
         
@@ -149,7 +149,7 @@ public class FeedbackUI {
      */
     public static void editEnquiry(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         viewEnquiry(user);
 
@@ -172,7 +172,7 @@ public class FeedbackUI {
      */
     public static void deleteEnquiry(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
         viewEnquiry(user);
 
         int feedbackID = textIO.newIntInputReader()
@@ -191,7 +191,7 @@ public class FeedbackUI {
      */
     public static void viewEnquiry(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         try {
             ArrayList<String> feedback = user.getCampEnquiries();
@@ -209,7 +209,7 @@ public class FeedbackUI {
      */
     public static void replyEnquiry(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         viewEnquiry(user);
 
@@ -232,7 +232,7 @@ public class FeedbackUI {
      */
     public static void submitSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         ArrayList<String> campIDList = user.getRegisteredCampList("CCMember");
 
@@ -257,7 +257,7 @@ public class FeedbackUI {
      */
     public static void viewSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         ArrayList<String> feedbackList = user.getSuggestions();
         try {
@@ -274,7 +274,7 @@ public class FeedbackUI {
      */
     public static void editSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();  
+        TextTerminal<?> terminal = textIO.getTextTerminal();  
 
         viewSuggestion(user);
 
@@ -299,7 +299,7 @@ public class FeedbackUI {
      */
     public static void deleteSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();
+        TextTerminal<?> terminal = textIO.getTextTerminal();
 
         viewSuggestion(user);
 
@@ -320,7 +320,7 @@ public class FeedbackUI {
      */
     public static void displayFeedback(ArrayList<String> feedbackIDList){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         if (feedbackIDList.size() == 0){
             terminal.println("No feedback found.");

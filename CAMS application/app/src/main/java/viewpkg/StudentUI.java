@@ -7,14 +7,18 @@ import org.beryx.textio.TextTerminal;
 import authenticationpkg.*;
 import viewpkg.subview.CampUI;
 import viewpkg.subview.FeedbackUI;
-
+/**
+ * UI for Student
+ * 
+ * @author Pang Wei Siong
+ */
 public class StudentUI implements iView{
     private static StudentUI ui=null;
     private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Enquiry", "Delete Enquiry", "Edit Enquiry", "Withdraw from Camp"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();   
+        TextTerminal<?> terminal = textIO.getTextTerminal();   
         terminal.setBookmark("studentUI");
 
         // To change header
@@ -41,7 +45,7 @@ public class StudentUI implements iView{
 
     public void handleOption(int option, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         terminal.setBookmark("studentUI");
 

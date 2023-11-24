@@ -24,7 +24,7 @@ public class CampUI {
     public static void createCamp(AuthStaff user){
         // To do fix formatting
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         
         String campName, startDate, endDate, registrationClosingDate, location, description;
         boolean openToWholeNTU;
@@ -97,7 +97,7 @@ public class CampUI {
 
     public static void deleteCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -119,7 +119,7 @@ public class CampUI {
 
     public static void viewCreatedCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -143,7 +143,7 @@ public class CampUI {
      */
     public static void editCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -230,7 +230,7 @@ public class CampUI {
      */
     public static void viewAllCamps(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getAllCamps();
 
@@ -253,7 +253,7 @@ public class CampUI {
      */
     public static void toggleVisibilityCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -279,7 +279,7 @@ public class CampUI {
 
     public static void viewAvailableCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getVisibleCampList();
 
@@ -299,27 +299,33 @@ public class CampUI {
     // TO DO indicate if the camp is Attendee or CCMember
     public static void viewRegisteredCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
         ArrayList<String> campIDListCC = user.getRegisteredCampList("CCMember");
 
-        terminal.setBookmark("viewRegisteredCamp");
+        //display camp details for registered camps as attendee 
+        terminal.println("===================");
+        terminal.println("Joined as attendee.");
+        terminal.println("===================");
+        for (String campID: campIDList){
+            displayCampDetails(campID, user);
+        }
 
-        int campChoice = displayCamps(campIDList);
-
-        if (campChoice == 0){
-            return;
-        }  
-
-        terminal.resetToBookmark("viewRegisteredCamp");
-
-        displayCampDetails(campIDList.get(campChoice-1), user); 
+        //display detials for CC Camps 
+        if (campIDListCC.size() > 0){
+            terminal.println("=======================");
+            terminal.println("Joined as Camp Comittee");
+            terminal.println("=======================");
+            for (String campID : campIDListCC) {
+                displayCampDetails(campID, user);
+            }
+        }
     }
 
     public static void registerForCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getVisibleCampList();
 
@@ -349,7 +355,7 @@ public class CampUI {
     }
     public static void withdrawFromCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
 
@@ -375,7 +381,7 @@ public class CampUI {
 
     public static void generateCampReport(AuthStaff user) {
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         ReportManager reportManager = ReportManager.getInstance();
 
         //choose a filter
@@ -409,8 +415,7 @@ public class CampUI {
 
     public static void generateCampReport(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
-        ReportManager reportManager = ReportManager.getInstance();
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         //choose a filter
         String filtername = textIO.newStringInputReader()
@@ -435,7 +440,7 @@ public class CampUI {
 
     public static int displayCamps(ArrayList<String> campIDList){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         //CampList is empty 
         if (campIDList.size() == 0){
@@ -464,7 +469,7 @@ public class CampUI {
       
     public static void displayCampDetails(String campID, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         terminal.print(user.getCamp(campID).toString());
     }
 }

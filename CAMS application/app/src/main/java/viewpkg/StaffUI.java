@@ -9,14 +9,16 @@ import viewpkg.subview.CampUI;
 import viewpkg.subview.FeedbackUI;
 
 
-
+/**
+ * UI for Staff
+ */
 public class StaffUI implements iView{
     private static StaffUI ui=null;
     private static String[] options = {"Exit Program", "Logout", "Change password", "Create Camp", "Edit Camp", "Delete Camp", "View Created Camps", "View All Camps", "Toggle Visibility of Camp", "View Enquiry", "Reply Enquriy", "View Suggestions","Accept Suggestion", "Generate Report"};
 
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();   
+        TextTerminal<?> terminal = textIO.getTextTerminal();   
         terminal.setBookmark("staffUI");
 
         // To change header
@@ -41,7 +43,7 @@ public class StaffUI implements iView{
 
     public void handleOption(int option, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         terminal.setBookmark("staffUI");
 
