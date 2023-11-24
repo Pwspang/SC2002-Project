@@ -216,10 +216,20 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 
         return !startA.isAfter(endB) && !endA.isBefore(startB);
     }
+
+    public boolean isOver(String campID) {
+        Camp c = campList.get(campID);
+        LocalDate registerationClosingDate = c.getCampInfo().getRegisterationClosingDate();
+        LocalDate today = LocalDate.now();
+        return today.isAfter(registerationClosingDate);
+    }
         
     public void register(String campID, String studentID, String roleID) {
         if (getRegisteredStudents(campID).contains(studentID)) {
             throw new RuntimeException(studentID + " is already registered for " + campID);
+        }
+        if (isOver(campID)) {
+            throw new RuntimeException(campID + " registration period is over.");
         }
         ArrayList<String> registeredCampList = getRegisteredCampList(studentID);
         for (String icampID : registeredCampList) {
