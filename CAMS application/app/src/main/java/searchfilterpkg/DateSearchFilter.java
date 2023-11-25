@@ -27,7 +27,7 @@ public class DateSearchFilter implements SearchFilter {
             Camp c = campManager.getCamp(campList.get(i));
             CampInformation info = c.getCampInfo();
             LocalDate startDate = info.getStartDate();
-            if (convertedDate.equals(startDate)) {
+            if (convertedDate.isBefore(startDate)) {
                 filteredCampList.add(campList.get(i));
             }
 

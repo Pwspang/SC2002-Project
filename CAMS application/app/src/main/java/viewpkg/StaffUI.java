@@ -16,6 +16,9 @@ public class StaffUI implements iView{
     private static StaffUI ui=null;
     private static String[] options = {"Exit Program", "Logout", "Change password", "Create Camp", "Edit Camp", "Delete Camp", "View Created Camps", "View All Camps", "Toggle Visibility of Camp", "View Enquiry", "Reply Enquriy", "View Suggestions","Accept Suggestion", "Generate Report"};
 
+    /**
+     * Display options and get user selection
+     */
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal();   
@@ -33,7 +36,11 @@ public class StaffUI implements iView{
         terminal.resetToBookmark("staffUI");
         return choice;
     };
-
+    
+    /**
+     * Get the instance of StaffUI
+     * @return StaffUI object as a singleton object
+     */
     public static iView getInstance(){
         if (StaffUI.ui == null){
             StaffUI.ui = new StaffUI();
@@ -41,6 +48,11 @@ public class StaffUI implements iView{
         return StaffUI.ui;
     }
 
+    /**
+     * Handles Selection input
+     * @param option Selected Option
+     * @param user AuthUser 
+     */
     public void handleOption(int option, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal(); 

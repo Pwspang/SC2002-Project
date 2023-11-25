@@ -16,6 +16,9 @@ public class StudentUI implements iView{
     private static StudentUI ui=null;
     private static String[] options = {"Exit Program", "Logout", "Change password", "View Available Camps", "Register for Camp", "View Registered Camps", "Submit Enquiry for Camp", "View Enquiry", "Delete Enquiry", "Edit Enquiry", "Withdraw from Camp"};
 
+    /**
+     * Display options and get user selection
+     */
     public int displayOptions(){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal();   
@@ -36,6 +39,10 @@ public class StudentUI implements iView{
         return choice;
     };
 
+    /**
+     * Get the instance of StudentUI
+     * @return StudentUI object as a singleton object
+     */
     public static iView getInstance(){
         if (StudentUI.ui == null){
             StudentUI.ui = new StudentUI();
@@ -43,13 +50,21 @@ public class StudentUI implements iView{
         return StudentUI.ui;
     }
 
+    /**
+     * Handles Selection input
+     * @param option Selected Option
+     * @param user AuthUser 
+     */
     public void handleOption(int option, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         terminal.setBookmark("studentUI");
 
-        terminal.println(iView.displayHeader("Student: " + options[option-1]));
+        if (!(user instanceof AuthCCMember)){
+            terminal.println(iView.displayHeader("Student: " + options[option-1]));
+        }
+        
 
         switch(option){
             case 4:
@@ -78,9 +93,10 @@ public class StudentUI implements iView{
                 CampUI.withdrawFromCamp((AuthStudent) user);
                 break;
         };
+        
 
         textIO.newStringInputReader().withMinLength(0).read("\nPress enter to continue...");
-
+        
         terminal.resetToBookmark("studentUI");
     }
 }

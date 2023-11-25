@@ -101,6 +101,7 @@ public class CAMS {
     public static void logout(){
         user = null;
     }
+    
     /*
      * Starts all manager object, serializing the objects from dat file
      */

@@ -26,6 +26,7 @@ public class SearchFilterManager {
         searchFilterDict = new HashMap<String, SearchFilter>();
         searchFilterDict.put("DateSearchFilter", new DateSearchFilter());
         searchFilterDict.put("LocationSearchFilter", new LocationSearchFilter());
+        searchFilterDict.put("No Filter", null);
     }
 
     /**
@@ -70,7 +71,7 @@ public class SearchFilterManager {
      */
     public ArrayList<String> filter(String nameOfFilter, String filterOption, ArrayList<String> campList) {
         SearchFilter rfc = getFilter(nameOfFilter);
-        return rfc.filter(nameOfFilter, filterOption, campList);
+        return rfc.filter(filterOption, campList);
     }
 
     /**

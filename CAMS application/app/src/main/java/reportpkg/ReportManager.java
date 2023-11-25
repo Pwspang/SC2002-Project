@@ -72,7 +72,7 @@ public class ReportManager {
      * @param filename     The file name to write to.
      */
     public void writeCampReport(String nameOfFilter, String ID, String filename) {
-        ReportFilterCamp rfc = getFilter(nameOfFilter, ID);
+        ReportFilterCamp rfc = getFilter(nameOfFilter);
         rfc.write(ID, filename);
     }
 

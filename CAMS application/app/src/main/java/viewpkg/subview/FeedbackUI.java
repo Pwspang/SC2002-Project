@@ -10,11 +10,13 @@ import java.util.ArrayList;
 
 import de.vandermeer.asciitable.*;
 
-
+/**
+ * Class for handling UI related to Feedback
+ */
 public class FeedbackUI {
     /**
      * Display unanswered enquiries for user to select, user can reply to the selected enquiry
-     * @param user AuthStaff object
+     * @param user AuthStaff
      */
     public static void replyEnquiry(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -36,7 +38,10 @@ public class FeedbackUI {
         
 
     }
-
+    /**
+     * UI for staff to view all enquiries
+     * @param user AuthStaff
+     */
     public static void viewEnquiry(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal(); 
@@ -54,8 +59,8 @@ public class FeedbackUI {
     }
 
     /**
-     * Display a list of suggestions that the staff owns
-     * @param user
+     * UI for staff to view all suggestions
+     * @param user AuthStaff
      */
     public static void viewSuggestion(AuthStaff user){
         // ArrayList<Integer> feedbackIDList = user.getFeedback();
@@ -90,7 +95,7 @@ public class FeedbackUI {
 
     /**
      * Display unanswered Suggestions for user to select, user can approve/reject/do nothing to the suggestion
-     * @param user
+     * @param user AuthStaff
      */
     public static void replySuggestion(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -110,7 +115,7 @@ public class FeedbackUI {
 
     /**
      * Display a list of camps that the user is registered in but not part of camp comittee, user can choose from the camp to submit enquiry
-     * @param user
+     * @param user AuthStudent
      */
     public static void submitEnquiry(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -136,7 +141,7 @@ public class FeedbackUI {
 
     /**
      * Display a list of enquiry that the user previously submitted
-     * @param user
+     * @param user AuthStudent
      */
     public static void viewEnquiry(AuthStudent user){
         ArrayList<String> feedback = user.getEnquiries();
@@ -145,7 +150,7 @@ public class FeedbackUI {
 
     /**
      * Display a list of enquiry that the user previously submitted, user can choose from this list to edit their enquiry
-     * @param user
+     * @param user AuthStudent
      */
     public static void editEnquiry(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -168,7 +173,7 @@ public class FeedbackUI {
 
     /**
      * Display a list of enquiry that the user previously submitted, use can choose from this list to delete their enquiry
-     * @param user
+     * @param user AuthStudent
      */
     public static void deleteEnquiry(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -187,7 +192,7 @@ public class FeedbackUI {
 
     /**
      * Display all enquiry that user is a CCMember of a camp
-     * @param user
+     * @param user AuthCCMember
      */
     public static void viewEnquiry(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -205,7 +210,7 @@ public class FeedbackUI {
 
     /**
      * Display unanswered enquiry, user can select an enquiry and reply to it
-     * @param user
+     * @param user AuthCCMember
      */
     public static void replyEnquiry(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -228,7 +233,7 @@ public class FeedbackUI {
 
     /**
      * Submit Suggestion to camp that CC is part of
-     * @param user
+     * @param user AuthCCMember
      */
     public static void submitSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -253,7 +258,7 @@ public class FeedbackUI {
 
     /**
      * Display List of suggestions that CC submited
-     * @param user
+     * @param user AuthCCMember
      */
     public static void viewSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -270,7 +275,7 @@ public class FeedbackUI {
 
     /**
      * Display list of suggestions that CC submited, let user select and editSuggestion
-     * @param user
+     * @param user AuthCCMember
      */
     public static void editSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -295,8 +300,8 @@ public class FeedbackUI {
 
     /**
      * Display list of suggestions that CC submited, let user select and deleteSuggestion
-     * @param user
-     */
+     * @param user AuthCCMember
+     */ 
     public static void deleteSuggestion(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal();
@@ -315,8 +320,8 @@ public class FeedbackUI {
     }
 
     /**
-     * Print that feedbackIDList in asciitable format
-     * @param feedbackIDList
+     * Helper function to print the list of feedback in asciitable format
+     * @param feedbackIDList ArrayList containing feedbackID to be displayed
      */
     public static void displayFeedback(ArrayList<String> feedbackIDList){
         TextIO textIO = TextIoFactory.getTextIO();
