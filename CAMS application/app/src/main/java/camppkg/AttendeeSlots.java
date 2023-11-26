@@ -1,18 +1,27 @@
 package camppkg;
 import java.util.*;
 
+/**
+ * AttendeeSlots represents the slots details for the role Attendee.
+ * This class inherits from Slots.
+ */
 public class AttendeeSlots extends Slots {
     protected static ArrayList<String> stuWithdrawn;
 
     /**
-	 * Constructs a Camp object based on CampInformation.
-	 * @param id Unique Camp name
-	 * @param CampInformation Information needed to construct Camp
-	 */
+     * Constructor to instantiate AttendeeSlots with the given parameters.
+     * 
+     * @param totalSlots the total available slots in a camp for the role Attendee.
+     */
     public AttendeeSlots(int totalSlots) {
         super(totalSlots);
     }
 
+    /**
+	 * Withdraw from this role of this camp.
+	 * 
+	 * @param studentID ID of the withdrawing student
+	 */
     public void withdraw(String studentID) {
         if (!stuRegistered.contains(studentID)) throw new RuntimeException("Not registered.");
         stuRegistered.remove(studentID);
