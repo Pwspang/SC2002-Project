@@ -27,4 +27,4 @@ To run the application
 
 ## Pre-existing Data
 - Check [Account Dict File](https://github.com/Pwspang/SC2002-Project/blob/main/CAMS%20application/generateDatFiles/generateAccountDict.java)
-- Check [Camp List](https://github.com/swspang/SC2002-Project/blob/main/CAMS%20application/generateDatFiles/generateCampDict.java)
+- Check [Camp List](https://github.com/Pwspang/SC2002-Project/blob/main/CAMS%20application/generateDatFiles/generateCampDict.java)
