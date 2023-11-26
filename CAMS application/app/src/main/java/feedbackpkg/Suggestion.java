@@ -14,7 +14,8 @@ public class Suggestion extends Feedback {
     /**
      * Constructs a new Suggestion with the specified ID, user ID, campaign ID, content, and approval status.
      *
-     * @param feedbackID the unique ID of the feedback
+
+
      * @param userID the ID(Name) of the user who made the suggestion
      * @param campID the ID(Name) of the camp the suggestion is associated with
      * @param content the content of the suggestion

@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/*
+/**
  * Manages a list of Camps in the system.
  * Implements Serializable for serialization and deserialization.
  * iCampStaff, iCampStudent, iCampCommMember interfaces for each user type.
@@ -95,6 +95,21 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
         return campManager;
     }
 
+    
+    /** 
+     * Create camp
+     * @param staffID Staff ID
+     * @param campName Camp Name    
+     * @param startDate Start Date      
+     * @param endDate End Date
+     * @param registrationClosingDate Registration closing date
+     * @param openToWholeNTU If open to whole NTU 
+     * @param userGroup Faculty of staff
+     * @param location Location 
+     * @param totalSlots Total number of slots
+     * @param campCommitteeSlots Number of CC Slots
+     * @param description Description for camp
+     */
     public void createCamp(String staffID, String campName, String startDate, String endDate, String registrationClosingDate,
             boolean openToWholeNTU, Faculty userGroup, String location, int totalSlots, int campCommitteeSlots,
             String description) {
@@ -160,7 +175,7 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
 	 * 
 	 * @param campID campID of the target camp.
      * @param startDate new camp starting date to set to
-     * @param campID new camp ending date to set to
+     * @param endDate new camp ending date to set to
 	 */
     public void editDate(String campID, String startDate, String endDate) {
         Camp c = campList.get(campID);
@@ -236,17 +251,17 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
      * Cannot set it to be lower than the number of students already registered for the role.
 	 * 
 	 * @param campID campID of the target camp.
-     * @param editCampCommitteeSlots total number of slots to be set
+     * @param campCommitteeSlots total number of slots to be set
 	 */
     public void editCampCommitteeSlots(String campID, int campCommitteeSlots) {
         editSlots(campID, "CCMember", campCommitteeSlots);
     }
-  
 
-   /**
-	 * @param campID campID of the target camp.
-   * @return the number of slots for Camp Committee Members
-	 */
+    /**
+     * Get the camp comittee slots
+     * @param campID campID of the target camp.
+     * @return the number of slots for Camp Committee Members
+     */
     public int getCampCommitteeSlots(String campID){
         Camp c = campList.get(campID);
         CampInformation campinfo = c.getCampInfo();
@@ -449,7 +464,6 @@ public class CampManager implements Serializable, iCampStaff, iCampStudent, iCam
     /**
 	 * Returns a list of IDs of all camps in the system.
 	 * 
-	 * @param campID ID of the target camp
      * @return ArrayList of campID in the system
 	 */
     public ArrayList<String> getAllCamps(){

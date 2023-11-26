@@ -1,7 +1,5 @@
 package reportpkg;
 
-import authenticationpkg.AuthUser;
-
 /**
  * ReportFilterCamp is an interface that represents all report filters shall
  * implement.

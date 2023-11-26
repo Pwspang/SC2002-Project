@@ -1,5 +1,7 @@
 package camppkg;
-
+/**
+ * CCMember slots
+ */
 public class CCMemberSlots extends Slots {
     /**
      * Maximum total slots that can be set for this role.
@@ -18,6 +20,7 @@ public class CCMemberSlots extends Slots {
     }
 
     /**
+     * Get the maximum total slots the Staff can set to for this role.
      * @return get the maximum total slots the Staff can set to for this role.
      */
     public int getMaxTotalSlots() {

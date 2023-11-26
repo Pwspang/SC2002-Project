@@ -4,8 +4,6 @@ import java.util.*;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import authenticationpkg.AccountManager;
-import camppkg.*;
 import feedbackpkg.*;
 
 /**

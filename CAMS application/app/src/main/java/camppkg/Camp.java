@@ -38,6 +38,7 @@ public class Camp implements Serializable {
     }
 
     /**
+     * Get the ID of the camp object
      * @return ID of the Camp object.
      */
     public String getID() {
@@ -45,6 +46,7 @@ public class Camp implements Serializable {
     }
 
     /**
+     * Get camp information object
      * @return The CampInformation wrapper object for the supplied information.
      */
     public CampInformation getCampInfo() {
@@ -52,6 +54,7 @@ public class Camp implements Serializable {
     }
 
     /**
+     * Get visbility of the camp
      * @return The visibility of this camp. If the camp is open for students to view.
      */
     public Boolean getVisibility() {
@@ -59,6 +62,7 @@ public class Camp implements Serializable {
     }
 
     /**
+     * Get the list of student previosuly withdrawn from the Camp
      * @return ArrayList of students who previously withdrawn from this Camp.
      */
     public ArrayList<String> getStuWithdrawn() {
@@ -66,6 +70,7 @@ public class Camp implements Serializable {
     }
 
     /**
+     * Get List of students who are registered to the Camp
      * @return ArrayList of students who are registered to this Camp.
      */
     public ArrayList<String> getRegisteredStudents() {
@@ -79,6 +84,7 @@ public class Camp implements Serializable {
     }
 
     /**
+     * Get students and their associated role
      * @return HashMap of registered students and their associated role.
      */
     public HashMap<String, String> getRegisteredStudentRoles() {

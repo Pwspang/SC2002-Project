@@ -10,15 +10,45 @@ import java.time.LocalDate;
  * Also the information can be viewed by relevant students.
  */
 public class CampInformation implements Serializable {
+    /**
+     * Name of the camp
+     */
     private String campName;
+    /**
+     * Start Date of the camp
+     */
     private LocalDate startDate;
+    /**
+     * End Date of the camp
+     */
     private LocalDate endDate;
+    /**
+     * Registration Closing Date of the camp
+     */
     private LocalDate registrationClosingDate;
+    /**
+     * Whether the camp is open to NTU
+     */
     private Boolean openToWholeNTU;
+    /**
+     * Origin Faculty of the camp
+     */
     private Faculty userGroup;
+    /**
+     * Location of the camp
+     */
     private String location;
+    /**
+     * Description for the camp
+     */
     private String description;
+    /**
+     * Staff in charge of the camp
+     */
     private String staffInCharge;
+    /**
+     * List of camp slots objects
+     */
     private HashMap<String, Slots> slots = new HashMap<>();
 
     /**
@@ -86,6 +116,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get name of the camp
      * @return the name of the camp
      */
     public String getCampName() {
@@ -93,6 +124,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get start date of the camp
      * @return the start date of the camp
      */
     public LocalDate getStartDate() {
@@ -100,6 +132,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get end date of the camp
      * @return the end date of the camp
      */
     public LocalDate getEndDate() {
@@ -107,6 +140,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get registration closing date of the camp
      * @return the registration closing date of the camp
      */
     public LocalDate getRegisterationClosingDate() {
@@ -114,6 +148,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get if the camp is opened to whole NTU
      * @return if the camp is opened to whole NTU
      */
     public boolean getOpenToWholeNTU() {
@@ -121,6 +156,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get faculty the camp is opened to
      * @return the faculty the camp is opened to
      */
     public Faculty getUserGroup() {
@@ -128,6 +164,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get location where camp is held
      * @return location where camp is held
      */
     public String getLocation() {
@@ -135,6 +172,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get description of the camp
      * @return description of the camp
      */
     public String getDescription() {
@@ -142,6 +180,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get staff in charge of the camp
      * @return staff in charge of the camp
      */
     public String getStaffInCharge() {
@@ -149,6 +188,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get HashMap object of slotsID to Slots object
      * @return HashMap object of slotsID to Slots object
      */
     public HashMap<String, Slots> getAllSlots() {
@@ -156,6 +196,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get Slots object of the associated ID
      * @param roleID the role of the object
      * @return Slots object of the associated ID
      */
@@ -164,6 +205,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get total number of slots of this camp.
      * @return Get the total number of slots of this camp.
      */
     public int getTotalSlots() {
@@ -175,6 +217,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Get a summary of the number of slots of each role.
      * @return Get a summary of the number of slots of each role.
      */
     public String getSlotsSummary() {
@@ -190,6 +233,7 @@ public class CampInformation implements Serializable {
     // set methods
 
     /**
+     * Set name of the camp
      * @param campName the name of the camp
      */
     public void setCampName(String campName) {
@@ -197,6 +241,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set start date of the camp
      * @param startDate the start date of the camp
      */
     public void setStartDate(String startDate) {
@@ -204,6 +249,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set end date of the camp
      * @param endDate the end date of the camp
      */
     public void setEndDate(String endDate) {
@@ -211,6 +257,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set registration closing date of the camp
      * @param registrationClosingDate the registration closing date of the camp
      */
     public void setRegisterationClosingDate(String registrationClosingDate) {
@@ -218,6 +265,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set if the camp is opened to whole NTU
      * @param openToWholeNTU if the camp is opened to whole NTU
      */
     public void setOpenToWholeNTU(boolean openToWholeNTU) {
@@ -225,6 +273,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set the faculty the camp is opened to
      * @param userGroup the faculty the camp is opened to
      */
     public void setUserGroup(Faculty userGroup) {
@@ -232,6 +281,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set location where camp is held
      * @param location location where camp is held
      */
     public void setLocation(String location) {
@@ -239,6 +289,7 @@ public class CampInformation implements Serializable {
     }
 
     /**
+     * Set description of the camp
      * @param description description of the camp
      */
     public void setDescription(String description) {

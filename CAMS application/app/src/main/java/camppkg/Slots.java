@@ -46,6 +46,7 @@ public abstract class Slots implements Serializable {
     }
 
     /**
+     * Get the number of slots available
      * @return the total number of slots available
      */
     public int getTotalSlots() {
@@ -53,6 +54,7 @@ public abstract class Slots implements Serializable {
     }
 
     /**
+     * Get the number of slots registered
      * @return number of slots registered.
      */
     public int getOccupiedSlots() {
@@ -60,6 +62,7 @@ public abstract class Slots implements Serializable {
     }
 
     /**
+     * Get the number of slots left
      * @return number of slots left
      */
     public int getRemainingSlots() {
@@ -67,6 +70,7 @@ public abstract class Slots implements Serializable {
     }
 
     /**
+     * Get the list of ID of students registered
      * @return list of ID of students registered
      */
     public ArrayList<String> getStuRegistered() {
@@ -74,6 +78,7 @@ public abstract class Slots implements Serializable {
     }
 
     /**
+     * Get the total number of slots available
      * @param totalSlots the total number of slots available
      */
     public void setTotalSlots(int totalSlots) {

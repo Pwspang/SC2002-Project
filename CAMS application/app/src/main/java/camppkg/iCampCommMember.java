@@ -1,6 +1,9 @@
 package camppkg;
 import java.util.*;
 
+/**
+ * Interface for CCMember to access camp manager
+ */
 public interface iCampCommMember extends iCampStudent {
     
     /**

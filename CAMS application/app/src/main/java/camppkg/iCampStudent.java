@@ -1,7 +1,9 @@
 package camppkg;
 import java.util.*;
 import authenticationpkg.Faculty;
-
+/**
+ * Interface for Student to access camp manager
+ */
 public interface iCampStudent {
     
     /**
@@ -16,6 +18,7 @@ public interface iCampStudent {
 	 * Get the list of registered camps for a particular student regardless of role.
 	 * 
 	 * @param studentID ID of the Student user.
+	 * @param roleID role of the Student user
      * @return ArrayList of campID of the registered camps.
 	 */
     ArrayList<String> getRegisteredCampList(String studentID, String roleID);

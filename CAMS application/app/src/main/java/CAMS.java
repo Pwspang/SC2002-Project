@@ -27,9 +27,10 @@ public class CAMS {
      */
     private static iView currView;
 
-    /*
+    /**
      * Initial entry to the application
-     */  
+     * @param args argument
+     */
     public static void main(String[] args){
         startAllManager();
         start();

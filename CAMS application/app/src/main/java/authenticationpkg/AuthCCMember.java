@@ -41,7 +41,7 @@ public class AuthCCMember extends AuthStudent {
      * 
      * @param feedbackID   The feedbackID associated with the enquiry.
      * @param replyContent The content that is the reply to the enquiry.
-     * @throws Exception
+     * @throws Exception If the feedbackID is invalid
      */
     public void replyEnquiry(int feedbackID, String replyContent) throws Exception {
         iFeedbackCC feedbackManager = FeedbackManager.getInstance();

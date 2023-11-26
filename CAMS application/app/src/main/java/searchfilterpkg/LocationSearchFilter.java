@@ -1,6 +1,5 @@
 package searchfilterpkg;
 
-import java.time.LocalDate;
 import java.util.*;
 
 import camppkg.*;
@@ -13,8 +12,6 @@ public class LocationSearchFilter implements SearchFilter {
     /**
      * Gets the list of campIDs based on location.
      * 
-     * @param date     The name of location that will be used to filter the camp
-     *                 list.
      * @param campList The list of campIDs.
      * @return The filtered list of campIDs.
      */

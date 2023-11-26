@@ -169,7 +169,7 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
 
                 Enquiry e = (Enquiry) f;
                 // check if enquiry is not replied
-                EnquiryList.add(f.toString());
+                EnquiryList.add(e.toString());
             }
         }
         // // For testing
@@ -295,7 +295,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      * 
      * If no enquiries are found for the specified camp, an exception is thrown.
      * 
-     * @param campID the ID(Name) of the camp whose enquiries are to be retrieved
      * @return a list of string representations of the enquiries made to the
      *         specified camp
      * @throws Exception if no enquiries are found for the specified camp
@@ -340,7 +339,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      * an exception is thrown.
      * 
      * @param feedbackID   the ID of the enquiry to be replied to
-     * @param campID       the ID(Name) of the camp the enquiry is associated with
      * @param replyContent the reply content
      * @throws Exception if no enquiries are found for the specified camp, or if the
      *                   specified enquiry has already been replied to
@@ -538,7 +536,6 @@ public class FeedbackManager implements Serializable, iFeedbackCC, iFeedbackStaf
      * If no matching suggestion is found, a NullPointerException is thrown.
      *
      * @param feedbackID The ID of the feedback to be approved.
-     * @param campID The ID(Name) of the camp the suggestion is associated with.
      * @throws NullPointerException If no matching suggestion is found.
      */
     @Override

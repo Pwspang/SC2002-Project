@@ -126,7 +126,7 @@ public class AuthStudent extends AuthUser {
      * 
      * @param feedbackID The feedbackID associated with the enquiry to be edited.
      * @param newContent The content of enquiry that student wants to change to.
-     * @throws Exception
+     * @throws Exception If the feedbackID is invalid
      */
     public void editEnquiry(int feedbackID, String newContent) throws Exception {
         iFeedbackStudent feedbackManager = FeedbackManager.getInstance();

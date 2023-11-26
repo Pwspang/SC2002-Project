@@ -13,6 +13,7 @@ import viewpkg.iView;
 public class LoginUI{
     /**
      * Handles IO for login
+     * @return AuthUser object
      */
     public static AuthUser handleLogin(){
         TextIO textIO = TextIoFactory.getTextIO();
@@ -56,9 +57,6 @@ public class LoginUI{
         
         return user;
     }
-    /**
-     * @return AuthUser object
-     */
 
     /**
      * Handles IO for reset password

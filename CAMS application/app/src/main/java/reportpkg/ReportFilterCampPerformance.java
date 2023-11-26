@@ -4,7 +4,6 @@ import java.util.*;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import authenticationpkg.AccountManager;
 import camppkg.*;
 import pointspkg.*;
 
@@ -23,7 +22,6 @@ public class ReportFilterCampPerformance implements ReportFilterCamp {
     public void write(String campID, String filename) {
         CampManager campManager = CampManager.getInstance();
         PointsManager pointsManager = PointsManager.getInstance();
-        CampInformation campInfo = campManager.getCampInfo(campID);
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);
         HashMap<String, String> roles = campManager.getRegisteredStudentRoles(campID);

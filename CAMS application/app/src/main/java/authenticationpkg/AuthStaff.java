@@ -33,7 +33,6 @@ public class AuthStaff extends AuthUser {
      * @param endDate                The end date of camp.
      * @param registratonClosingDate The resgistration closing date of camp.
      * @param openToNTU              If the camp is open to the entire university.
-     * @param userGroup              The faculty that can join this camp.
      * @param location               The location where this camp is held.
      * @param totalSlots             The total number of students that can register
      *                               for this camp.
@@ -175,7 +174,7 @@ public class AuthStaff extends AuthUser {
      * 
      * @param feedbackID   The feedbackID related to the enquiry.
      * @param replyContent The content of the reply to the enquiry.
-     * @throws Exception
+     * @throws Exception If the feedbackID is invalid
      */
     public void replyEnquiry(int feedbackID, String replyContent) throws Exception {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();
@@ -200,7 +199,7 @@ public class AuthStaff extends AuthUser {
      * Approves suggestion made by CCMember.
      * 
      * @param feedbackID The feedbackID associated with the suggestion.
-     * @throws Exception
+     * @throws Exception If the feedbackID is invalid
      */
     public void approveSuggestion(int feedbackID) throws Exception {
         iFeedbackStaff feedbackManager = FeedbackManager.getInstance();

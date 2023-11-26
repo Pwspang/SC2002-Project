@@ -9,13 +9,14 @@ package feedbackpkg;
      * Indicates whether the enquiry has been replied to.
      */
     private Boolean isReplied;
-
+    /**
+     * Stores the replyString
+     */
     private String replyString;
 
      /**
      * Constructs a new Enquiry with the specified ID, user ID, campaign ID, content, and reply status.
      *
-     * @param feedbackID the unique ID of the feedback
      * @param userID the ID/Name of the user who made the enquiry
      * @param campID the ID/Name of the camp the enquiry is associated with
      * @param content the content of the enquiry
@@ -35,11 +36,17 @@ package feedbackpkg;
     public boolean isReplied() {
         return this.isReplied;
     }
-
+    /**
+     * Gets the replied string
+     * @return The replied string
+     */
     public String getReplyString(){
         return replyString;
     }
-
+    /**
+     * Sets the reply string
+     * @param replyString Reply String
+     */
     public void setReplyString(String replyString){
         this.replyString = replyString;
     }

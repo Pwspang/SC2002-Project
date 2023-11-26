@@ -6,6 +6,9 @@ import java.util.*;
  * This class inherits from Slots.
  */
 public class AttendeeSlots extends Slots {
+    /**
+     * Stores the lsit of students that withdraw from the camp
+     */
     protected static ArrayList<String> stuWithdrawn;
 
     /**

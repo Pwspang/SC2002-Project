@@ -44,6 +44,8 @@ public interface iView {
 
     /**
      * Generate Header for UI
+     * @param name Header to display 
+     * @return Header String
      */
     public static String displayHeader(String name){
         return  "================================================\n" + name + "\n================================================";

@@ -63,7 +63,7 @@ public abstract class Feedback implements Serializable{
      * @param feedbackID the unique ID of the feedback
      */
     public void setFeedbackID(int feedbackID) {
-        feedbackID = feedbackID;
+        this.feedbackID = feedbackID;
     }
 
     /**
@@ -76,18 +76,16 @@ public abstract class Feedback implements Serializable{
     }
 
     /**
-     * Sets the ID/Name of the user who made the feedback.
-     *
-     * @param userID the ID/Name of the user who made the feedback
+     * Gets the ID/Name of the user who made the feedback.
+     * @return Camp ID
      */
     public String getCampID() {
         return this.campID;
     }
 
     /**
-     * Sets the ID/Name of the camp the feedback is associated with.
-     *
-     * @param campID the ID/Name of the camp the feedback is associated with
+     * Get the content of the feedback
+     * @return Content 
      */
     public String getContent() {
         return this.content;
