@@ -13,6 +13,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Generates the initial campDict.dat file for CampManager.
+ */
 public class generateCampDict implements Serializable{
     public static void main(String args[]) {
         HashMap<String, Camp> myHashMap = new HashMap<>();
