@@ -41,7 +41,7 @@ public class CAMS {
      */
     private static void start(){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal();   
+        TextTerminal<?> terminal = textIO.getTextTerminal();   
 
         int choice;
         boolean done = true;
@@ -101,6 +101,7 @@ public class CAMS {
     public static void logout(){
         user = null;
     }
+    
     /*
      * Starts all manager object, serializing the objects from dat file
      */
@@ -113,6 +114,7 @@ public class CAMS {
         PointsManager.getInstance();
         
     }
+    
     /*
      * Stops all manager object, deserializing the objects to dat file
      */
@@ -132,7 +134,7 @@ public class CAMS {
         pointsManager.writeSerializedObject();
 
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         terminal.dispose();
     }
 

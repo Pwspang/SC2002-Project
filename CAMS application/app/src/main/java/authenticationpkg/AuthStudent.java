@@ -54,17 +54,20 @@ public class AuthStudent extends AuthUser {
     public void register(String campID, String roleID) {
         iCampStudent campManager = CampManager.getInstance();
         AccountManager accountManager = AccountManager.getInstance();
-        ArrayList<String> campList = campManager.getRegisteredCampList(getUserID(), "CCMember");
-        if (campList.isEmpty()) {
-            campManager.register(campID, getUserID(), roleID);
-            if (roleID.equals("CCmember")){
-                            accountManager.changeAccountType(this,
-                    new AuthCCMember(this.getName(), this.getUserID(), this.getPassword(), this.getFaculty()));
+
+        if (roleID.equals("CCMember")) {
+            ArrayList<String> campListCCMember = campManager.getRegisteredCampList(getUserID(), "CCMember");
+            if (campListCCMember.isEmpty()) {
+                campManager.register(campID, getUserID(), roleID);
+                accountManager.changeAccountType(this,
+                        new AuthCCMember(this.getName(), this.getUserID(), this.getPassword(), this.getFaculty()));
+
+            } else {
+                throw new RuntimeException("You have already registered as a CCMember for another camp.");
             }
-
-
         } else {
-            throw new RuntimeException("You have already registered as a CCMember for another camp.");
+            campManager.register(campID, getUserID(), roleID);
+
         }
 
     }

@@ -5,22 +5,28 @@ import org.beryx.textio.TextIoFactory;
 import org.beryx.textio.TextTerminal;
 import de.vandermeer.asciitable.*;
 import reportpkg.ReportManager;
+import searchfilterpkg.SearchFilterManager;
 
 import java.util.*;
 
-import authenticationpkg.*;;
+import authenticationpkg.*;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
+/**
+ * CampUI Class to handle UI related to Camps
+ */
 public class CampUI {
     /**
-     * Get user input to create a camp object
-     * To do add datetime validation
-     * @param user
+     * UI for Staff Create Camp
+     * @param user AuthStaff user 
      */
     public static void createCamp(AuthStaff user){
         // To do fix formatting
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         
         String campName, startDate, endDate, registrationClosingDate, location, description;
         boolean openToWholeNTU;
@@ -28,15 +34,39 @@ public class CampUI {
 
         campName = textIO.newStringInputReader()
             .read("Camp Name");
-
-        startDate = textIO.newStringInputReader()
-            .read("Start Date");
-
-        endDate = textIO.newStringInputReader()
-            .read("End Date");
         
-        registrationClosingDate = textIO.newStringInputReader()
-            .read("Registration Closing Date");
+        Pattern pattern = Pattern.compile("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
+        // Checking date format 
+        do {
+            startDate = textIO.newStringInputReader()
+                .read("Start Date");
+            matcher = pattern.matcher(startDate);
+            if (matcher.find()) {
+                break;
+            }
+            terminal.println("Invalid date format use YYYY-MM-DD.");
+        } while (true);
+
+        do {
+            endDate = textIO.newStringInputReader()
+                .read("Start Date");
+            matcher = pattern.matcher(endDate);
+            if (matcher.find()) {
+                break;
+            }
+            terminal.println("Invalid date format use YYYY-MM-DD.");
+        } while (true);
+
+        do {
+            registrationClosingDate = textIO.newStringInputReader()
+                .read("Start Date");
+            matcher = pattern.matcher(registrationClosingDate);
+            if (matcher.find()) {
+                break;
+            }
+            terminal.println("Invalid date format use YYYY-MM-DD.");
+        } while (true);
         
         openToWholeNTU = textIO.newBooleanInputReader()
             .withDefaultValue(true)
@@ -59,17 +89,20 @@ public class CampUI {
 
         try{
             user.createCamp(campName, startDate, endDate, registrationClosingDate, openToWholeNTU, location, totalSlots, campComitteeSlots, description);
-            terminal.printf("%s created.\n");
+            terminal.printf("%s created.\n", campName);
         } catch (Exception e){
             terminal.println("Camp not created due to " + e.getMessage());
             return;
         }
         
     }
-
+    /**
+     * UI to Delete Camp
+     * @param user AuthStaff user 
+     */
     public static void deleteCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -88,10 +121,13 @@ public class CampUI {
             terminal.println(e.getMessage());
         }
     }
-
+    /**
+     * UI to view created camps
+     * @param user AuthStaff user 
+     */
     public static void viewCreatedCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -110,12 +146,12 @@ public class CampUI {
     }
     
     /**
-     * Display camps that staff created -> select from list -> select field to edit -> enter new field
-     * @param user
+     * UI to edit created camps
+     * @param user AuthStaff user 
      */
     public static void editCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -128,7 +164,8 @@ public class CampUI {
         }
         ArrayList<String> options = new ArrayList<>(Arrays.asList("Camp Committee Slots", "Start/End Date", "Registration Ending Date", "Description", "Location", "Open to whole NTU"));
         int option = displayCamps(options);
-
+        Pattern pattern = Pattern.compile("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
         try{
             switch (option){
                 case 1:
@@ -136,16 +173,39 @@ public class CampUI {
                 user.editCampCommitteeSlots(campIDList.get(campChoice-1), slots);
                 break;
                 case 2:
-                String startDate = textIO.newStringInputReader()
-                    .read("Start Date");
+                String startDate, endDate;
+                do {
+                    startDate = textIO.newStringInputReader()
+                        .read("Start Date");
+                    matcher = pattern.matcher(startDate);
+                    if (matcher.find()) {
+                        break;
+                    }
+                    terminal.println("Invalid date format use YYYY-MM-DD.");
+                } while (true);
 
-                String endDate = textIO.newStringInputReader()
-                    .read("End Date");
+                do {
+                    endDate = textIO.newStringInputReader()
+                        .read("Start Date");
+                    matcher = pattern.matcher(endDate);
+                    if (matcher.find()) {
+                        break;
+                    }
+                    terminal.println("Invalid date format use YYYY-MM-DD.");
+                } while (true);
                 user.editDate(campIDList.get(campChoice-1), startDate, endDate);
                 break;
                 case 3:
-                String registrationClosingDate = textIO.newStringInputReader()
-                    .read("Registration Closing Date");
+                String registrationClosingDate;
+                do {
+                    registrationClosingDate = textIO.newStringInputReader()
+                        .read("Start Date");
+                    matcher = pattern.matcher(registrationClosingDate);
+                    if (matcher.find()) {
+                        break;
+                    }
+                    terminal.println("Invalid date format use YYYY-MM-DD.");
+                } while (true);
                 user.editRegistrationClosingDate(campIDList.get(campChoice-1), registrationClosingDate);
                 break;
                 case 4:
@@ -173,17 +233,35 @@ public class CampUI {
     }
 
     /**
-     * Display all camps in camp manager -> select from list -> display detailed information
-     * @param user
+     * UI to View All Camps
+     * @param user AuthStaff user 
      */
     public static void viewAllCamps(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getAllCamps();
 
         terminal.setBookmark("viewAllCamps");
 
+        SearchFilterManager searchFilterManager = SearchFilterManager.getInstance();
+
+        String nameOfFilter = textIO.newStringInputReader()
+            .withNumberedPossibleValues(searchFilterManager.getFilterList())
+            .read("Select Filter Option");
+        
+        if (!nameOfFilter.equals("No Filter")){
+            String filterOption = textIO.newStringInputReader()
+                .read("Filter by");
+            try {
+                campIDList = searchFilterManager.filter(nameOfFilter, filterOption, campIDList);
+            } catch (Exception e){
+                terminal.println("Invalid Filter entered.");
+            }
+            
+        }
+        
+        
         int campChoice = displayCamps(campIDList);
 
         if (campChoice == 0){
@@ -196,12 +274,12 @@ public class CampUI {
     }
 
     /**
-     * Display camps that staff created -> Select from list -> Set visibility y/n
-     * @param user
+     * UI to toggle visibility of camps
+     * @param user AuthStaff user 
      */
     public static void toggleVisibilityCamp(AuthStaff user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         ArrayList<String> campIDList = user.getCreatedCamps();
 
@@ -224,14 +302,34 @@ public class CampUI {
         }
 
     }
-
+    /**
+     * UI to view available camps
+     * @param user AuthStudent 
+     */
     public static void viewAvailableCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getVisibleCampList();
 
         terminal.setBookmark("viewAvailableCamp");
+
+        SearchFilterManager searchFilterManager = SearchFilterManager.getInstance();
+
+        String nameOfFilter = textIO.newStringInputReader()
+            .withNumberedPossibleValues(searchFilterManager.getFilterList())
+            .read("Select Filter Option");
+        
+        if (!nameOfFilter.equals("No Filter")){
+            String filterOption = textIO.newStringInputReader()
+                .read("Filter by");
+            try {
+                campIDList = searchFilterManager.filter(nameOfFilter, filterOption, campIDList);
+            } catch (Exception e){
+                terminal.println("Invalid Filter entered.");
+            }
+            
+        }
 
         int campChoice = displayCamps(campIDList);
 
@@ -244,30 +342,41 @@ public class CampUI {
         displayCampDetails(campIDList.get(campChoice-1), user);
 
     }
-    // TO DO indicate if the camp is Attendee or CCMember
     public static void viewRegisteredCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
         ArrayList<String> campIDListCC = user.getRegisteredCampList("CCMember");
 
-        terminal.setBookmark("viewRegisteredCamp");
+        //display camp details for registered camps as attendee 
+        if (campIDList.size() > 0){
+            terminal.println("===================");
+            terminal.println("Joined as attendee.");
+            terminal.println("===================");
+            for (String campID: campIDList){
+                displayCampDetails(campID, user);
+            }
+        }
 
-        int campChoice = displayCamps(campIDList);
 
-        if (campChoice == 0){
-            return;
-        }  
-
-        terminal.resetToBookmark("viewRegisteredCamp");
-
-        displayCampDetails(campIDList.get(campChoice-1), user); 
+        //display detials for CC Camps 
+        if (campIDListCC.size() > 0){
+            terminal.println("=======================");
+            terminal.println("Joined as Camp Comittee");
+            terminal.println("=======================");
+            for (String campID : campIDListCC) {
+                displayCampDetails(campID, user);
+            }
+        }
     }
-
+    /**
+     * UI to register for camp
+     * @param user AuthStudent 
+     */
     public static void registerForCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getVisibleCampList();
 
@@ -282,7 +391,7 @@ public class CampUI {
         }
             
         String roleID = textIO.newStringInputReader()
-            .withInlinePossibleValues("Attendee","CCMember")
+            .withNumberedPossibleValues("Attendee","CCMember")
             .read("Role");
 
         terminal.resetToBookmark("registerForCamp");
@@ -295,9 +404,13 @@ public class CampUI {
         }
 
     }
+    /**
+     * UI to withdraw from camp
+     * @param user AuthStudent 
+     */
     public static void withdrawFromCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         // Should get the camp from user
         ArrayList<String> campIDList = user.getRegisteredCampList("Attendee");
 
@@ -320,10 +433,13 @@ public class CampUI {
             terminal.println(e.getMessage());
         }
     }
-
+    /**
+     * UI to generate camp report for staff
+     * @param user AuthStaff
+     */
     public static void generateCampReport(AuthStaff user) {
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         ReportManager reportManager = ReportManager.getInstance();
 
         //choose a filter
@@ -336,7 +452,7 @@ public class CampUI {
 
         String ID;
         
-        if (filename.equals("ReportFilterCampStudentID")){
+        if (filtername.equals("ReportFilterCampStudentID")){
             ID = textIO.newStringInputReader()
                 .read("Student ID");
         } else {
@@ -355,10 +471,13 @@ public class CampUI {
 
     }
 
+    /**
+     * UI to generate camp report for CCMember
+     * @param user AuthCCMember
+     */
     public static void generateCampReport(AuthCCMember user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
-        ReportManager reportManager = ReportManager.getInstance();
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         //choose a filter
         String filtername = textIO.newStringInputReader()
@@ -380,10 +499,14 @@ public class CampUI {
         }
 
     }
-
+    /**
+     * Helper function to displayCamps and obtain user selection
+     * @param campIDList List of Camps
+     * @return User selected choice
+     */
     public static int displayCamps(ArrayList<String> campIDList){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
 
         //CampList is empty 
         if (campIDList.size() == 0){
@@ -409,10 +532,14 @@ public class CampUI {
 
         return campChoice;
     }
-      
+    /**
+     * UI to display specific details of selected camp
+     * @param campID Specific ID for the camp
+     * @param user User object to access get camp method
+     */
     public static void displayCampDetails(String campID, AuthUser user){
         TextIO textIO = TextIoFactory.getTextIO();
-        TextTerminal terminal = textIO.getTextTerminal(); 
+        TextTerminal<?> terminal = textIO.getTextTerminal(); 
         terminal.print(user.getCamp(campID).toString());
     }
 }

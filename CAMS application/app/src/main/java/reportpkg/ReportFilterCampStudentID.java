@@ -9,7 +9,7 @@ import authenticationpkg.Faculty;
 import camppkg.*;
 
 /**
- * ReportFilterCampStudentID inherits from ReportFilterCamp.
+ * ReportFilterCampStudentID implements ReportFilterCamp.
  * The type of report written by this filter is a list of camps that this
  * student has joined.
  */
@@ -27,6 +27,7 @@ public class ReportFilterCampStudentID implements ReportFilterCamp {
         ArrayList<String> campList = campManager.getRegisteredCampList(userID);
 
         String content = "";
+        content += "Camps registered for: " + userID + "\n";
 
         for (int i = 0; i < campList.size(); i++) {
 

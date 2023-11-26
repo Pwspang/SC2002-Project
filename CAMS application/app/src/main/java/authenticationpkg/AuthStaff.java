@@ -44,7 +44,8 @@ public class AuthStaff extends AuthUser {
             boolean openToNTU, String location, int totalSlots, int campCommitteeSlots,
             String description) {
         iCampStaff campManager = CampManager.getInstance();
-        campManager.createCamp(getUserID(), campName, startDate, endDate, registratonClosingDate, openToNTU, getFaculty(),
+        campManager.createCamp(getUserID(), campName, startDate, endDate, registratonClosingDate, openToNTU,
+                getFaculty(),
                 location, totalSlots, campCommitteeSlots, description);
     }
 

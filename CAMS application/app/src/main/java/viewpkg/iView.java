@@ -13,7 +13,7 @@ public interface iView {
      */
     public int displayOptions();
     /**
-     * @return 
+     * @return The selected choice from the user. 
      */
 
     /**
@@ -39,7 +39,7 @@ public interface iView {
         return at.render();
     }
     /**
-    * @return Formatted table in string type
+    * @return Formatted table in String
     */
 
     /**

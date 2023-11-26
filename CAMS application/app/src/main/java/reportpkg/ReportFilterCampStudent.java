@@ -10,7 +10,7 @@ import authenticationpkg.Faculty;
 import java.time.LocalDate;
 
 /**
- * ReportFilterCampStudent inherits from ReportFilterCamp.
+ * ReportFilterCampStudent implements ReportFilterCamp.
  * The type of report written by this filter is a list of students that attends
  * the camp.
  */
@@ -31,7 +31,7 @@ public class ReportFilterCampStudent implements ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        int ccSlots = 1;// campInfo.getCampCommitteeSlots();
+        int ccSlots = campManager.getCampCommitteeSlots(campInfo.getCampName());
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);

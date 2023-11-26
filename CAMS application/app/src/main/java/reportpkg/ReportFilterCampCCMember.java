@@ -11,7 +11,7 @@ import authenticationpkg.Faculty;
 import camppkg.*;
 
 /**
- * ReportFilterCampCCMember inherits from ReportFilterCamp.
+ * ReportFilterCampCCMember implements ReportFilterCamp.
  * The type of report written by this filter is the information of camp and
  * list of all CCMembers.
  */
@@ -33,7 +33,7 @@ public class ReportFilterCampCCMember implements ReportFilterCamp {
         Faculty userGroup = campInfo.getUserGroup();
         String location = campInfo.getLocation();
         int totalSlots = campInfo.getTotalSlots();
-        // int ccSlots = campInfo.getCampCommitteeSlots();
+        int ccSlots = campManager.getCampCommitteeSlots(campInfo.getCampName());
         String description = campInfo.getDescription();
 
         ArrayList<String> studentNameList = campManager.getRegisteredStudents(campID);
@@ -50,7 +50,7 @@ public class ReportFilterCampCCMember implements ReportFilterCamp {
         content += "\nFaculty: " + userGroup;
         content += "\nLocation: " + location;
         content += "\nTotal Slots: " + totalSlots;
-        content += "\nCamp Committee Slots: " + 1;// ccSlots;
+        content += "\nCamp Committee Slots: " + ccSlots;// ccSlots;
         content += "\nDescription: " + description;
         content += "\n\nStudent Details:";
 

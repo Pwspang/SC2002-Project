@@ -9,7 +9,7 @@ import camppkg.*;
 import feedbackpkg.*;
 
 /**
- * ReportFilterCampEnquiry inherits from ReportFilterCamp.
+ * ReportFilterCampEnquiry implements ReportFilterCamp.
  * The type of report written by this filter is a list of enquiries for a camp.
  */
 public class ReportFilterCampEnquiry implements ReportFilterCamp {
