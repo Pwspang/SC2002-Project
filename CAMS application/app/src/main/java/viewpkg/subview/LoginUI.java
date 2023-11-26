@@ -1,4 +1,4 @@
-package viewpkg.subview;
+ package viewpkg.subview;
 
 import org.beryx.textio.TextIO;
 import org.beryx.textio.TextIoFactory;
@@ -33,11 +33,9 @@ public class LoginUI{
                         """);
 
         String username = textIO.newStringInputReader()
-                .withDefaultValue("YCHERN@e.ntu.edu.sg")
                 .read("Username");
 
         String password = textIO.newStringInputReader()
-                .withDefaultValue("password")
                 .read("Password");
 
         AuthUser user=null;

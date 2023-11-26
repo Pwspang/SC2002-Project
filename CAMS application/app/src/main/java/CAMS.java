@@ -29,7 +29,7 @@ public class CAMS {
 
     /*
      * Initial entry to the application
-     */
+     */  
     public static void main(String[] args){
         startAllManager();
         start();
@@ -53,6 +53,9 @@ public class CAMS {
                 if (user == null){
                     login();
                 } else {
+                    if (user.getPassword().equals("password")){
+                        LoginUI.resetPassword(user);
+                    }
                     terminal.setBookmark("Main View");
                     terminal.printf("Welcome %s from %s\n", user.getName(), user.getFaculty().name());
                     choice = currView.displayOptions();
@@ -87,11 +90,8 @@ public class CAMS {
             currView = user.getUI();
         }
 
-        /* 
-        if (user.getPassword().equals("password")){
-            LoginUI.resetPassword(user);
-        }
-        */
+
+
         
     }
     

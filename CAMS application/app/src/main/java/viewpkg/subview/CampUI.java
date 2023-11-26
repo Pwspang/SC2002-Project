@@ -10,6 +10,7 @@ import searchfilterpkg.SearchFilterManager;
 import java.util.*;
 
 import authenticationpkg.*;
+import camppkg.CampManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,7 +51,7 @@ public class CampUI {
 
         do {
             endDate = textIO.newStringInputReader()
-                .read("Start Date");
+                .read("End Date");
             matcher = pattern.matcher(endDate);
             if (matcher.find()) {
                 break;
@@ -60,7 +61,7 @@ public class CampUI {
 
         do {
             registrationClosingDate = textIO.newStringInputReader()
-                .read("Start Date");
+                .read("Registration Closing Date");
             matcher = pattern.matcher(registrationClosingDate);
             if (matcher.find()) {
                 break;
@@ -143,6 +144,16 @@ public class CampUI {
 
         displayCampDetails(campIDList.get(campChoice-1), user);
 
+        CampManager campManager = CampManager.getInstance();
+        HashMap<String, String> roles = campManager.getRegisteredStudentRoles(campIDList.get(campChoice-1));
+        ArrayList<String> studentNameList = campManager.getRegisteredStudents(campIDList.get(campChoice-1));
+        // should display the student list here
+        for (int i = 0; i < studentNameList.size(); i++) {
+            String k = studentNameList.get(i);
+            String v = roles.get(k);
+
+            terminal.printf("Name: %s \t Role: %s\n", k, v);
+        }
     }
     
     /**
@@ -342,6 +353,11 @@ public class CampUI {
         displayCampDetails(campIDList.get(campChoice-1), user);
 
     }
+    
+    /** 
+     * Student/Camp Comittee to view registered camps
+     * @param user AuthStudent
+     */
     public static void viewRegisteredCamp(AuthStudent user){
         TextIO textIO = TextIoFactory.getTextIO();
         TextTerminal<?> terminal = textIO.getTextTerminal(); 
