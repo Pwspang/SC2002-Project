@@ -1,16 +1,11 @@
 # SC2002-Project
 
 ## How to run 
-- Required: [gradle](https://gradle.org/install/) installed on the system 
+- Requirements: [gradle](https://gradle.org/install/) installed on the system 
 - [Java](https://www.java.com/en/) installed on system 
 
 In `CAMS Application` directory
-
-First Run 
-
-`gradle wrapper`
-
-Subsequent Runs
+To run the application
 
 `.\gradlew run`
 
@@ -27,8 +22,6 @@ Subsequent Runs
 
 - [Code](https://github.com/Pwspang/SC2002-Project/tree/main/CAMS%20application/app/src/main/java)
 - [Data files](https://github.com/Pwspang/SC2002-Project/tree/main/CAMS%20application/app/src/main/resources)
+- [Java Doc](https://github.com/Pwspang/SC2002-Project/tree/main/CAMS%20application/docs/javadoc)
 
 
-# To Do 
-
-- Remove redundant java files 
